@@ -26,8 +26,10 @@ public class User extends BaseEntity {
     private int age;
     @Column(name = "email")
     private String email;
-    @ManyToMany
-    private Set<Role> roles;
+    @Column(name = "city")
+    private String city;
+    @ManyToOne
+    private Role role;
     @Enumerated(EnumType.STRING)
     private Level level;
 }

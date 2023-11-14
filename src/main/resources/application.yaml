@@ -36,3 +36,8 @@ spring:
   #api-secret:
   #cloud-name:
 binding-result-package: org.springframework.validation.BindingResult
+
+#Admin password
+app:
+  admin:
+    password: ${ADMIN_PASSWORD}
