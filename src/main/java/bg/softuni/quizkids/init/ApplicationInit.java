@@ -3,6 +3,8 @@ package bg.softuni.quizkids.init;
 import bg.softuni.quizkids.services.CategoryService;
 import bg.softuni.quizkids.services.UserService;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,4 +23,6 @@ public class ApplicationInit implements CommandLineRunner {
         categoryService.init();
 
     }
+
+
 }
