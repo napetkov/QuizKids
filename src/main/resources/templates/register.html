@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <!-- progress barstle -->
+    <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- font wesome stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet"/>
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+    <title>Login</title>
+</head>
+<body class="top_container login">
+<head th:replace="~{fragments/nav-bar}">
+
+    <div class="d-flex justify-content-end w-75">
+    <div class="register-container  pt-xl-5">
+        <form>
+
+            <p class="text-center">Register:</p>
+
+            <!-- firstName input -->
+            <div class="form-outline mb-1">
+                <input type="text" id="firstName" class="form-control" />
+                <label class="form-label" for="firstName">First Name</label>
+            </div>
+            <!-- lastName input -->
+            <div class="form-outline mb-1">
+                <input type="text" id="lastName" class="form-control" />
+                <label class="form-label" for="lastName">Last Name</label>
+            </div>
+
+            <!-- Username input -->
+            <div class="form-outline mb-1">
+                <input type="text" id="username" class="form-control" />
+                <label class="form-label" for="username">Username</label>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-1">
+                <input type="email" id="email" class="form-control" />
+                <label class="form-label" for="email">Email</label>
+            </div>
+
+            <!-- Age input -->
+            <div class="form-outline mb-1">
+                <input type="number" id="age" class="form-control" />
+                <label class="form-label" for="age">Age</label>
+            </div>
+
+            <!-- City input -->
+            <div class="form-outline mb-1">
+                <input type="text" id="city" class="form-control" />
+                <label class="form-label" for="city">City</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-1">
+                <input type="password" id="password" class="form-control" />
+                <label class="form-label" for="password">Password</label>
+            </div>
+
+            <!-- Repeat Password input -->
+            <div class="form-outline mb-1">
+                <input type="password" id="repeatPassword" class="form-control" />
+                <label class="form-label" for="repeatPassword">Repeat password</label>
+            </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-3">Register</button>
+        </form>
+    </div>
+    </div>
+
+        <head th:replace = "~{fragments/footer}">
+</body>
+</html>

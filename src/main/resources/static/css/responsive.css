@@ -1,4 +1,18 @@
-@media (max-width: 1120px) {}
+@media (max-width: 1120px) {
+    .top_container::before{
+        background: none;
+    }
+    .hero_detail-box {
+        color: darkblue;
+    }
+    .navbar-brand span {
+        color: darkblue;
+    }
+}
+
+/*TODO: Nav-bar clear usefull classes*/
+/*TODO: Alla responsive design under max-width:800px*/
+
 
 @media (max-width: 992px) {
 

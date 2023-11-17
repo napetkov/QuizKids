@@ -1,6 +1,6 @@
 body {
   font-family: 'Poppins', sans-serif;
-
+  height: 100vh;
   color: #48494a;
   background-image: url(../images/body-bg.jpg);
 }
@@ -80,15 +80,15 @@ nav.navbar.navbar-expand-lg {
 
 .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
   padding: 10px 20px;
-  color: #2d2c2c;
+  color: darkblue;
   font-size: 15px;
   text-align: center;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item.active .nav-link {
-  color: #232323;
+  color: darkblue;
 
 }
 
@@ -441,3 +441,38 @@ a:focus {
 }
 
 /* end footer section*/
+/* login form */
+.login-container {
+  width: 300px;
+  height: 600px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-container {
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.login::before {
+    content: "";
+    position: absolute;
+    top:0;
+    width: 30%;
+    height: 100vh;
+    background: url(../images/planet-earth.jpg);
+    background-size: cover;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Additional styles for the footer */
+}
