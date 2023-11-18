@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <!-- progress barstle -->
+    <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- font wesome stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet"/>
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+    <title>Home</title>
+</head>
+<body class="top_container">
+<head th:replace="~{fragments/nav-bar}">
+    <div class="container" style="max-width: 800px;">
+        <div class="card">
+            <img class="img-card-container card-img-top img-fluid" src="images/math-bg.jpg">
+            <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
+                <h2 class="card-title">МАТЕМАТИКА</h2>
+                <h3 class="card-title">посочете верният отговор на задачата:
+                <br>
+                (23 + 58) + 9 = ?</h3>
+                <p th:text="${questionFromServer}" class="card-text"></p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-lg btn-block mb-3" type="button" name="answer" value="answer1">A: 23 </button>
+                        <button class="btn btn-primary btn-lg btn-block" type="button" name="answer" value="answer3">C: 18 </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-lg btn-block mb-3" type="button" name="answer" value="answer2">B: 24</button>
+                        <button class="btn btn-primary btn-lg btn-block" type="button" name="answer" value="answer4">D: 12</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/footer}"></div>
+</body>
+
+</html>

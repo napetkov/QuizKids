@@ -478,3 +478,8 @@ a:focus {
     background-repeat: no-repeat;
     z-index: -1;
 }
+.img-card-container{
+  object-fit: cover;
+  width: 400px;
+  height: 400px;
+}

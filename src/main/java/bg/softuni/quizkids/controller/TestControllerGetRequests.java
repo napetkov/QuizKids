@@ -27,7 +27,14 @@ public class TestControllerGetRequests {
     public String register(){
         return "register";
     }
-
+    @GetMapping("/home")
+    public String home(){
+        return "home";
+    }
+    @GetMapping("/math")
+    public String math(){
+        return "math";
+    }
 }
 
 
