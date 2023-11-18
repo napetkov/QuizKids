@@ -10,7 +10,7 @@ body {
 }
 
 .layout_padding2 {
-  padding: 45px 0;
+  padding: 10px 0;
 }
 
 .layout_padding2-top {
@@ -187,7 +187,7 @@ a:focus {
   display: flex;
   height: 70%;
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .hero_detail-box {
@@ -424,6 +424,14 @@ a:focus {
 
 /* footer section*/
 
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  /* Additional styles for the footer */
+}
+
 .footer_section {
   background-color: #082465;
   padding: 20px 0;
@@ -469,10 +477,4 @@ a:focus {
     background-position: right bottom;
     background-repeat: no-repeat;
     z-index: -1;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Additional styles for the footer */
 }

@@ -14,7 +14,6 @@
 
     <title>Adward</title>
 
-
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
     <!-- progress barstle -->
@@ -35,68 +34,23 @@
 </head>
 
 <body>
-<div class="top_container sub_pages ">
+<div class="top_container">
     <!-- header section strats -->
-    <header class="header_section">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/logo.png" alt="">
-                    <span>
-              Adward
-            </span>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-                        <ul class="navbar-nav  ">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="index.html"> Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="about.html"> About </a>
-                            </li>
-
-                            <li class="nav-item ">
-                                <a class="nav-link" href="teacher.html"> Teacher </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="vehicle.html"> vehicle </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact Us</a>
-                            </li>
-
-                        </ul>
-                        <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <head th:replace = "~{fragments/nav-bar}">
 </div>
 <!-- end header section -->
 
 <!-- contact section -->
 
-<section class="contact_section layout_padding">
+<section class="login layout_padding">
     <div class="container">
 
         <h2 class="main-heading">
-            Contact Now
+            СВЪРЖИ СЕ С НАС
 
         </h2>
-        <p class="text-center">
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        <p class="text-center" style="font-weight: 600">
+            ПОПЪЛНИ ФОРМАТА ПО-ДОЛУ И НИЕ ЩЕ СЕ СВЪРЖЕМ С ТЕБ
 
         </p>
         <div class="">
@@ -136,12 +90,7 @@
 <!-- end contact section -->
 
 <!-- footer section -->
-<section class="container-fluid footer_section">
-    <p>
-        Copyright &copy; 2019 All Rights Reserved By
-        <a href="https://html.design/">Free Html Templates</a>
-    </p>
-</section>
+<head th:replace = "~{fragments/footer}">
 <!-- footer section -->
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
