@@ -35,6 +35,15 @@ public class TestControllerGetRequests {
     public String math(){
         return "math";
     }
+
+    @GetMapping("/add-question")
+    public String add(){
+        return "add-question";
+    }
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
+    }
 }
 
 

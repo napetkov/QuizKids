@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <!-- progress barstle -->
+    <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- font wesome stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet"/>
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+    <title>Home</title>
+</head>
+<body class="top_container">
+<head th:replace="~{fragments/nav-bar}">
+<body>
+<div class="container" style="max-width: 65%">
+    <h2 class="mt-4 mb-3">Question Form</h2>
+    <form>
+        <div class="form-group">
+            <label for="question">Question:</label>
+            <input type="text" class="form-control" id="question" name="question">
+        </div>
+        <div class="form-group">
+            <label for="answer1">Answer 1:</label>
+            <input type="text" class="form-control" id="answer1" name="answer1">
+            <input type="checkbox" id="correct1" name="correct1">
+            <label for="correct1">Correct Answer</label>
+        </div>
+        <div class="form-group">
+            <label for="answer2">Answer 2:</label>
+            <input type="text" class="form-control" id="answer2" name="answer2">
+            <input type="checkbox" id="correct2" name="correct2">
+            <label for="correct1">Correct Answer</label>
+        </div>
+        <div class="form-group">
+            <label for="answer3">Answer 3:</label>
+            <input type="text" class="form-control" id="answer3" name="answer3">
+            <input type="checkbox" id="correct3" name="correct1">
+            <label for="correct1">Correct Answer</label>
+        </div>
+        <div class="form-group">
+            <label for="answer4">Answer 4:</label>
+            <input type="text" class="form-control" id="answer4" name="answer4">
+            <input type="checkbox" id="correct4" name="correct1">
+            <label for="correct1">Correct Answer</label>
+        </div>
+        <div class="form-group">
+            <label for="answer5">Answer 5:</label>
+            <input type="text" class="form-control" id="answer5" name="answer5">
+            <input type="checkbox" id="correct5" name="correct1">
+            <label for="correct1">Correct Answer</label>
+        </div>
+        <div class="form-group">
+            <label for="answer6">Answer 6:</label>
+            <input type="text" class="form-control" id="answer6" name="answer6">
+            <input type="checkbox" id="correct6" name="correct1">
+            <label for="correct1">Correct Answer</label>
+        </div>
+        <div class="form-group">
+            <!-- Repeat the above form-group block for answers 2 to 6 -->
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select class="form-control" id="category" name="category">
+                <option value="category1">Category 1</option>
+                <option value="category2">Category 2</option>
+                <!-- Add more category options as needed -->
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS and any additional scripts -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Add any additional scripts here -->
+</body>
+
+    <div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

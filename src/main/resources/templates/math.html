@@ -21,25 +21,33 @@
     <link rel="stylesheet" href="css/css-circular-prog-bar.css">
     <title>Home</title>
 </head>
-<body class="top_container">
+<body class="top_container login">
 <head th:replace="~{fragments/nav-bar}">
-    <div class="container" style="max-width: 800px;">
-        <div class="card">
-            <img class="img-card-container card-img-top img-fluid" src="images/math-bg.jpg">
-            <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                <h2 class="card-title">МАТЕМАТИКА</h2>
-                <h3 class="card-title">посочете верният отговор на задачата:
-                <br>
-                (23 + 58) + 9 = ?</h3>
-                <p th:text="${questionFromServer}" class="card-text"></p>
+    <div class="container" style="max-width: 900px;background: transparent;color: darkblue">
+        <div class="card" style="background: transparent">
+            <div class="card-body">
+                <h2 class="card-title text-xl-center">Дайте отговор на задачата:</h2>
+                <h3 class="card-text text-xl-center" >(12 + 13) - 18 = ?</h3>
                 <div class="row">
                     <div class="col-md-6">
-                        <button class="btn btn-primary btn-lg btn-block mb-3" type="button" name="answer" value="answer1">A: 23 </button>
-                        <button class="btn btn-primary btn-lg btn-block" type="button" name="answer" value="answer3">C: 18 </button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-primary btn-lg btn-block" type="button" name="answer" value="answer1">A: Иван Вазив - български писател</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-primary btn-lg btn-block" type="button" name="answer" value="answer2">B: Героги С. Раковски</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <button class="btn btn-primary btn-lg btn-block mb-3" type="button" name="answer" value="answer2">B: 24</button>
-                        <button class="btn btn-primary btn-lg btn-block" type="button" name="answer" value="answer4">D: 12</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-primary btn-lg btn-block" type="button" name="answer" value="answer3">C: 7 йкхаскдх аиосфдхасн оиапсйфопайсо п;йафс;о</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-primary btn-lg btn-block" type="button" name="answer" value="answer4">D: 15</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
