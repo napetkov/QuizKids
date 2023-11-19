@@ -19,7 +19,7 @@ public class Question extends BaseEntity{
     @Column(nullable = false)
     private LocalDate createdOn;
     @ManyToOne
-    private User author;
+    private UserEntity author;
     @OneToMany
     private Set<Answer> answers;
 }

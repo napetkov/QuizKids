@@ -1,7 +1,7 @@
 package bg.softuni.quizkids.services.impl;
 
 import bg.softuni.quizkids.models.entity.Role;
-import bg.softuni.quizkids.models.entity.User;
+import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.models.enums.Level;
 import bg.softuni.quizkids.models.enums.UserRole;
 import bg.softuni.quizkids.repository.RoleRepository;
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
             roleRepository.saveAll(baseRoles);
 
-            User admin = new User();
+            UserEntity admin = new UserEntity();
             admin.setUsername("admin");
             admin.setEmail("admin@admin.com");
             admin.setPassword(passwordEncoder.encode(adminPass));
@@ -62,4 +62,6 @@ public class UserServiceImpl implements UserService {
 
         }
     }
+
+
 }
