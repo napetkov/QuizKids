@@ -2,15 +2,9 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, userEntity-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Navbar</title>
-</head>
+
 <body>
-<header class="header_section" th:fragment="nav-bar">
+<nav class="header_section" th:fragment="nav-bar">
     <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" th:href="@{/}">
@@ -35,11 +29,11 @@
                         </li>
 
                         <li class="nav-item ">
-                            <a class="nav-link" th:href="@{/login}"> ВХОД </a>
+                            <a class="nav-link" th:href="@{/users/login}"> ВХОД </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/register}"> РЕГИСТРАЦИЯ </a>
+                            <a class="nav-link" th:href="@{/users/register}"> РЕГИСТРАЦИЯ </a>
                         </li>
 
                         <li class="nav-item">
@@ -56,8 +50,12 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{add-question}">ДОБАВИ ВЪПРОС</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">ИЗХОД</a>
+                            <form th:method="POST"
+                                  th:action="@{/users/logout}">
+                            <input type="submit" class="nav-link" value="ИЗХОД" style="border: none;background: transparent"></input>
+                            </form>
                         </li>
 
                     </ul>
@@ -65,7 +63,7 @@
                 </div>
         </nav>
     </div>
-</header>
+</nav>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>

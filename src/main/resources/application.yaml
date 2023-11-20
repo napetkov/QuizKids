@@ -36,6 +36,12 @@ spring:
   #api-secret:
   #cloud-name:
 binding-result-package: org.springframework.validation.BindingResult
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.orm.jdbc.bind: TRACE
+    org.springframework.security: TRACE
+
 
 #Admin password
 app:

@@ -19,15 +19,15 @@ public class SecurityConfiguration {
         httpSecurity.authorizeHttpRequests(
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/","/users/login","/users/registration").permitAll()
+                        .requestMatchers("/","/users/login","/users/register","/users/login-error").permitAll()
                         .anyRequest().authenticated()
         ).formLogin(
                 fromLogin -> {
                     fromLogin.loginPage("/users/login")
                             .usernameParameter("username")
                             .passwordParameter("password")
-                            .defaultSuccessUrl("/home")
-                            .failureForwardUrl("/");
+                            .defaultSuccessUrl("/home", true)
+                            .failureForwardUrl("/users/login-error");
                 }
         ).logout(
                 logout -> {

@@ -1,29 +1,10 @@
 <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, userEntity-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>QuizKids-Login</title>
-    <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-    <!-- progress barstle -->
-    <link rel="stylesheet" href="css/css-circular-prog-bar.css">
-    <!-- fonts style -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-    <!-- font wesome stylesheet -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet"/>
-    <!-- responsive style -->
-    <link href="css/responsive.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/css-circular-prog-bar.css">
-    <title>Login</title>
-</head>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+<head th:replace="~{fragments/head}">
 <body class="top_container login">
-<head th:replace="~{fragments/nav-bar}">
-
+<nav th:replace="~{fragments/nav-bar}"></nav>
     <div class="d-flex justify-content-end w-75">
         <div class="login-container  pt-xl-5">
             <div class="text-xl-center">
@@ -32,18 +13,30 @@
             <!-- Pills content -->
             <div class="tab-content pt-lg-5">
                 <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                    <form>
+                    <form th:method="POST"
+                          th:action="@{/users/login}">
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <input type="email" id="loginName" class="form-control"/>
-                            <label class="form-label" for="loginName">Username</label>
+                            <label class="form-label" for="username">Username</label>
+                            <input type="text"
+                                   id="username"
+                                   name="username"
+                                   th:value="${username}"
+                                   class="form-control"/>
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" id="loginPassword" class="form-control"/>
-                            <label class="form-label" for="loginPassword">Password</label>
+                            <label class="form-label" for="password">Password</label>
+                            <input type="password"
+                                   name="password"
+                                   id="password" class="form-control"/>
                         </div>
+
+                        <p th:if="${bad_credentials}"
+                           class="errors alert alert-danger">
+                            Invalid username or password.
+                        </p>
 
                         <!-- 2 column grid layout -->
                         <div class="row mb-4">
@@ -74,6 +67,8 @@
             </div>
         </div>
     </div>
-    <div th:replace="~{fragments/footer}"></div>
+    <div>
+        <footer th:replace="~{fragments/footer}"></footer>
+    </div>
 </body>
 </html>

@@ -1,7 +1,10 @@
 package bg.softuni.quizkids.services.impl;
 
+import bg.softuni.quizkids.models.entity.Role;
 import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.repository.UserRepository;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,7 +29,12 @@ public class QuizKidsUserDetailService implements UserDetailsService {
     private UserDetails map(UserEntity userEntity) {
         return User.withUsername(userEntity.getUsername())
                 .password(userEntity.getPassword())
-                .authorities(List.of())
+                .authorities(map(userEntity.getRole()))
                 .build();
+    }
+    private static GrantedAuthority map(Role role){
+        return new SimpleGrantedAuthority(
+                "ROLE_" + role.getName().name()
+        );
     }
 }
