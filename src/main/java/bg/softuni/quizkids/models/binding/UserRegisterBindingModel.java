@@ -25,12 +25,14 @@ public class UserRegisterBindingModel {
     @NotBlank
     @Size(min = 3, message = "Password length must be more than 5 characters")
     private String password;
+    private String confirmPassword;
     @NotBlank
     @Size(min = 3, message = "First name length must be more than 2 characters")
     private String firstName;
     private String lastName;
     @Positive
     private int age;
+    @NotBlank
     @Email
     private String email;
     private String city;

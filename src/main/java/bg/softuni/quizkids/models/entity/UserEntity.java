@@ -2,9 +2,8 @@ package bg.softuni.quizkids.models.entity;
 
 import bg.softuni.quizkids.models.enums.Level;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter

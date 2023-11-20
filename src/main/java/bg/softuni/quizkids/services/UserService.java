@@ -6,4 +6,5 @@ public interface UserService {
     void init();
 
     void registerUser(UserRegisterBindingModel userRegisterBindingModel);
+
 }
