@@ -47,3 +47,4 @@ logging:
 app:
   admin:
     password: ${ADMIN_PASSWORD}
+  remember.me.key: ${REMEMBER_ME_KEY}
