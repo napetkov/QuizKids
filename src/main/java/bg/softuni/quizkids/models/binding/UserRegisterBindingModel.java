@@ -20,14 +20,16 @@ import lombok.Setter;
 
 public class UserRegisterBindingModel {
     @NotBlank
-    @Size(min = 3, message = "Username length must be more than 5 characters!")
+    @Size(min = 3, message = "Username length must be more than 3 characters!")
     private String username;
     @NotBlank
-    @Size(min = 3, message = "Password length must be more than 5 characters")
+    @Size(min = 3, message = "Password length must be more than 3 characters")
     private String password;
+    @NotBlank
+    @Size(min = 3, message = "Password length must be more than 3 characters")
     private String confirmPassword;
     @NotBlank
-    @Size(min = 3, message = "First name length must be more than 2 characters")
+    @Size(min = 3, message = "First name length must be more than 3 characters")
     private String firstName;
     private String lastName;
     @Positive
