@@ -22,7 +22,9 @@
                 <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
                     <ul class="navbar-nav  ">
                         <li class="nav-item active">
-                            <a class="nav-link" th:href="@{/home}"> СТАРТ <span class="sr-only">(current)</span></a>
+                            <a class="nav-link"
+                               sec:authorize="isAuthenticated()"
+                               th:href="@{/home}"> СТАРТ <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" th:href="@{/about}"> ЗА НАС </a>
@@ -41,19 +43,28 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Username LEVEL points</a>
+                            <a class="nav-link" href="contact.html">
+                                <th:block sec:authorize="isAuthenticated()">
+                                   Welcome, <th:block sec:authentication="name"></th:block>!
+                                </th:block>
+                                </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{admin}">АДМИНИ</a>
+                            <a class="nav-link"
+                                sec:authorize="hasRole('ADMIN')"
+                               th:href="@{/admin}">АДМИНИ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{add-question}">ДОБАВИ ВЪПРОС</a>
+                            <a class="nav-link"
+                               sec:authorize="hasAnyRole('MODERATOR','ADMIN')"
+                               th:href="@{/add-question}">ДОБАВИ ВЪПРОС</a>
                         </li>
 
                         <li class="nav-item">
                             <form th:method="POST"
-                                  th:action="@{/users/logout}">
+                                  th:action="@{/users/logout}"
+                            sec:authorize="isAuthenticated()">
                             <input type="submit" class="nav-link" value="ИЗХОД" style="border: none;background: transparent"></input>
                             </form>
                         </li>
