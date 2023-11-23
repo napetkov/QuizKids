@@ -17,7 +17,6 @@ public class Category extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CategoryName name;
-
     @Column(name = "description")
     private String description;
 }

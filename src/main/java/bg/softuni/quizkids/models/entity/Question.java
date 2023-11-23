@@ -1,11 +1,14 @@
 package bg.softuni.quizkids.models.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -19,7 +22,10 @@ public class Question extends BaseEntity{
     @Column(nullable = false)
     private LocalDate createdOn;
     @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+    @ManyToOne
     private UserEntity author;
     @OneToMany
-    private Set<Answer> answers;
+    private List<Answer> answers;
 }

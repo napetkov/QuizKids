@@ -2,8 +2,11 @@ package bg.softuni.quizkids.models.entity;
 
 import bg.softuni.quizkids.models.enums.Level;
 import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,4 +32,6 @@ public class UserEntity extends BaseEntity {
     private Role role;
     @Enumerated(EnumType.STRING)
     private Level level;
+    @ManyToMany
+    private Set<Question> answeredQuestions;
 }

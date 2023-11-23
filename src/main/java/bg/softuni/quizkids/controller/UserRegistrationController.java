@@ -41,6 +41,8 @@ public class UserRegistrationController {
             return "redirect:/users/register";
         }
 
+
+
         userService.registerUser(userRegisterBindingModel);
 
         return "redirect:/users/login";
