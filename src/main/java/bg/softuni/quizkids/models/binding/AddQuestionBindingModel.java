@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 @Getter
@@ -20,6 +23,12 @@ public class AddQuestionBindingModel {
     @NotBlank
     @Size(min = 3, message = "Question length must be more than 3 characters!")
     private String content;
-    @AnswerLength(min = 2, max = 50, message = "Answer length must be between 2 and 50 characters")
-    private List<AddAnswerBindingModel> answers;
+//    @AnswerLength(min = 2, max = 50, message = "Answer length must be between 2 and 50 characters")
+    private List<AddAnswerBindingModel> answers = new ArrayList<>();
+
+    public void createAnswersList(){
+        for (int i = 0; i < 6; i++) {
+            this.answers.add(new AddAnswerBindingModel(" "));
+        }
+    }
 }

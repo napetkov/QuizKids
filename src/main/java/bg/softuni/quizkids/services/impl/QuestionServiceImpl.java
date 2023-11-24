@@ -8,6 +8,7 @@ import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.repository.AnswerRepository;
 import bg.softuni.quizkids.repository.QuestionRepository;
 import bg.softuni.quizkids.repository.UserRepository;
+import bg.softuni.quizkids.services.AnswerService;
 import bg.softuni.quizkids.services.QuestionService;
 import bg.softuni.quizkids.util.LoggedUserUtils;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,23 +19,23 @@ import java.util.*;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
-    private String loggedUserUsername = LoggedUserUtils.getLoggedInUsername();
     private final UserRepository userRepository;
-    private final AnswerRepository answerRepository;
+    private final AnswerService answerService;
     private final QuestionRepository questionRepository;
 
-    public QuestionServiceImpl(UserRepository userRepository, AnswerRepository answerRepository, QuestionRepository questionRepository) {
+    public QuestionServiceImpl(UserRepository userRepository, AnswerService answerService, QuestionRepository questionRepository) {
         this.userRepository = userRepository;
-        this.answerRepository = answerRepository;
+        this.answerService = answerService;
         this.questionRepository = questionRepository;
     }
 
     @Override
     public void addQuestion(AddQuestionBindingModel addQuestionBindingModel) {
-        Optional<UserEntity> optionalUser = userRepository.findByUsername(loggedUserUsername);
+        String loggedInUsername = LoggedUserUtils.getLoggedInUsername();
+        Optional<UserEntity> optionalUser = userRepository.findByUsername(loggedInUsername);
 
         if (optionalUser.isEmpty()) {
-            throw new UsernameNotFoundException(loggedUserUsername);
+            throw new UsernameNotFoundException(loggedInUsername);
         }
 
         UserEntity author = optionalUser.get();
@@ -48,28 +49,20 @@ public class QuestionServiceImpl implements QuestionService {
 
     private Question map(AddQuestionBindingModel addQuestionBindingModel, UserEntity author, LocalDate createdOn) {
         Question question = new Question();
-        List<Answer> answers = new ArrayList<>();
-        List<AddAnswerBindingModel> answersBinding = addQuestionBindingModel.getAnswers();
 
-        for (int i = 0; i < answersBinding.size(); i++) {
-            Answer answer = new Answer();
-
-            if(i==0){
-                answer.setCorrect(true);
-            }
-
-            answer.setQuestion(question);
-            answer.setAuthor(author);
-            answer.setCreatedOn(createdOn);
-            answer.setContent(answersBinding.get(i).getContent());
-            answers.add(answer);
-        }
-        answerRepository.saveAll(answers);
+        List<Answer> answers = answerService.addAllAnswersWhenCreateQuestion(addQuestionBindingModel.getAnswers(), author);
 
         question.setAuthor(author);
         question.setContent(addQuestionBindingModel.getContent());
         question.setCreatedOn(createdOn);
         question.setAnswers(answers);
+
+        questionRepository.save(question);
+
+        answers.forEach(answer -> {
+            answer.setQuestion(question);
+            answerService.saveAnswer(answer);
+        });
 
         return question;
     }

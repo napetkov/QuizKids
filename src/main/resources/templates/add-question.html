@@ -11,7 +11,8 @@
     <form
             th:action="@{/question/add}"
             th:method="POST"
-            th:object="${addQuestionBindingModel}">
+            th:object="${addQuestionBindingModel}"
+            >
         <div class="form-group">
             <label for="question">QUESTION:</label>
             <input th:field="*{content}"
@@ -21,62 +22,64 @@
                 Question length must be between 2 and 50 characters!
             </p>
         </div>
-        <div class="form-group">
-            <label for="correctAnswer">CORRECT ANSWER:</label>
+        <div class="form-group"
+             th:each="answer, itemStat : *{answers}">
+            <label th:if= "${itemStat.index == 0}" for="correctAnswer">CORRECT ANSWER:</label>
+            <label th:unless="${itemStat.index != 0}" for="correctAnswer">INCORRECT ANSWER:</label>
             <input
-                    th:field="*{answers.add(0)}"
                     th:errorclass="is-invalid"
+                    th:field="*{answers[__${itemStat.index}__].content}"
                     type="text" class="form-control" id="correctAnswer" name="correctAnswer">
             <p class="invalid-feedback errors alert alert-danger">
                 Answer length must be between 2 and 50 characters!
             </p>
         </div>
-        <div class="form-group">
-            <label for="incorrectAnswer1">INCORRECT ANSWER 1:</label>
-            <input
-                    th:field="*{answers.add(1)}"
-                    th:errorclass="is-invalid"
-                    type="text" class="form-control" id="incorrectAnswer1" name="incorrectAnswer1">
-            <p class="invalid-feedback errors alert alert-danger">
-                Answer length must be between 2 and 50 characters!
-            </p>
-        </div>
-        <div class="form-group">
-            <label for="incorrectAnswer2">INCORRECT ANSWER 2:</label>
-            <input th:field="*{answers.add(2)}"
-                   th:errorclass="is-invalid"
-                   type="text" class="form-control" id="incorrectAnswer2" name="incorrectAnswer2">
-            <p class="invalid-feedback errors alert alert-danger">
-                Answer length must be between 2 and 50 characters!
-            </p>
-        </div>
-        <div class="form-group">
-            <label for="incorrectAnswer3">INCORRECT ANSWER 3:</label>
-            <input th:field="*{answers.add(3)}"
-                   th:errorclass="is-invalid"
-                    type="text" class="form-control" id="incorrectAnswer3" name="incorrectAnswer3">
-            <p class="invalid-feedback errors alert alert-danger">
-                Answer length must be between 2 and 50 characters!
-            </p>
-        </div>
-        <div class="form-group">
-            <label for="incorrectAnswer4">INCORRECT ANSWER 4:</label>
-            <input th:field="*{answers.add(4)}"
-                   th:errorclass="is-invalid"
-                    type="text" class="form-control" id="incorrectAnswer4" name="incorrectAnswer4">
-            <p class="invalid-feedback errors alert alert-danger">
-                Answer length must be between 2 and 50 characters!
-            </p>
-        </div>
-        <div class="form-group">
-            <label for="incorrectAnswer5">INCORRECT ANSWER 5:</label>
-            <input th:field="*{answers.add(5)}"
-                   th:errorclass="is-invalid"
-                    type="text" class="form-control" id="incorrectAnswer5" name="incorrectAnswer5">
-            <p class="invalid-feedback errors alert alert-danger">
-                Answer length must be between 2 and 50 characters!
-            </p>
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="incorrectAnswer1">INCORRECT ANSWER 1:</label>-->
+<!--            <input-->
+<!--                    th:field="*{answers}"-->
+<!--                    th:errorclass="is-invalid"-->
+<!--                    type="text" class="form-control" id="incorrectAnswer1" name="incorrectAnswer1">-->
+<!--            <p class="invalid-feedback errors alert alert-danger">-->
+<!--                Answer length must be between 2 and 50 characters!-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="incorrectAnswer2">INCORRECT ANSWER 2:</label>-->
+<!--            <input th:field="*{answers}"-->
+<!--                   th:errorclass="is-invalid"-->
+<!--                   type="text" class="form-control" id="incorrectAnswer2" name="incorrectAnswer2">-->
+<!--            <p class="invalid-feedback errors alert alert-danger">-->
+<!--                Answer length must be between 2 and 50 characters!-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="incorrectAnswer3">INCORRECT ANSWER 3:</label>-->
+<!--            <input th:field="*{answers}"-->
+<!--                   th:errorclass="is-invalid"-->
+<!--                    type="text" class="form-control" id="incorrectAnswer3" name="incorrectAnswer3">-->
+<!--            <p class="invalid-feedback errors alert alert-danger">-->
+<!--                Answer length must be between 2 and 50 characters!-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="incorrectAnswer4">INCORRECT ANSWER 4:</label>-->
+<!--            <input th:field="*{answers}"-->
+<!--                   th:errorclass="is-invalid"-->
+<!--                    type="text" class="form-control" id="incorrectAnswer4" name="incorrectAnswer4">-->
+<!--            <p class="invalid-feedback errors alert alert-danger">-->
+<!--                Answer length must be between 2 and 50 characters!-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="incorrectAnswer5">INCORRECT ANSWER 5:</label>-->
+<!--            <input -->
+<!--                   th:errorclass="is-invalid"-->
+<!--                    type="text" class="form-control" id="incorrectAnswer5" name="incorrectAnswer5">-->
+<!--            <p class="invalid-feedback errors alert alert-danger">-->
+<!--                Answer length must be between 2 and 50 characters!-->
+<!--            </p>-->
+<!--        </div>-->
         <div class="form-group">
             <label for="category">Category:</label>
             <select class="form-control"
