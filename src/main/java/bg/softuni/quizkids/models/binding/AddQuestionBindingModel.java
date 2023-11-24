@@ -23,6 +23,7 @@ public class AddQuestionBindingModel {
     @NotBlank
     @Size(min = 3, message = "Question length must be more than 3 characters!")
     private String content;
+    private String category;
 //    @AnswerLength(min = 2, max = 50, message = "Answer length must be between 2 and 50 characters")
     private List<AddAnswerBindingModel> answers = new ArrayList<>();
 
