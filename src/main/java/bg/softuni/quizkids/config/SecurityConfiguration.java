@@ -8,12 +8,15 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration {
 
     public final String rememberMeKey;
@@ -24,10 +27,13 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.cors().disable().csrf().disable();
+
         httpSecurity.authorizeHttpRequests(
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll()
+                        .requestMatchers("/", "/users/login", "/users/register", "/users/login-error",
+                                "/api/questions").permitAll()
                         .requestMatchers("/admin").hasRole(UserRole.ADMIN.name())
                         .requestMatchers("/questions/add").hasAnyRole(UserRole.MODERATOR.name(), UserRole.ADMIN.name())
                         .anyRequest().authenticated()
@@ -52,6 +58,7 @@ public class SecurityConfiguration {
                     .rememberMeParameter("rememberMe")
                     .rememberMeCookieName("rememberMe");
         });
+
         return httpSecurity.build();
     }
 

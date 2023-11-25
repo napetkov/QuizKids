@@ -20,6 +20,8 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
+
+
     @GetMapping("/add")
     public String add(Model model){
 
@@ -47,5 +49,10 @@ public class QuestionController {
         questionService.addQuestion(addQuestionBindingModel);
 
         return "redirect:/questions/all";
+    }
+
+    @GetMapping("/all")
+    public String all(){
+        return "question-all";
     }
 }

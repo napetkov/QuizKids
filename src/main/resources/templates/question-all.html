@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<head th:replace="~{fragments/head}">
+    <script src="../static/js/load-all-questions.js"></script>
+</head>
+<body>
+<nav th:replace="~{fragments/nav-bar}"></nav>
+<div class="container mt-4">
+    <button class="btn btn-success btn-sm mr-2" id="question-manager-btn">Question Management</button>
+    <table class="table table-bordered mt-3">
+        <thead>
+        <tr>
+            <th>Question ID</th>
+            <th>Question Content</th>
+            <th>Question Category</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="question-container">
+        <!-- Replace the following rows with actual userEntity data -->
+        <tr>
+            <td>1</td>
+            <td>Кое е най-силното животно?</td>
+            <td>БИОЛОГИЯ</td>
+            <td>
+                <button class="btn btn-warning btn-sm mr-2" type="submit">Answers</button>
+                <button class="btn btn-success btn-sm mr-2" type="submit">Remove</button>
+                <button class="btn btn-danger btn-sm" type="submit">Edit</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="~{fragments/footer}"></div>
+<script src="/js/load-all-questions.js"></script>
+</body>
+</html>

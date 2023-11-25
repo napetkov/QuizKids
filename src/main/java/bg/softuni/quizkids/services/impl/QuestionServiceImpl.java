@@ -1,6 +1,7 @@
 package bg.softuni.quizkids.services.impl;
 
 import bg.softuni.quizkids.models.binding.AddQuestionBindingModel;
+import bg.softuni.quizkids.models.dto.QuestionsDTO;
 import bg.softuni.quizkids.models.entity.Answer;
 import bg.softuni.quizkids.models.entity.Category;
 import bg.softuni.quizkids.models.entity.Question;
@@ -12,25 +13,30 @@ import bg.softuni.quizkids.repository.UserRepository;
 import bg.softuni.quizkids.services.AnswerService;
 import bg.softuni.quizkids.services.QuestionService;
 import bg.softuni.quizkids.util.LoggedUserUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
-    private final UserRepository userRepository;
     private final AnswerService answerService;
+    private final UserRepository userRepository;
     private final QuestionRepository questionRepository;
     private final CategoryRepository categoryRepository;
+    private final ModelMapper modelMapper;
 
-    public QuestionServiceImpl(UserRepository userRepository, AnswerService answerService, QuestionRepository questionRepository, CategoryRepository categoryRepository) {
+    public QuestionServiceImpl(UserRepository userRepository, AnswerService answerService, QuestionRepository questionRepository, CategoryRepository categoryRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.answerService = answerService;
         this.questionRepository = questionRepository;
         this.categoryRepository = categoryRepository;
+
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -48,6 +54,12 @@ public class QuestionServiceImpl implements QuestionService {
 
         Question question = createQuestion(addQuestionBindingModel, author, createdOn,category);
 
+    }
+
+    @Override
+    public List<QuestionsDTO> getAllQuestions() {
+        List<QuestionsDTO> list = Arrays.stream(modelMapper.map(questionRepository.findAll(), QuestionsDTO[].class)).toList();
+        return list;
     }
 
     private Question createQuestion(AddQuestionBindingModel addQuestionBindingModel,
