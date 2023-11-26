@@ -21,7 +21,7 @@ public class ApplicationInit implements CommandLineRunner {
     public void run(String... args) throws Exception {
         userService.init();
         categoryService.init();
-
+//        userService.initBlacklisted();
     }
 
 

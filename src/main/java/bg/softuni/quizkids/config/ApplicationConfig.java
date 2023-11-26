@@ -1,6 +1,7 @@
 package bg.softuni.quizkids.config;
 
 import bg.softuni.quizkids.models.binding.UserRegisterBindingModel;
+import bg.softuni.quizkids.models.dto.UserEntityDTO;
 import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.models.enums.Level;
 import bg.softuni.quizkids.services.RoleService;
@@ -45,7 +46,9 @@ public class ApplicationConfig {
                 .addMappings(mapper -> mapper
                         .using(passwordConverter)
                         .map(UserRegisterBindingModel::getPassword, UserEntity::setPassword));
-
+        modelMapper.createTypeMap(UserEntity.class, UserEntityDTO.class)
+                .addMapping(UserEntity::getLevel,UserEntityDTO::setLevel)
+                .addMapping(UserEntity::getRole,UserEntityDTO::setRole);
 
         return modelMapper;
     }
