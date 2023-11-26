@@ -1,15 +1,13 @@
 package bg.softuni.quizkids.controller;
 
-import bg.softuni.quizkids.models.dto.QuestionsDTO;
+import bg.softuni.quizkids.models.dto.QuestionDTO;
 import bg.softuni.quizkids.services.QuestionService;
-import jakarta.servlet.annotation.WebFilter;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/questions")
@@ -21,7 +19,28 @@ public class QuestionRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<QuestionsDTO>> getAllQuestions(){
+    public ResponseEntity<List<QuestionDTO>> getAllQuestions(){
         return ResponseEntity.ok(questionService.getAllQuestions());
     }
+
+    @GetMapping("/{id}")
+    ResponseEntity<QuestionDTO> findByID(@PathVariable("id") Long id){
+        Optional<QuestionDTO> optionalQuestion = questionService.findById(id);
+
+        return optionalQuestion
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<QuestionDTO> deleteQuestionById(@PathVariable("id") Long id){
+        questionService.deleteQuestionById(id);
+
+        return ResponseEntity
+                .noContent()
+                .build();
+    }
+
+
+
 }

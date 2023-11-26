@@ -48,7 +48,7 @@ public class QuestionController {
         }
         questionService.addQuestion(addQuestionBindingModel);
 
-        return "redirect:/questions/all";
+        return "redirect:/question/all";
     }
 
     @GetMapping("/all")

@@ -9,28 +9,31 @@
 <body>
 <nav th:replace="~{fragments/nav-bar}"></nav>
 <div class="container mt-4">
-    <button class="btn btn-success btn-sm mr-2" id="question-manager-btn">Question Management</button>
+    <button class="btn btn-success btn-sm mr-2" id="question-manager-btn">LOAD ALL QUESTIONS</button>
+    <a th:href="@{/question/add}"
+            class="btn btn-success btn-sm mr-2">ADD QUESTION</a>
     <table class="table table-bordered mt-3">
         <thead>
         <tr>
             <th>Question ID</th>
             <th>Question Content</th>
             <th>Question Category</th>
+            <th>Question Created On</th>
+            <th>Question Author</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody id="question-container">
-        <!-- Replace the following rows with actual userEntity data -->
-        <tr>
-            <td>1</td>
-            <td>Кое е най-силното животно?</td>
-            <td>БИОЛОГИЯ</td>
-            <td>
-                <button class="btn btn-warning btn-sm mr-2" type="submit">Answers</button>
-                <button class="btn btn-success btn-sm mr-2" type="submit">Remove</button>
-                <button class="btn btn-danger btn-sm" type="submit">Edit</button>
-            </td>
-        </tr>
+<!--        <tr>-->
+<!--            <td>1</td>-->
+<!--            <td>Кое е най-силното животно?</td>-->
+<!--            <td>БИОЛОГИЯ</td>-->
+<!--            <td>-->
+<!--                <button class="btn btn-warning btn-sm mr-2" type="submit">Answers</button>-->
+<!--                <button class="btn btn-success btn-sm mr-2" type="submit">Remove</button>-->
+<!--                <button class="btn btn-danger btn-sm" type="submit">Edit</button>-->
+<!--            </td>-->
+<!--        </tr>-->
         </tbody>
     </table>
 </div>

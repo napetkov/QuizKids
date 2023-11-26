@@ -1,7 +1,7 @@
 package bg.softuni.quizkids.services.impl;
 
 import bg.softuni.quizkids.models.binding.AddQuestionBindingModel;
-import bg.softuni.quizkids.models.dto.QuestionsDTO;
+import bg.softuni.quizkids.models.dto.QuestionDTO;
 import bg.softuni.quizkids.models.entity.Answer;
 import bg.softuni.quizkids.models.entity.Category;
 import bg.softuni.quizkids.models.entity.Question;
@@ -18,7 +18,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,15 +51,25 @@ public class QuestionServiceImpl implements QuestionService {
         LocalDate createdOn = LocalDate.now();
         Category category = categoryRepository.findByName(CategoryName.valueOf(addQuestionBindingModel.getCategory()));
 
-        Question question = createQuestion(addQuestionBindingModel, author, createdOn,category);
+        Question question = createQuestion(addQuestionBindingModel, author, createdOn, category);
 
     }
 
     @Override
-    public List<QuestionsDTO> getAllQuestions() {
-        List<QuestionsDTO> list = Arrays.stream(modelMapper.map(questionRepository.findAll(), QuestionsDTO[].class)).toList();
-        return list;
+    public List<QuestionDTO> getAllQuestions() {
+        return questionRepository.findAll().stream().map(QuestionServiceImpl::mapQuestionEntityToDTO).toList();
     }
+
+    @Override
+    public Optional<QuestionDTO> findById(Long id) {
+        return questionRepository.findById(id).map(QuestionServiceImpl::mapQuestionEntityToDTO);
+    }
+
+    @Override
+    public void deleteQuestionById(Long id) {
+        questionRepository.deleteById(id);
+    }
+
 
     private Question createQuestion(AddQuestionBindingModel addQuestionBindingModel,
                                     UserEntity author,
@@ -84,6 +93,17 @@ public class QuestionServiceImpl implements QuestionService {
         });
 
         return question;
+    }
+
+    private static QuestionDTO mapQuestionEntityToDTO(Question questions) {
+        QuestionDTO questionDTO = new QuestionDTO();
+        questionDTO.setId(questions.getId());
+        questionDTO.setContent(questions.getContent());
+        questionDTO.setCategoryName(questions.getCategory().getName().name());
+        questionDTO.setAuthorUsername(questions.getAuthor().getUsername());
+        questionDTO.setCreatedOn(questions.getCreatedOn());
+
+        return questionDTO;
     }
 
 }
