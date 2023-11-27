@@ -1,24 +1,32 @@
 let usersManagementBtn = document.getElementById('user-management-btn');
-// let usersBlacklistedBtn = document.getElementById('user-black-list-btn');
-// let usersUserRoleBtn = document.getElementById('user-userRole-btn');
-// let usersModeratorRoleBtn = document.getElementById('user-moderatorRole-btn');
-// let usersAminRoleBtn = document.getElementById('user-adminRole-btn');
+let usersBlacklistedBtn = document.getElementById('user-black-list-btn');
+let usersUserRoleBtn = document.getElementById('user-userRole-btn');
+let usersModeratorRoleBtn = document.getElementById('user-moderatorRole-btn');
+let usersAminRoleBtn = document.getElementById('user-adminRole-btn');
 
-let baseUrl = "http://localhost:8080/api/users";
+// usersManagementBtn.dataset.role = "";
+usersManagementBtn.addEventListener('click', function (){reLoadAllUsers("")});
+
+// usersBlacklistedBtn.dataset.role = "blacklisted";
+usersBlacklistedBtn.addEventListener('click', function (){reLoadAllUsers("blacklisted")});
+
+usersUserRoleBtn.addEventListener('click', function (){reLoadAllUsers("users")});
+// usersUserRoleBtn.dataset.role = "users";
 
 
-usersManagementBtn.addEventListener('click', reLoadAllUsers);
-// usersBlacklistedBtn.addEventListener('click', loadAllUsers(baseUrl + "/blacklisted"));
-// usersUserRoleBtn.addEventListener('click', loadAllUsers(baseUrl + "/users"));
-// usersModeratorRoleBtn.addEventListener('click', loadAllUsers(baseUrl + "/moderators"));
-// usersAminRoleBtn.addEventListener('click', loadAllUsers(baseUrl + "/admins"));
+// usersModeratorRoleBtn.dataset.role = "moderators";
+usersModeratorRoleBtn.addEventListener('click', function (){reLoadAllUsers("moderators")});
 
-function reLoadAllUsers(url) {
+// usersAminRoleBtn.dataset.role = "admins";
+usersAminRoleBtn.addEventListener('click', function (){reLoadAllUsers("admins")});
+
+function reLoadAllUsers(role) {
     let usersContainer = document.getElementById('users-container');
     usersContainer.innerHTML = '';
-console.log(url);
+    // let eventRole = event.target.dataset.role;
 
-    fetch("http://localhost:8080/api/users")
+
+    fetch(`http://localhost:8080/api/users/${role}`)
         .then(response => response.json())
         .then(json =>
             json.forEach(user => {
@@ -47,13 +55,13 @@ console.log(url);
                 blacklistedBtn.textContent = 'BLACKLISTED';
                 blacklistedBtn.classList.add("btn", "btn-danger", "btn-sm", "mr-2");
 
-                makeMeUserBtn.textContent = 'Make me USER';
+                makeMeUserBtn.textContent = 'USER';
                 makeMeUserBtn.classList.add("btn", "btn-warning", "btn-sm")
 
-                makeMeModeratorBtn.textContent = 'Make me MODERATOR';
+                makeMeModeratorBtn.textContent = 'MODERATOR';
                 makeMeModeratorBtn.classList.add("btn", "btn-primary", "btn-sm")
 
-                makeMeAdminBtn.textContent = 'Make me ADMIN';
+                makeMeAdminBtn.textContent = 'ADMIN';
                 makeMeAdminBtn.classList.add("btn", "btn-danger", "btn-sm")
 
                 blacklistedBtn.dataset.id = user.id;
@@ -98,7 +106,9 @@ function changeMyRole(event) {
     }
 
     fetch(`http://localhost:8080/api/users/${userId}`, requestOption)
-        .then(_ => loadAllUsers())
+        .then(_ => {
+            reLoadAllUsers("")
+        })
         .catch(error => console.log(error))
 }
 

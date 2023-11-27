@@ -18,7 +18,7 @@ public class AdminRestController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<UserEntityDTO>> getAllUsers(){
         return ResponseEntity.ok(userService.getAllUsers());
     }
