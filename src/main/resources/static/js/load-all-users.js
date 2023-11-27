@@ -1,12 +1,23 @@
-let userManagementBtn = document.getElementById('user-management-btn');
+let usersManagementBtn = document.getElementById('user-management-btn');
+// let usersBlacklistedBtn = document.getElementById('user-black-list-btn');
+// let usersUserRoleBtn = document.getElementById('user-userRole-btn');
+// let usersModeratorRoleBtn = document.getElementById('user-moderatorRole-btn');
+// let usersAminRoleBtn = document.getElementById('user-adminRole-btn');
 
-userManagementBtn.addEventListener('click', loadAllUsers());
+let baseUrl = "http://localhost:8080/api/users";
 
-function loadAllUsers() {
+
+usersManagementBtn.addEventListener('click', loadAllUsers(baseUrl));
+// usersBlacklistedBtn.addEventListener('click', loadAllUsers(baseUrl + "/blacklisted"));
+// usersUserRoleBtn.addEventListener('click', loadAllUsers(baseUrl + "/users"));
+// usersModeratorRoleBtn.addEventListener('click', loadAllUsers(baseUrl + "/moderators"));
+// usersAminRoleBtn.addEventListener('click', loadAllUsers(baseUrl + "/admins"));
+
+function loadAllUsers(url) {
     let usersContainer = document.getElementById('users-container');
     usersContainer.innerHTML = '';
 
-    fetch("http://localhost:8080/api/users")
+    fetch(url)
         .then(response => response.json())
         .then(json =>
             json.forEach(user => {
@@ -56,7 +67,7 @@ function loadAllUsers() {
                 makeMeAdminBtn.dataset.id = user.id;
                 makeMeAdminBtn.dataset.role = 'ADMIN';
 
-                blacklistedBtn.addEventListener('click',changeMyRole)
+                blacklistedBtn.addEventListener('click', changeMyRole)
                 makeMeUserBtn.addEventListener('click', changeMyRole);
                 makeMeModeratorBtn.addEventListener('click', changeMyRole);
                 makeMeAdminBtn.addEventListener('click', changeMyRole);

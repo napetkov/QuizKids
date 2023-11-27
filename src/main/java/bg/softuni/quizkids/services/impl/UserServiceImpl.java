@@ -64,6 +64,14 @@ public class UserServiceImpl implements UserService {
                 .map(user -> modelMapper.map(user, UserEntityDTO.class))
                 .toList();
     }
+    @Override
+    public List<UserEntityDTO> getAllUsersWithRole(UserRole role) {
+        Role userRole = roleRepository.findByName(role);
+        return userRepository.findAllByRole(userRole)
+                .stream().map(user -> modelMapper.map(user, UserEntityDTO.class))
+                .toList();
+    }
+
 
     @Override
     public void updateUserRole(Long id, String newRoleName) {
@@ -81,6 +89,8 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
         }
     }
+
+
 
 //    @Override
 //    public void initBlacklisted() {
