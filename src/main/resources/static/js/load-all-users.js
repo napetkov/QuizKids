@@ -7,17 +7,18 @@ let usersManagementBtn = document.getElementById('user-management-btn');
 let baseUrl = "http://localhost:8080/api/users";
 
 
-usersManagementBtn.addEventListener('click', loadAllUsers(baseUrl));
+usersManagementBtn.addEventListener('click', reLoadAllUsers);
 // usersBlacklistedBtn.addEventListener('click', loadAllUsers(baseUrl + "/blacklisted"));
 // usersUserRoleBtn.addEventListener('click', loadAllUsers(baseUrl + "/users"));
 // usersModeratorRoleBtn.addEventListener('click', loadAllUsers(baseUrl + "/moderators"));
 // usersAminRoleBtn.addEventListener('click', loadAllUsers(baseUrl + "/admins"));
 
-function loadAllUsers(url) {
+function reLoadAllUsers(url) {
     let usersContainer = document.getElementById('users-container');
     usersContainer.innerHTML = '';
+console.log(url);
 
-    fetch(url)
+    fetch("http://localhost:8080/api/users")
         .then(response => response.json())
         .then(json =>
             json.forEach(user => {
@@ -85,37 +86,36 @@ function loadAllUsers(url) {
                 userRow.appendChild(action);
 
                 usersContainer.append(userRow);
-
             }))
+}
 
-    function changeMyRole(event) {
-        let userId = event.target.dataset.id;
-        let userRole = event.target.dataset.role;
-        let requestOption = {
-            method: 'PATCH',
-            body: userRole
-        }
-
-        fetch(`http://localhost:8080/api/users/${userId}`, requestOption)
-            .then(_ => loadAllUsers())
-            .catch(error => console.log(error))
+function changeMyRole(event) {
+    let userId = event.target.dataset.id;
+    let userRole = event.target.dataset.role;
+    let requestOption = {
+        method: 'PATCH',
+        body: userRole
     }
 
-    // function editButtonClicked(event){
-    //     let trContent = event.target.parentNode.parentNode.childNodes[1];
-    //     let inputField = document.createElement('input');
-    //
-    //     console.log(trContent);
-    //
-    //
-    //     trContent.textContent = event.target.dataset.textContent;
-    //     let questionId = event.target.dataset.id;
-    //     let requestOption = {
-    //         method: 'PUT'
-    //     }
-    //     fetch(`http://localhost:8080/api/questions/${questionId}`,requestOption)
-    //         .then(response => response.json())
-    //         .then(json => console.log(json))
-    //         .catch(err => console.log(err))
-    // }
+    fetch(`http://localhost:8080/api/users/${userId}`, requestOption)
+        .then(_ => loadAllUsers())
+        .catch(error => console.log(error))
 }
+
+// function editButtonClicked(event){
+//     let trContent = event.target.parentNode.parentNode.childNodes[1];
+//     let inputField = document.createElement('input');
+//
+//     console.log(trContent);
+//
+//
+//     trContent.textContent = event.target.dataset.textContent;
+//     let questionId = event.target.dataset.id;
+//     let requestOption = {
+//         method: 'PUT'
+//     }
+//     fetch(`http://localhost:8080/api/questions/${questionId}`,requestOption)
+//         .then(response => response.json())
+//         .then(json => console.log(json))
+//         .catch(err => console.log(err))
+// }
