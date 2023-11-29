@@ -15,5 +15,8 @@ public class PlayController {
 
         return "math";
     }
-
+    @GetMapping("/all")
+    public String playAll(){
+        return "math";
+    }
 }
