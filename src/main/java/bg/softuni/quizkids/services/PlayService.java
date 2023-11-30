@@ -5,5 +5,7 @@ import bg.softuni.quizkids.models.dto.QuestionAndAnswerDTO;
 public interface PlayService {
     QuestionAndAnswerDTO getRandomQuestionFromAll();
 
-    QuestionAndAnswerDTO findQuestionById(long questionId);
+    QuestionAndAnswerDTO findQuestionByIdToQuestionAndAnswerDTO(long questionId);
+
+    void correctlyAnsweringOfQuestion(Long questionId);
 }

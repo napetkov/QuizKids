@@ -29,12 +29,15 @@ public class QuestionServiceImpl implements QuestionService {
     private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper;
 
-    public QuestionServiceImpl(UserRepository userRepository, AnswerService answerService, QuestionRepository questionRepository, CategoryRepository categoryRepository, ModelMapper modelMapper) {
+    public QuestionServiceImpl(UserRepository userRepository,
+                               AnswerService answerService,
+                               QuestionRepository questionRepository,
+                               CategoryRepository categoryRepository,
+                               ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.answerService = answerService;
         this.questionRepository = questionRepository;
         this.categoryRepository = categoryRepository;
-
         this.modelMapper = modelMapper;
     }
 

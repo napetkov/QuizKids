@@ -32,6 +32,7 @@ public class ApplicationConfig {
             UserEntity user = new UserEntity();
             user.setRole(roleService.getRoleByName("USER"));
             user.setLevel(Level.BEGINNER);
+            user.setPoint(0L);
             return user;
         };
 

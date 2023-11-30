@@ -1,6 +1,5 @@
 package bg.softuni.quizkids.controller;
 
-import bg.softuni.quizkids.models.dto.QuestionAndAnswerDTO;
 import bg.softuni.quizkids.models.enums.CategoryName;
 import bg.softuni.quizkids.services.PlayService;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,8 @@ public class PlayController {
     @GetMapping("/questions/{questionId}")
     public String playQuestionById(@PathVariable long questionId, Model model){
 
-        model.addAttribute("questionAndAnswersDTO", playService.findQuestionById(questionId));
+        model.addAttribute("questionAndAnswersDTO",
+                playService.findQuestionByIdToQuestionAndAnswerDTO(questionId));
 
         return "play";
     }
@@ -39,9 +39,10 @@ public class PlayController {
     }
 
     @PostMapping("/all")
-    public String answerQuestion(@RequestParam String questionId,
+    public String answerQuestion(@RequestParam Long questionId,
                                  @RequestParam boolean answerCorrect, Model model){
         if(answerCorrect){
+            playService.correctlyAnsweringOfQuestion(questionId);
             return "correct-answer";
         }
 

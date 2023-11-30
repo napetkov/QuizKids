@@ -3,6 +3,7 @@ package bg.softuni.quizkids.services.impl;
 import bg.softuni.quizkids.exceptions.UserNotUniqueException;
 import bg.softuni.quizkids.models.binding.UserRegisterBindingModel;
 import bg.softuni.quizkids.models.dto.UserEntityDTO;
+import bg.softuni.quizkids.models.entity.Question;
 import bg.softuni.quizkids.models.entity.Role;
 import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.models.enums.Level;
@@ -10,6 +11,7 @@ import bg.softuni.quizkids.models.enums.UserRole;
 import bg.softuni.quizkids.repository.RoleRepository;
 import bg.softuni.quizkids.repository.UserRepository;
 import bg.softuni.quizkids.services.UserService;
+import bg.softuni.quizkids.util.LoggedUserUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -64,6 +66,7 @@ public class UserServiceImpl implements UserService {
                 .map(user -> modelMapper.map(user, UserEntityDTO.class))
                 .toList();
     }
+
     @Override
     public List<UserEntityDTO> getAllUsersWithRole(UserRole role) {
         Role userRole = roleRepository.findByName(role);
@@ -71,7 +74,6 @@ public class UserServiceImpl implements UserService {
                 .stream().map(user -> modelMapper.map(user, UserEntityDTO.class))
                 .toList();
     }
-
 
     @Override
     public void updateUserRole(Long id, String newRoleName) {
@@ -90,6 +92,35 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public void scorePoint(Question question) {
+        String loggedInUsername = LoggedUserUtils.getLoggedInUsername();
+        Optional<UserEntity> optionalUser = userRepository.findByUsername(loggedInUsername);
+
+        if (optionalUser.isEmpty()) {
+            throw new UsernameNotFoundException("User with username: " + loggedInUsername + " was not found!");
+        }
+
+        UserEntity user = optionalUser.get();
+        user.getAnsweredQuestions().add(question);
+        Long userPoint = user.getPoint();
+        userPoint++;
+        user.setPoint(userPoint);
+
+        userLevelCheck(userPoint, user);
+
+        userRepository.save(user);
+    }
+
+    private static void userLevelCheck(Long userPoint, UserEntity user) {
+        if(userPoint >= 50 && userPoint < 100){
+            user.setLevel(Level.INTERMEDIATE);
+        } else if (userPoint >= 100 && userPoint < 150) {
+            user.setLevel(Level.ADVANCED);
+        } else if (userPoint >= 150) {
+            user.setLevel(Level.EXPERT);
+        }
+    }
 
 
 //    @Override
