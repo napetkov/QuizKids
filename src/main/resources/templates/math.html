@@ -9,36 +9,21 @@
 
 <nav th:replace="~{fragments/nav-bar}"></nav>
 
-<div class="question-container">
+<div class="question-container"
+     th:object="${questionAndAnswersDTO}">
     <div class="question-card">
         <div class="card-body">
-            <h2 class="card-title text-xl-center">Дайте отговор на задачата:</h2>
+            <h2 class="card-title text-xl-center"
+                th:text="${questionAndAnswersDTO.content}">Дайте отговор на задачата:</h2>
             <h3 class="card-text text-xl-center">(12 + 13) - 18 = ?</h3>
-            <div class="row">
+            <div class="row"
+                 th:each="answer: ${questionAndAnswersDTO.answers}">
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-12 mt-2">
                             <button class="btn btn-primary btn-lg btn-block" type="button" name="answer"
-                                    value="answer1">A: Иван Вазив - български писател
-                            </button>
-                        </div>
-                        <div class="col-md-12 mt-2">
-                            <button class="btn btn-primary btn-lg btn-block" type="button" name="answer"
-                                    value="answer2">B: Героги С. Раковски
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12 mt-2">
-                            <button class="btn btn-primary btn-lg btn-block" type="button" name="answer"
-                                    value="answer3">C: 7 йкхаскдх аиосфдхасн оиапсйфоп
-                            </button>
-                        </div>
-                        <div class="col-md-12 mt-2">
-                            <button class="btn btn-primary btn-lg btn-block" type="button" name="answer"
-                                    value="answer4">D: 15
+                                    value="answer1"
+                                    th:text="${answer.content}">A: Иван Вазив - български писател
                             </button>
                         </div>
                     </div>

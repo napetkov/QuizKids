@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class Answer extends BaseEntity{
     private String content;
     private LocalDate createdOn;
-    boolean isCorrect;
+    private boolean isCorrect;
     @ManyToOne
     private UserEntity author;
     @ManyToOne
