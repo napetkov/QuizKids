@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<head th:replace="~{fragments/head}"></head>
+
+<body class="top_container login">
+
+<nav th:replace="~{fragments/nav-bar}"></nav>
+
+<div class="question-container"
+     th:object="${questionAndAnswersDTO}">
+    <div class="question-card">
+        <div class="card-body">
+            <h2 class="card-title text-xl-center"
+                th:text="${questionAndAnswersDTO.content}"
+                th:field="*{id}"
+            >Question content
+                ></h2>
+            <div class="col-md-12 mt-2"
+                 th:each="answer, iterStat: ${questionAndAnswersDTO.answers}">
+                <form th:action="@{/play/all}"
+                      th:method="POST">
+                    <input type="hidden" name="questionId" th:value="${questionAndAnswersDTO.id}"/>
+                    <div class="row">
+                        <input type="hidden" name="answerCorrect" th:value="${answer.correct}"/>
+                        <button class="btn btn-primary btn-lg btn-block mb-2" type="submit" name="answer"
+                                th:text="'__${#strings.substring('ABCD', iterStat.index, iterStat.index+1)}__: ' + ${answer.content}"
+                        >A: Иван Вазив - български писател
+                        </button>
+                        <!--                        </div>-->
+                        <!--                    </div>-->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+
+</html>

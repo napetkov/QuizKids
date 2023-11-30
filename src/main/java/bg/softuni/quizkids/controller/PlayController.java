@@ -1,12 +1,11 @@
 package bg.softuni.quizkids.controller;
 
+import bg.softuni.quizkids.models.dto.QuestionAndAnswerDTO;
 import bg.softuni.quizkids.models.enums.CategoryName;
 import bg.softuni.quizkids.services.PlayService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/play")
@@ -22,13 +21,25 @@ public class PlayController {
     public String play(@PathVariable("categoryName")CategoryName categoryName){
 
 
-        return "math";
+        return "play";
     }
     @GetMapping("/all")
     public String playAll(Model model){
 
-        model.addAttribute("questionAndAnswersDTO", playService.getRandomQuestionFromAll());
+            model.addAttribute("questionAndAnswersDTO", playService.getRandomQuestionFromAll());
 
-        return "math";
+        return "play";
+    }
+
+    @PostMapping("/all")
+    public String answerQuestion(@RequestParam String questionId,
+                                 @RequestParam boolean answerCorrect){
+        if(answerCorrect){
+            return "correct-answer";
+        }
+
+
+
+        return "incorrect-answer";
     }
 }
