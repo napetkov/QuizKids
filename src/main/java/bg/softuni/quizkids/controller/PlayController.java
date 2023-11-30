@@ -17,9 +17,16 @@ public class PlayController {
         this.playService = playService;
     }
 
+    @GetMapping("/questions/{questionId}")
+    public String playQuestionById(@PathVariable long questionId, Model model){
+
+        model.addAttribute("questionAndAnswersDTO", playService.findQuestionById(questionId));
+
+        return "play";
+    }
+
     @GetMapping("/{categoryName}")
     public String play(@PathVariable("categoryName")CategoryName categoryName){
-
 
         return "play";
     }
@@ -33,12 +40,12 @@ public class PlayController {
 
     @PostMapping("/all")
     public String answerQuestion(@RequestParam String questionId,
-                                 @RequestParam boolean answerCorrect){
+                                 @RequestParam boolean answerCorrect, Model model){
         if(answerCorrect){
             return "correct-answer";
         }
 
-
+        model.addAttribute("questionId",questionId);
 
         return "incorrect-answer";
     }

@@ -10,10 +10,15 @@
 <nav th:replace="~{fragments/nav-bar}"></nav>
 
 <div class="question-container"
-     th:object="${questionAndAnswersDTO}">
+     th:object="${questionId}">
     <div class="question-card">
         <h2 class="text-xl-center text-danger">ГРЕШЕН ОТГОВОР!!!</h2>
         <div class="col-md-12 mt-2">
+            <a th:href="@{/play/questions/{id}(id=${questionId})}" class="text-decoration-none">
+                <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
+                    Опитай пак!
+                </button>
+            </a>
             <a th:href="@{/play/all}" class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от всички категории

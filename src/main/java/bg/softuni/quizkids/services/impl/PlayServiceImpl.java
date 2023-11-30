@@ -1,5 +1,6 @@
 package bg.softuni.quizkids.services.impl;
 
+import bg.softuni.quizkids.exceptions.QuestionNotFoundException;
 import bg.softuni.quizkids.models.dto.AnswerDTO;
 import bg.softuni.quizkids.models.dto.QuestionAndAnswerDTO;
 import bg.softuni.quizkids.models.entity.Question;
@@ -28,14 +29,18 @@ public class PlayServiceImpl implements PlayService {
     @Override
     public QuestionAndAnswerDTO getRandomQuestionFromAll() {
         Question randomQuestion = questionRepository.findRandomQuestion();
-        QuestionAndAnswerDTO questionAndAnswerDTO = modelMapper.map(randomQuestion, QuestionAndAnswerDTO.class);
+        return createQuestionAndAnswerDTO(randomQuestion);
+    }
 
-        List<AnswerDTO> answers = questionAndAnswerDTO.getAnswers();
-        List<AnswerDTO> answersSubSet = getAnswersSubSet(answers);
+    @Override
+    public QuestionAndAnswerDTO findQuestionById(long questionId) {
+        Optional<Question> optionalQuestion = questionRepository.findById(questionId);
 
-        questionAndAnswerDTO.setAnswers(answersSubSet);
+        if(optionalQuestion.isEmpty()){
+            throw new QuestionNotFoundException("User with id: " + questionId + "!");
+        }
 
-        return questionAndAnswerDTO;
+        return createQuestionAndAnswerDTO(optionalQuestion.get());
     }
 
     public List<AnswerDTO> getAnswersSubSet(List<AnswerDTO> answers) {
@@ -52,4 +57,15 @@ public class PlayServiceImpl implements PlayService {
 
         return answerSubList;
     }
+    private QuestionAndAnswerDTO createQuestionAndAnswerDTO(Question question) {
+        QuestionAndAnswerDTO questionAndAnswerDTO = modelMapper.map(question, QuestionAndAnswerDTO.class);
+
+        List<AnswerDTO> answers = questionAndAnswerDTO.getAnswers();
+        List<AnswerDTO> answersSubSet = getAnswersSubSet(answers);
+
+        questionAndAnswerDTO.setAnswers(answersSubSet);
+
+        return questionAndAnswerDTO;
+    }
+
 }
