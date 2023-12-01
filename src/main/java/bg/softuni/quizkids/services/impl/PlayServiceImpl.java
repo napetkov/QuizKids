@@ -41,20 +41,29 @@ public class PlayServiceImpl implements PlayService {
     @Override
     public QuestionAndAnswerDTO getRandomQuestionFromCategory(CategoryName categoryName) {
         UserEntity user = getLoggedUser();
-        List<Question> answeredQuestions = user.getAnsweredQuestions();
+        Set<Question> answeredQuestions = user.getAnsweredQuestions();
+        Question questionByCategory = new Question();
 
-        Question questionByCategory = questionRepository.findAllByCategoryName(categoryName, answeredQuestions);
-
+        if(answeredQuestions.isEmpty()){
+            questionByCategory = questionRepository.findRandomByCategoryName(categoryName);
+        }else {
+            questionByCategory = questionRepository.findRandomByCategoryNameIsNotInAnsweredQuestions(categoryName, answeredQuestions);
+        }
         return createQuestionAndAnswerDTO(questionByCategory);
     }
 
     @Override
     public QuestionAndAnswerDTO getRandomQuestionFromAll() {
         UserEntity user = getLoggedUser();
-        //TODO: return null if answered question is null
-        List<Question> answeredQuestions = user.getAnsweredQuestions();
-        Question randomQuestion = questionRepository.findRandomQuestionNotInAnsweredQuestions(answeredQuestions);
+        //TODO: return null if answered question is null - create new queries for cases when answeredQuestion is empty
+        Set<Question> answeredQuestions = user.getAnsweredQuestions();
+        Question randomQuestion = new Question();
 
+        if(answeredQuestions.isEmpty()){
+            randomQuestion = questionRepository.findRandomQuestion();
+        }else {
+            randomQuestion = questionRepository.findRandomQuestionNotInAnsweredQuestions(answeredQuestions);
+        }
 
         return createQuestionAndAnswerDTO(randomQuestion);
     }
@@ -62,16 +71,15 @@ public class PlayServiceImpl implements PlayService {
 
     @Override
     public QuestionAndAnswerDTO findQuestionByIdToQuestionAndAnswerDTO(long questionId) {
-        Question question = findQuestionByIdNotInAnsweredQuestions(questionId);
-
         //TODO: return something when already answer of all questions from given category or else
+        Question question = findQuestionByIdNotInAnsweredQuestions(questionId);
         return createQuestionAndAnswerDTO(question);
     }
 
     private Question findQuestionByIdNotInAnsweredQuestions(long questionId) {
         Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         UserEntity user = getLoggedUser();
-        List<Question> answeredQuestions = user.getAnsweredQuestions();
+        Set<Question> answeredQuestions = user.getAnsweredQuestions();
 
         if (optionalQuestion.isEmpty() || answeredQuestions.contains(optionalQuestion.get())) {
             throw new QuestionNotFoundException("Question with id: " + questionId + " was not found or is already answered!");

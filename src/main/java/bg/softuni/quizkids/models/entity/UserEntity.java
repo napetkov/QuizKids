@@ -37,5 +37,5 @@ public class UserEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Level level;
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Question> answeredQuestions;
+    private Set<Question> answeredQuestions;
 }

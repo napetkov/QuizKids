@@ -54,13 +54,14 @@ public class PlayController {
         Set<String> categoriesOfNotAnsweredQuestions = userService.getCategoriesOfNotAnsweredQuestions()
                 .stream().map(CategoryName::name)
                 .collect(Collectors.toSet());
-        model.addAttribute("categoriesOfNotAnsweredQuestions",categoriesOfNotAnsweredQuestions);
 
         if(answerCorrect){
             playService.correctlyAnsweringOfQuestion(questionId);
+            model.addAttribute("categoriesOfNotAnsweredQuestions",categoriesOfNotAnsweredQuestions);
             return "correct-answer";
         }
 
+        model.addAttribute("categoriesOfNotAnsweredQuestions",categoriesOfNotAnsweredQuestions);
         model.addAttribute("questionId",questionId);
 
         return "incorrect-answer";

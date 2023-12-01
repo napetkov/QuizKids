@@ -12,11 +12,11 @@
 <div class="question-container"
      th:object="${categoriesOfNotAnsweredQuestions}">
     <div class="question-card">
-        <h2 th:if="${categoriesOfNotAnsweredQuestions.isEmpty()}"
-            class="text-xl-center text-primary">ПРАВИЛЕН ОТГОВОР!!!</h2>
         <h2 th:unless="${categoriesOfNotAnsweredQuestions.isEmpty()}"
+            class="text-xl-center text-primary">ПРАВИЛЕН ОТГОВОР!!!</h2>
+        <h2 th:if="${categoriesOfNotAnsweredQuestions.isEmpty()}"
             class="text-xl-center text-primary">
-            ПРАВИЛЕН ОТГОВОР!!!>ПОЗДРАВЛЕНИЯ!!!
+            >ПОЗДРАВЛЕНИЯ!!!
             <br>
             ТИ ОТГОВОРИ ПРАВИЛНО НА ВСИЧКИ ВЪПРОСИ!!!
             <br>
