@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Set<CategoryName> getCategoriesOfNotAnsweredQuestions() {
+    public Set<String> getCategoriesOfNotAnsweredQuestions() {
         UserEntity user = getLoggedUser();
 
         Set<CategoryName> categoriesOfAnsweredQuestions = user.getAnsweredQuestions()
@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-        return categoriesOfNotAnsweredQuestions;
+        return categoriesOfNotAnsweredQuestions.stream().map(Enum::name).collect(Collectors.toSet());
     }
 
     private UserEntity getLoggedUser() {

@@ -24,7 +24,7 @@
         </h2>
         <div class="col-md-12 mt-2">
             <a th:href="@{/play/all}"
-               th:if="${categoriesOfNotAnsweredQuestions.isEmpty()}"
+               th:unless="${categoriesOfNotAnsweredQuestions.isEmpty()}"
                class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от всички категории

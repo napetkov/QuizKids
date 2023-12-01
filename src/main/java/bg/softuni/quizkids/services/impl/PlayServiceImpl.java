@@ -44,9 +44,9 @@ public class PlayServiceImpl implements PlayService {
         Set<Question> answeredQuestions = user.getAnsweredQuestions();
         Question questionByCategory = new Question();
 
-        if(answeredQuestions.isEmpty()){
+        if (answeredQuestions.isEmpty()) {
             questionByCategory = questionRepository.findRandomByCategoryName(categoryName);
-        }else {
+        } else {
             questionByCategory = questionRepository.findRandomByCategoryNameIsNotInAnsweredQuestions(categoryName, answeredQuestions);
         }
         return createQuestionAndAnswerDTO(questionByCategory);
@@ -59,9 +59,9 @@ public class PlayServiceImpl implements PlayService {
         Set<Question> answeredQuestions = user.getAnsweredQuestions();
         Question randomQuestion = new Question();
 
-        if(answeredQuestions.isEmpty()){
+        if (answeredQuestions.isEmpty()) {
             randomQuestion = questionRepository.findRandomQuestion();
-        }else {
+        } else {
             randomQuestion = questionRepository.findRandomQuestionNotInAnsweredQuestions(answeredQuestions);
         }
 
@@ -106,7 +106,11 @@ public class PlayServiceImpl implements PlayService {
     }
 
     private QuestionAndAnswerDTO createQuestionAndAnswerDTO(Question question) {
-        QuestionAndAnswerDTO questionAndAnswerDTO = modelMapper.map(question, QuestionAndAnswerDTO.class);
+        if (question == null){
+            throw new QuestionNotFoundException("This question was not found or already was answered correctly!");
+        }
+
+            QuestionAndAnswerDTO questionAndAnswerDTO = modelMapper.map(question, QuestionAndAnswerDTO.class);
 
         List<AnswerDTO> answers = questionAndAnswerDTO.getAnswers();
         List<AnswerDTO> answersSubSet = getAnswersSubSet(answers);

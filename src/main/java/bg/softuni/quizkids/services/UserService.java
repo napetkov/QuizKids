@@ -22,7 +22,7 @@ public interface UserService {
 
     void scorePoint(Question question);
 
-    Set<CategoryName> getCategoriesOfNotAnsweredQuestions();
+    Set<String> getCategoriesOfNotAnsweredQuestions();
 
 //    void initBlacklisted();
 

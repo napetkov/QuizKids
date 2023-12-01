@@ -50,18 +50,13 @@ public class PlayController {
     @PostMapping("/all")
     public String answerQuestion(@RequestParam Long questionId,
                                  @RequestParam boolean answerCorrect, Model model){
-
-        Set<String> categoriesOfNotAnsweredQuestions = userService.getCategoriesOfNotAnsweredQuestions()
-                .stream().map(CategoryName::name)
-                .collect(Collectors.toSet());
-
         if(answerCorrect){
             playService.correctlyAnsweringOfQuestion(questionId);
-            model.addAttribute("categoriesOfNotAnsweredQuestions",categoriesOfNotAnsweredQuestions);
+            model.addAttribute("categoriesOfNotAnsweredQuestions",userService.getCategoriesOfNotAnsweredQuestions());
             return "correct-answer";
         }
 
-        model.addAttribute("categoriesOfNotAnsweredQuestions",categoriesOfNotAnsweredQuestions);
+        model.addAttribute("categoriesOfNotAnsweredQuestions",userService.getCategoriesOfNotAnsweredQuestions());
         model.addAttribute("questionId",questionId);
 
         return "incorrect-answer";
