@@ -1,13 +1,17 @@
 package bg.softuni.quizkids.services.impl;
 
 import bg.softuni.quizkids.exceptions.QuestionNotFoundException;
+import bg.softuni.quizkids.exceptions.UserNotUniqueException;
 import bg.softuni.quizkids.models.dto.AnswerDTO;
 import bg.softuni.quizkids.models.dto.QuestionAndAnswerDTO;
 import bg.softuni.quizkids.models.entity.Question;
+import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.repository.AnswerRepository;
 import bg.softuni.quizkids.repository.QuestionRepository;
+import bg.softuni.quizkids.repository.UserRepository;
 import bg.softuni.quizkids.services.PlayService;
 import bg.softuni.quizkids.services.UserService;
+import bg.softuni.quizkids.util.LoggedUserUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -17,21 +21,35 @@ import java.util.*;
 public class PlayServiceImpl implements PlayService {
     private final QuestionRepository questionRepository;
     private final AnswerRepository answerRepository;
+    private final UserRepository userRepository;
     private final UserService userService;
     private final ModelMapper modelMapper;
 
     public PlayServiceImpl(QuestionRepository questionRepository,
                            AnswerRepository answerRepository,
-                           UserService userService, ModelMapper modelMapper) {
+                           UserRepository userRepository,
+                           UserService userService,
+                           ModelMapper modelMapper) {
         this.questionRepository = questionRepository;
         this.answerRepository = answerRepository;
+        this.userRepository = userRepository;
         this.userService = userService;
         this.modelMapper = modelMapper;
     }
 
     @Override
     public QuestionAndAnswerDTO getRandomQuestionFromAll() {
-        Question randomQuestion = questionRepository.findRandomQuestion();
+        String username = LoggedUserUtils.getLoggedInUsername();
+
+        Optional<UserEntity> userOptional = userRepository.findByUsername(username);
+
+        if (userOptional.isEmpty()) {
+            throw new UserNotUniqueException(username);
+        }
+        UserEntity user = userOptional.get();
+
+        List<Question> answeredQuestions = user.getAnsweredQuestions();
+        Question randomQuestion = questionRepository.findRandomQuestion(answeredQuestions);
 
         return createQuestionAndAnswerDTO(randomQuestion);
     }

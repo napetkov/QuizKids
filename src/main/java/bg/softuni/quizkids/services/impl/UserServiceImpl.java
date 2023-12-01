@@ -49,7 +49,6 @@ public class UserServiceImpl implements UserService {
 
         Optional<UserEntity> userOptional = userRepository.findByUsername(username);
 
-
         if (userOptional.isPresent()) {
             throw new UserNotUniqueException(username);
         }

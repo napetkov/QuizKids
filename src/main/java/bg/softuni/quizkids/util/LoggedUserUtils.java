@@ -1,12 +1,14 @@
 package bg.softuni.quizkids.util;
 
+import bg.softuni.quizkids.exceptions.UserNotUniqueException;
+import bg.softuni.quizkids.models.entity.UserEntity;
+import bg.softuni.quizkids.repository.UserRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-public final class LoggedUserUtils {
+import java.util.Optional;
 
-    private LoggedUserUtils(){
-    }
+public final class LoggedUserUtils {
 
     public static String getLoggedInUsername(){
         Authentication authenticator = SecurityContextHolder.getContext().getAuthentication();
@@ -16,4 +18,5 @@ public final class LoggedUserUtils {
         }
         return null;
     }
+
 }

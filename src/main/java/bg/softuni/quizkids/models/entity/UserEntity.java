@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -36,5 +37,5 @@ public class UserEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Level level;
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Question> answeredQuestions;
+    private List<Question> answeredQuestions;
 }
