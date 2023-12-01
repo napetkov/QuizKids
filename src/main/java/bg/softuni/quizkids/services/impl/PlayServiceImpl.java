@@ -6,6 +6,7 @@ import bg.softuni.quizkids.models.dto.AnswerDTO;
 import bg.softuni.quizkids.models.dto.QuestionAndAnswerDTO;
 import bg.softuni.quizkids.models.entity.Question;
 import bg.softuni.quizkids.models.entity.UserEntity;
+import bg.softuni.quizkids.models.enums.CategoryName;
 import bg.softuni.quizkids.repository.AnswerRepository;
 import bg.softuni.quizkids.repository.QuestionRepository;
 import bg.softuni.quizkids.repository.UserRepository;
@@ -38,7 +39,48 @@ public class PlayServiceImpl implements PlayService {
     }
 
     @Override
+    public QuestionAndAnswerDTO getRandomQuestionFromCategory(CategoryName categoryName) {
+        UserEntity user = getLoggedUser();
+        List<Question> answeredQuestions = user.getAnsweredQuestions();
+
+        Question questionByCategory = questionRepository.findAllByCategoryName(categoryName, answeredQuestions);
+
+        return createQuestionAndAnswerDTO(questionByCategory);
+    }
+
+    @Override
     public QuestionAndAnswerDTO getRandomQuestionFromAll() {
+        UserEntity user = getLoggedUser();
+        //TODO: return null if answered question is null
+        List<Question> answeredQuestions = user.getAnsweredQuestions();
+        Question randomQuestion = questionRepository.findRandomQuestionNotInAnsweredQuestions(answeredQuestions);
+
+
+        return createQuestionAndAnswerDTO(randomQuestion);
+    }
+
+
+    @Override
+    public QuestionAndAnswerDTO findQuestionByIdToQuestionAndAnswerDTO(long questionId) {
+        Question question = findQuestionByIdNotInAnsweredQuestions(questionId);
+
+        //TODO: return something when already answer of all questions from given category or else
+        return createQuestionAndAnswerDTO(question);
+    }
+
+    private Question findQuestionByIdNotInAnsweredQuestions(long questionId) {
+        Optional<Question> optionalQuestion = questionRepository.findById(questionId);
+        UserEntity user = getLoggedUser();
+        List<Question> answeredQuestions = user.getAnsweredQuestions();
+
+        if (optionalQuestion.isEmpty() || answeredQuestions.contains(optionalQuestion.get())) {
+            throw new QuestionNotFoundException("Question with id: " + questionId + " was not found or is already answered!");
+        }
+
+        return optionalQuestion.get();
+    }
+
+    private UserEntity getLoggedUser() {
         String username = LoggedUserUtils.getLoggedInUsername();
 
         Optional<UserEntity> userOptional = userRepository.findByUsername(username);
@@ -46,34 +88,12 @@ public class PlayServiceImpl implements PlayService {
         if (userOptional.isEmpty()) {
             throw new UserNotUniqueException(username);
         }
-        UserEntity user = userOptional.get();
-
-        List<Question> answeredQuestions = user.getAnsweredQuestions();
-        Question randomQuestion = questionRepository.findRandomQuestion(answeredQuestions);
-
-        return createQuestionAndAnswerDTO(randomQuestion);
-    }
-
-    @Override
-    public QuestionAndAnswerDTO findQuestionByIdToQuestionAndAnswerDTO(long questionId) {
-        Question question = findQuestionById(questionId);
-
-        return createQuestionAndAnswerDTO(question);
-    }
-
-    private Question findQuestionById(long questionId) {
-        Optional<Question> optionalQuestion = questionRepository.findById(questionId);
-
-        if(optionalQuestion.isEmpty()){
-            throw new QuestionNotFoundException("Question with id: " + questionId + "was not found!");
-        }
-
-        return optionalQuestion.get();
+        return userOptional.get();
     }
 
     @Override
     public void correctlyAnsweringOfQuestion(Long questionId) {
-        Question question = findQuestionById(questionId);
+        Question question = findQuestionByIdNotInAnsweredQuestions(questionId);
         userService.scorePoint(question);
     }
 

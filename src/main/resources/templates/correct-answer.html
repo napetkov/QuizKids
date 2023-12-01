@@ -10,53 +10,76 @@
 <nav th:replace="~{fragments/nav-bar}"></nav>
 
 <div class="question-container"
-     th:object="${questionAndAnswersDTO}">
+     th:object="${categoriesOfNotAnsweredQuestions}">
     <div class="question-card">
-        <h2 class="text-xl-center text-primary">ПРАВИЛЕН ОТГОВОР!!!</h2>
+        <h2 th:if="${categoriesOfNotAnsweredQuestions.isEmpty()}"
+            class="text-xl-center text-primary">ПРАВИЛЕН ОТГОВОР!!!</h2>
+        <h2 th:unless="${categoriesOfNotAnsweredQuestions.isEmpty()}"
+            class="text-xl-center text-primary">
+            ПРАВИЛЕН ОТГОВОР!!!>ПОЗДРАВЛЕНИЯ!!!
+            <br>
+            ТИ ОТГОВОРИ ПРАВИЛНО НА ВСИЧКИ ВЪПРОСИ!!!
+            <br>
+            ОТВОРИ ПРОФИЛА СИ ЗА ДА ВИДИШ ПОСТИГНАТИТЕ РЕЗУЛТАТИ.
+        </h2>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/all}" class="text-decoration-none">
+            <a th:href="@{/play/all}"
+               th:if="${categoriesOfNotAnsweredQuestions.isEmpty()}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от всички категории
                 </button>
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/BIOLOGY}" class="text-decoration-none">
+            <a th:href="@{/play/BIOLOGY}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('BIOLOGY')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: БИОЛОГИЯ
                 </button>
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/GEOGRAPHY}" class="text-decoration-none">
+            <a th:href="@{/play/GEOGRAPHY}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('GEOGRAPHY')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: ГЕОГРАФИЯ
                 </button>
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/MATH}" class="text-decoration-none">
+            <a th:href="@{/play/MATH}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('MATH')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: МАТЕМАТИКА
                 </button>
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/ASTRONOMY_AND_SPACE}" class="text-decoration-none">
+            <a th:href="@{/play/ASTRONOMY_AND_SPACE}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('ASTRONOMY_AND_SPACE')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: АСТРОНОМИЯ И КОСМОС
                 </button>
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/HUMAN_BODY}" class="text-decoration-none">
+            <a th:href="@{/play/HUMAN_BODY}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('HUMAN_BODY')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: ЧОВЕШКОТО ТЯЛО
                 </button>
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/SAVE_THE_EARTH}" class="text-decoration-none">
+            <a th:href="@{/play/SAVE_THE_EARTH}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('SAVE_THE_EARTH')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: ДА СПАСИМ ПЛАНЕТАТА
                 </button>

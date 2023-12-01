@@ -9,12 +9,14 @@
 
 <nav th:replace="~{fragments/nav-bar}"></nav>
 
-<div class="question-container"
-     th:object="${questionId}">
-    <div class="question-card">
+<div class="question-container">
+    <div class="question-card"
+         th:object="${categoriesOfNotAnsweredQuestions}">
         <h2 class="text-xl-center text-danger">ГРЕШЕН ОТГОВОР!!!</h2>
-        <div class="col-md-12 mt-2">
-            <a th:href="@{/play/questions/{id}(id=${questionId})}" class="text-decoration-none">
+        <div th:object="${questionId}"
+             class="col-md-12 mt-2">
+            <a th:href="@{/play/questions/{id}(id=${questionId})}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Опитай пак!
                 </button>
@@ -26,42 +28,54 @@
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/BIOLOGY}" class="text-decoration-none">
+            <a th:href="@{/play/BIOLOGY}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('BIOLOGY')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: БИОЛОГИЯ
                 </button>
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/GEOGRAPHY}" class="text-decoration-none">
+            <a th:href="@{/play/GEOGRAPHY}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('GEOGRAPHY')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: ГЕОГРАФИЯ
                 </button>
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/MATH}" class="text-decoration-none">
+            <a th:href="@{/play/MATH}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('MATH')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: МАТЕМАТИКА
                 </button>
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/ASTRONOMY_AND_SPACE}" class="text-decoration-none">
+            <a th:href="@{/play/ASTRONOMY_AND_SPACE}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('ASTRONOMY_AND_SPACE')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: АСТРОНОМИЯ И КОСМОС
                 </button>
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/HUMAN_BODY}" class="text-decoration-none">
+            <a th:href="@{/play/HUMAN_BODY}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('HUMAN_BODY')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: ЧОВЕШКОТО ТЯЛО
                 </button>
             </a>
         </div>
         <div class="col-md-12 mt-2">
-            <a th:href="@{/play/SAVE_THE_EARTH}" class="text-decoration-none">
+            <a th:href="@{/play/SAVE_THE_EARTH}"
+               th:if="${categoriesOfNotAnsweredQuestions.contains('SAVE_THE_EARTH')}"
+               class="text-decoration-none">
                 <button class="btn btn-primary btn-lg btn-block mb-2" type="submit">
                     Въпрос от категория: ДА СПАСИМ ПЛАНЕТАТА
                 </button>

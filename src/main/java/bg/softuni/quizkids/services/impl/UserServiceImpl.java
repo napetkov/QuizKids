@@ -6,6 +6,7 @@ import bg.softuni.quizkids.models.dto.UserEntityDTO;
 import bg.softuni.quizkids.models.entity.Question;
 import bg.softuni.quizkids.models.entity.Role;
 import bg.softuni.quizkids.models.entity.UserEntity;
+import bg.softuni.quizkids.models.enums.CategoryName;
 import bg.softuni.quizkids.models.enums.Level;
 import bg.softuni.quizkids.models.enums.UserRole;
 import bg.softuni.quizkids.repository.RoleRepository;
@@ -18,9 +19,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -93,14 +93,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void scorePoint(Question question) {
-        String loggedInUsername = LoggedUserUtils.getLoggedInUsername();
-        Optional<UserEntity> optionalUser = userRepository.findByUsername(loggedInUsername);
+        UserEntity user = getLoggedUser();
 
-        if (optionalUser.isEmpty()) {
-            throw new UsernameNotFoundException("User with username: " + loggedInUsername + " was not found!");
-        }
-
-        UserEntity user = optionalUser.get();
         user.getAnsweredQuestions().add(question);
         Long userPoint = user.getPoint();
         userPoint++;
@@ -111,8 +105,38 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public Set<CategoryName> getCategoriesOfNotAnsweredQuestions() {
+        UserEntity user = getLoggedUser();
+
+        Set<CategoryName> categoriesOfAnsweredQuestions = user.getAnsweredQuestions()
+                .stream()
+                .map(q -> q.getCategory().getName())
+                .collect(Collectors.toSet());
+        Set<CategoryName> categoriesOfNotAnsweredQuestions = new HashSet<>();
+
+        for (CategoryName categoryName : CategoryName.values()) {
+            if(!categoriesOfAnsweredQuestions.contains(categoryName)){
+                categoriesOfNotAnsweredQuestions.add(categoryName);
+            }
+        }
+
+        return categoriesOfNotAnsweredQuestions;
+    }
+
+    private UserEntity getLoggedUser() {
+        String username = LoggedUserUtils.getLoggedInUsername();
+        Optional<UserEntity> optionalUser = userRepository.findByUsername(username);
+
+        if (optionalUser.isEmpty()) {
+            throw new UsernameNotFoundException("User with username: " + username + " was not found!");
+        }
+
+        return optionalUser.get();
+    }
+
     private static void userLevelCheck(Long userPoint, UserEntity user) {
-        if(userPoint >= 50 && userPoint < 100){
+        if (userPoint >= 50 && userPoint < 100) {
             user.setLevel(Level.INTERMEDIATE);
         } else if (userPoint >= 100 && userPoint < 150) {
             user.setLevel(Level.ADVANCED);

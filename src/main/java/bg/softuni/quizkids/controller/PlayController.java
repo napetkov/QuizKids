@@ -2,17 +2,24 @@ package bg.softuni.quizkids.controller;
 
 import bg.softuni.quizkids.models.enums.CategoryName;
 import bg.softuni.quizkids.services.PlayService;
+import bg.softuni.quizkids.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/play")
 public class PlayController {
 
+    private final UserService userService;
     private final PlayService playService;
 
-    public PlayController(PlayService playService) {
+    public PlayController(UserService userService, PlayService playService) {
+        this.userService = userService;
         this.playService = playService;
     }
 
@@ -26,7 +33,9 @@ public class PlayController {
     }
 
     @GetMapping("/{categoryName}")
-    public String play(@PathVariable("categoryName")CategoryName categoryName){
+    public String play(@PathVariable("categoryName")CategoryName categoryName,Model model){
+
+        model.addAttribute("questionAndAnswersDTO", playService.getRandomQuestionFromCategory(categoryName));
 
         return "play";
     }
@@ -41,6 +50,12 @@ public class PlayController {
     @PostMapping("/all")
     public String answerQuestion(@RequestParam Long questionId,
                                  @RequestParam boolean answerCorrect, Model model){
+
+        Set<String> categoriesOfNotAnsweredQuestions = userService.getCategoriesOfNotAnsweredQuestions()
+                .stream().map(CategoryName::name)
+                .collect(Collectors.toSet());
+        model.addAttribute("categoriesOfNotAnsweredQuestions",categoriesOfNotAnsweredQuestions);
+
         if(answerCorrect){
             playService.correctlyAnsweringOfQuestion(questionId);
             return "correct-answer";
@@ -50,4 +65,5 @@ public class PlayController {
 
         return "incorrect-answer";
     }
+
 }
