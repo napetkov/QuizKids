@@ -43,7 +43,7 @@ public class AdminRestController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<QuestionDTO> deleteQuestionById(@PathVariable("id") Long id,@RequestBody String newRole){
+    public ResponseEntity<UserEntityDTO> updateUserRoleById(@PathVariable("id") Long id,@RequestBody String newRole){
 
     userService.updateUserRole(id,newRole);
 
@@ -51,6 +51,4 @@ public class AdminRestController {
                 .noContent()
                 .build();
     }
-
-
 }

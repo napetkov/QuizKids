@@ -72,6 +72,7 @@ public class PlayServiceImpl implements PlayService {
     @Override
     public QuestionAndAnswerDTO findQuestionByIdToQuestionAndAnswerDTO(long questionId) {
         //TODO: return something when already answer of all questions from given category or else
+
         Question question = findQuestionByIdNotInAnsweredQuestions(questionId);
         return createQuestionAndAnswerDTO(question);
     }

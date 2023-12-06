@@ -7,7 +7,7 @@ public class UserNotUniqueException extends RuntimeException{
     private final String username;
 
     public UserNotUniqueException(String username) {
-        super("There is already a registered User with " + username + "!");
+        super("There is already a registered User with username:" + username + "!");
         this.username = username;
     }
 }

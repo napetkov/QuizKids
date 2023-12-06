@@ -34,7 +34,10 @@ public class SecurityConfiguration {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll()
                         .requestMatchers("/api/admin").hasRole(UserRole.ADMIN.name())
-                        .requestMatchers("/questions/add","/api/questions").hasAnyRole(UserRole.MODERATOR.name(), UserRole.ADMIN.name())
+                        .requestMatchers("/questions/add","/api/questions")
+                        .hasAnyRole(UserRole.MODERATOR.name(), UserRole.ADMIN.name())
+                        .requestMatchers("/play/**","/home")
+                        .hasAnyRole(UserRole.USER.name(),UserRole.MODERATOR.name(),UserRole.ADMIN.name())
                         .anyRequest().authenticated()
         ).formLogin(
                 fromLogin -> {

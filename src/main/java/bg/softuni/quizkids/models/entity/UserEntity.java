@@ -2,6 +2,8 @@ package bg.softuni.quizkids.models.entity;
 
 import bg.softuni.quizkids.models.enums.Level;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +32,7 @@ public class UserEntity extends BaseEntity {
     private String email;
     @Column(name = "city")
     private String city;
-    @Positive
+    @NotNull
     private Long point;
     @ManyToOne
     private Role role;
