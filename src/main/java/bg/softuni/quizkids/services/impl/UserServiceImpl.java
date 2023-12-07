@@ -124,7 +124,8 @@ public class UserServiceImpl implements UserService {
         return categoriesOfNotAnsweredQuestions.stream().map(Enum::name).collect(Collectors.toSet());
     }
 
-    private UserEntity getLoggedUser() {
+    @Override
+    public UserEntity getLoggedUser() {
         String username = LoggedUserUtils.getLoggedInUsername();
         Optional<UserEntity> optionalUser = userRepository.findByUsername(username);
 

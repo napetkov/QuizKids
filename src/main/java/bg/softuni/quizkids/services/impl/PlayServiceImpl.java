@@ -42,7 +42,8 @@ public class PlayServiceImpl implements PlayService {
 
     @Override
     public QuestionAndAnswerDTO getRandomQuestionFromCategory(CategoryName categoryName) {
-        UserEntity user = getLoggedUser();
+        UserEntity user = userService.getLoggedUser();
+
         Set<Question> answeredQuestions = user.getAnsweredQuestions();
         Question questionByCategory = new Question();
 
@@ -56,6 +57,8 @@ public class PlayServiceImpl implements PlayService {
 
     @Override
     public QuestionAndAnswerDTO getRandomQuestionFromAll() {
+
+
         UserEntity user = getLoggedUser();
         Set<Question> answeredQuestions = user.getAnsweredQuestions();
         Question randomQuestion = new Question();

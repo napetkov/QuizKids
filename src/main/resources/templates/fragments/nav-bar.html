@@ -47,33 +47,42 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">
                                 <th:block sec:authorize="isAuthenticated()">
-                                    Profile: <th:block sec:authentication="name"></th:block>
+                                    Profile:
+                                    <th:block sec:authentication="name"></th:block>
                                 </th:block>
-                                </a>
+                            </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link"
-                                sec:authorize="hasRole('ADMIN')"
+                               sec:authorize="hasRole('ADMIN')"
                                th:href="@{/admin}">АДМИН</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"
                                sec:authorize="hasAnyRole('MODERATOR','ADMIN')"
-                               th:href="@{/question/all}">ВЪПРОС</a>
+                               th:href="@{/question/all}">ВЪПРОСИ</a>
+                        </li>
+                        <li class="nav-item">
+<!--                            <span th:if="${unreadNotificationCount gt 0}" th:text="${unreadNotificationCount}"></span>-->
+                            <span th:text="${unreadNotificationCount}"></span>
+                            <a class="nav-link"
+                               sec:authorize="isAuthenticated()"
+                               th:href="@{/users/notifications}">УВЕДОМЛЕНИЯ</a>
                         </li>
 
                         <li class="nav-item">
                             <form th:method="POST"
                                   th:action="@{/users/logout}"
-                            sec:authorize="isAuthenticated()">
-                            <input type="submit" class="nav-link" value="ИЗХОД" style="border: none;background: transparent"></input>
+                                  sec:authorize="isAuthenticated()">
+                                <input type="submit" class="nav-link" value="ИЗХОД"
+                                       style="border: none;background: transparent"></input>
                             </form>
                         </li>
 
                     </ul>
                 </div>
-                </div>
+            </div>
         </nav>
     </div>
 </nav>

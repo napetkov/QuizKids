@@ -3,6 +3,7 @@ package bg.softuni.quizkids.services;
 import bg.softuni.quizkids.models.binding.UserRegisterBindingModel;
 import bg.softuni.quizkids.models.dto.UserEntityDTO;
 import bg.softuni.quizkids.models.entity.Question;
+import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.models.enums.CategoryName;
 import bg.softuni.quizkids.models.enums.UserRole;
 
@@ -23,6 +24,8 @@ public interface UserService {
     void scorePoint(Question question);
 
     Set<String> getCategoriesOfNotAnsweredQuestions();
+
+    UserEntity getLoggedUser();
 
 //    void initBlacklisted();
 
