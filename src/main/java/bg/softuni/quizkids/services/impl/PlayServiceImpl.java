@@ -4,6 +4,7 @@ import bg.softuni.quizkids.exceptions.QuestionNotFoundException;
 import bg.softuni.quizkids.exceptions.UserNotUniqueException;
 import bg.softuni.quizkids.models.dto.AnswerDTO;
 import bg.softuni.quizkids.models.dto.QuestionAndAnswerDTO;
+import bg.softuni.quizkids.models.entity.BaseEntity;
 import bg.softuni.quizkids.models.entity.Question;
 import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.models.enums.CategoryName;
@@ -17,6 +18,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PlayServiceImpl implements PlayService {
@@ -55,7 +57,6 @@ public class PlayServiceImpl implements PlayService {
     @Override
     public QuestionAndAnswerDTO getRandomQuestionFromAll() {
         UserEntity user = getLoggedUser();
-        //TODO: return null if answered question is null - create new queries for cases when answeredQuestion is empty
         Set<Question> answeredQuestions = user.getAnsweredQuestions();
         Question randomQuestion = new Question();
 
@@ -80,9 +81,11 @@ public class PlayServiceImpl implements PlayService {
     private Question findQuestionByIdNotInAnsweredQuestions(long questionId) {
         Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         UserEntity user = getLoggedUser();
-        Set<Question> answeredQuestions = user.getAnsweredQuestions();
+        Set<Long> answeredQuestions = user.getAnsweredQuestions()
+                .stream().map(BaseEntity::getId)
+                .collect(Collectors.toSet());
 
-        if (optionalQuestion.isEmpty() || answeredQuestions.contains(optionalQuestion.get())) {
+        if (optionalQuestion.isEmpty() || answeredQuestions.contains(optionalQuestion.get().getId())) {
             throw new QuestionNotFoundException("Question with id: " + questionId + " was not found or is already answered!");
         }
 
