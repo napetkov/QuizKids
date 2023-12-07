@@ -195,7 +195,9 @@ a:focus {
 }
 
 .hero_img-container {
-    width: 55%;
+    max-width: 55vw;
+    max-height: 79vh;
+    overflow: hidden;
 }
 
 .hero_detail-box {

@@ -3,29 +3,12 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
 
-<head>
-    <title>QuizKids</title>
-    <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-    <!-- progress barstle -->
-    <link rel="stylesheet" href="css/css-circular-prog-bar.css">
-    <!-- fonts style -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-    <!-- font wesome stylesheet -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet"/>
-    <!-- responsive style -->
-    <link href="css/responsive.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/css-circular-prog-bar.css">
-
-
-</head>
+<head th:replace="~{fragments/head}"></head>
 
 <body>
 <div class="top_container">
     <!-- header section strats -->
-    <head th:replace = "~{fragments/nav-bar}">
+    <nav th:replace="~{fragments/nav-bar}"></nav>
     <section class="hero_section ">
         <div class="hero-container container">
             <div class="hero_detail-box">
@@ -65,7 +48,7 @@
         </div>
         <section class="teacher_section layout_padding-bottom">
             <div class="container">
-                                <div class="teacher_container layout_padding2">
+                <div class="teacher_container layout_padding2">
                     <div class="card-deck">
                         <div class="card">
                             <img class="card-img-top" src="images/tree-sunset.jpg" alt="Card image cap">
@@ -134,14 +117,12 @@
             </div>
         </section>
     </section>
-
 </div>
 
-<div th:replace="~{fragments/footer}"></div>
+<footer th:replace="~{fragments/footer}"></footer>
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
-<!-- end google map js -->
 </body>
 
 </html>
