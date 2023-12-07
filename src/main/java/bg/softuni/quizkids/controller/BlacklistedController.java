@@ -1,0 +1,13 @@
+package bg.softuni.quizkids.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class BlacklistedController {
+    @GetMapping("/blacklisted")
+    public String showBlacklistedPage() {
+        return "blacklisted";
+    }
+
+}
