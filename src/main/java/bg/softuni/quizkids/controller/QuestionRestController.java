@@ -34,6 +34,7 @@ public class QuestionRestController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<QuestionDTO> deleteQuestionById(@PathVariable("id") Long id){
+        questionService.deleteQuestionById(id);
         return ResponseEntity
                 .noContent()
                 .build();

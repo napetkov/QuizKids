@@ -26,6 +26,6 @@ public class Question extends BaseEntity{
     private Category category;
     @ManyToOne
     private UserEntity author;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Answer> answers;
 }

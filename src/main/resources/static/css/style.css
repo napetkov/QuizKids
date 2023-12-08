@@ -499,3 +499,14 @@ a:focus {
     box-shadow: 10px 30px 60px 5px rgba(0, 0, 0, 1);
     transform: translateY(-14px);
 }
+
+.unread-notification {
+    background-color: red;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 50%;
+    border-width: 2px;
+    font-size: 12px;
+    font-weight: bold;
+
+}

@@ -1,5 +1,6 @@
 package bg.softuni.quizkids.services.impl;
 
+import bg.softuni.quizkids.exceptions.QuestionNotFoundException;
 import bg.softuni.quizkids.models.binding.AddQuestionBindingModel;
 import bg.softuni.quizkids.models.dto.QuestionDTO;
 import bg.softuni.quizkids.models.entity.Answer;
@@ -7,6 +8,7 @@ import bg.softuni.quizkids.models.entity.Category;
 import bg.softuni.quizkids.models.entity.Question;
 import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.models.enums.CategoryName;
+import bg.softuni.quizkids.repository.AnswerRepository;
 import bg.softuni.quizkids.repository.CategoryRepository;
 import bg.softuni.quizkids.repository.QuestionRepository;
 import bg.softuni.quizkids.repository.UserRepository;
@@ -27,17 +29,19 @@ public class QuestionServiceImpl implements QuestionService {
     private final UserRepository userRepository;
     private final QuestionRepository questionRepository;
     private final CategoryRepository categoryRepository;
+    private final AnswerRepository answerRepository;
     private final ModelMapper modelMapper;
 
     public QuestionServiceImpl(UserRepository userRepository,
                                AnswerService answerService,
                                QuestionRepository questionRepository,
                                CategoryRepository categoryRepository,
-                               ModelMapper modelMapper) {
+                               AnswerRepository answerRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.answerService = answerService;
         this.questionRepository = questionRepository;
         this.categoryRepository = categoryRepository;
+        this.answerRepository = answerRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -70,6 +74,15 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void deleteQuestionById(Long id) {
+        Optional<Question> optionalQuestion = questionRepository.findById(id);
+        if(optionalQuestion.isEmpty()){
+            throw new QuestionNotFoundException("Question with id: " + id + " was not found");
+        }
+        Question question = optionalQuestion.get();
+        List<Answer> answers = question.getAnswers();
+
+        answerRepository.deleteAll(answers);
+
         questionRepository.deleteById(id);
     }
 

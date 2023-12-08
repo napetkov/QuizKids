@@ -64,11 +64,15 @@
                                th:href="@{/question/all}">ВЪПРОСИ</a>
                         </li>
                         <li class="nav-item">
-<!--                            <span th:if="${unreadNotificationCount gt 0}" th:text="${unreadNotificationCount}"></span>-->
-                            <span th:text="${unreadNotificationCount}"></span>
+
                             <a class="nav-link"
                                sec:authorize="isAuthenticated()"
-                               th:href="@{/users/notifications}">УВЕДОМЛЕНИЯ</a>
+                               th:href="@{/users/notifications}">
+                                УВЕДОМЛЕНИЯ
+                                <span class="unread-notification"
+                                                 th:if="${unreadNotificationCount gt 0}"
+                                                 th:text="${unreadNotificationCount}"></span>
+                            </a>
                         </li>
 
                         <li class="nav-item">

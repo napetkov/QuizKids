@@ -1,8 +1,6 @@
 package bg.softuni.quizkids.models.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +18,6 @@ public class Answer extends BaseEntity{
     private boolean isCorrect;
     @ManyToOne
     private UserEntity author;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Question question;
 }

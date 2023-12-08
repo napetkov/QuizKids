@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 @Service
 public class PlayServiceImpl implements PlayService {
     private final QuestionRepository questionRepository;
-    private final AnswerRepository answerRepository;
     private final UserRepository userRepository;
     private final UserService userService;
     private final ModelMapper modelMapper;
@@ -34,7 +33,6 @@ public class PlayServiceImpl implements PlayService {
                            UserService userService,
                            ModelMapper modelMapper) {
         this.questionRepository = questionRepository;
-        this.answerRepository = answerRepository;
         this.userRepository = userRepository;
         this.userService = userService;
         this.modelMapper = modelMapper;

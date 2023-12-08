@@ -3,6 +3,7 @@ package bg.softuni.quizkids.services.impl;
 import bg.softuni.quizkids.exceptions.UserNotUniqueException;
 import bg.softuni.quizkids.models.binding.UserRegisterBindingModel;
 import bg.softuni.quizkids.models.dto.UserEntityDTO;
+import bg.softuni.quizkids.models.entity.Notification;
 import bg.softuni.quizkids.models.entity.Question;
 import bg.softuni.quizkids.models.entity.Role;
 import bg.softuni.quizkids.models.entity.UserEntity;
@@ -19,6 +20,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -137,12 +139,32 @@ public class UserServiceImpl implements UserService {
     }
 
     private static void userLevelCheck(Long userPoint, UserEntity user) {
+        Level currentLevel = user.getLevel();
+
         if (userPoint >= 50 && userPoint < 100) {
             user.setLevel(Level.INTERMEDIATE);
         } else if (userPoint >= 100 && userPoint < 150) {
             user.setLevel(Level.ADVANCED);
         } else if (userPoint >= 150) {
             user.setLevel(Level.EXPERT);
+        }
+
+        if(!currentLevel.equals(user.getLevel())){
+            StringBuilder notificationContent = new StringBuilder();
+            notificationContent
+                    .append(user.getUsername())
+                    .append(", ")
+                    .append("reached to ")
+                    .append(user.getLevel().name())
+                    .append(" after scoring ")
+                    .append(user.getPoint())
+                    .append("!!!");
+
+            Notification notification = new Notification();
+            notification.setUser(user);
+            notification.setRead(false);
+            notification.setContent(notificationContent.toString());
+            notification.setCreated(LocalDateTime.now());
         }
     }
 
