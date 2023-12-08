@@ -14,8 +14,18 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String home(Model model){
-        model.addAttribute("categoriesOfNotAnsweredQuestions",userService.getCategoriesOfNotAnsweredQuestions());
+    public String home(Model model) {
+        model.addAttribute("categoriesOfNotAnsweredQuestions", userService.getCategoriesOfNotAnsweredQuestions());
         return "home";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact";
     }
 }

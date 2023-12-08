@@ -8,15 +8,20 @@
 <div class="container"
      th:object="${categoriesOfNotAnsweredQuestions}">
     <div class="row">
-        <h2 th:if="${categoriesOfNotAnsweredQuestions.isEmpty()}"
-            class="text-xl-center text-primary">
-            >ПОЗДРАВЛЕНИЯ!!!
-            <br>
-            ТИ ОТГОВОРИ ПРАВИЛНО НА ВСИЧКИ ВЪПРОСИ!!!
-            <br>
-            ОТВОРИ ПРОФИЛА СИ ЗА ДА ВИДИШ ПОСТИГНАТИТЕ РЕЗУЛТАТИ.
-        </h2>
         <div class="col-md-4 mb-4">
+            <div th:if="${categoriesOfNotAnsweredQuestions.isEmpty()}"
+                 class="card shadow-sm" style="width: 400px">
+                <img src="images/tree-sunset.jpg" class="img-card-container card-img-top img-fluid"
+                     alt="Image 2">
+                <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
+                    <h5> ПОЗДРАВЛЕНИЯ!!!
+                        <br>
+                        ТИ ОТГОВОРИ ПРАВИЛНО НА ВСИЧКИ ВЪПРОСИ!!!
+                        <br>
+                        ОТВОРИ ПРОФИЛА СИ ЗА ДА ВИДИШ ПОСТИГНАТИТЕ РЕЗУЛТАТИ.
+                    </h5>
+                </div>
+            </div>
             <a th:href="@{/play/all}"
                th:unless="${categoriesOfNotAnsweredQuestions.isEmpty()}"
                class="text-decoration-none">
@@ -80,7 +85,7 @@
         </div>
         <div class="col-md-4 mb-4">
             <div th:unless="${categoriesOfNotAnsweredQuestions.contains('MATH')}"
-                    class="card shadow-sm" style="width: 400px">
+                 class="card shadow-sm" style="width: 400px">
                 <img src="images/tree-sunset.jpg" class="img-card-container card-img-top img-fluid"
                      alt="Image 2">
                 <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">

@@ -17,7 +17,9 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public long countByUserIdAndIsRead(long userId) {
-        return notificationRepository.countByUser_IdAndAndIsReadIsFalse(userId);
+        long count = notificationRepository.countByUser_IdAndAndIsReadIsFalse(userId);
+
+        return count;
     }
 
     @Override

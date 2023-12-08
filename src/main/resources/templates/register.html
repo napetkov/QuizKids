@@ -8,7 +8,8 @@
 
     <div class="d-flex justify-content-end w-75">
         <div class="register-container  pt-xl-5">
-            <form th:action="@{/users/register}"
+            <form class="contact-form"
+                    th:action="@{/users/register}"
                   th:method="POST"
             th:object="${userRegisterBindingModel}">
                 <p class="text-xl-center font-weight-bold">Register:</p>

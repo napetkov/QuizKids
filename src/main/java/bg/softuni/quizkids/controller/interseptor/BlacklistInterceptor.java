@@ -10,8 +10,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
+
 @Component
 public class BlacklistInterceptor implements HandlerInterceptor {
     private final UserService userService;
@@ -21,28 +23,28 @@ public class BlacklistInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
+
         String username = LoggedUserUtils.getLoggedInUsername();
 
-        if(username.equals("anonymousUser")){
+        if (username.equals("anonymousUser")) {
             return true;
         }
 
-
         UserEntity user = userService.getLoggedUser();
-
 
         if (request.getRequestURI().equals("/blacklisted")) {
             return true;
         }
 
         boolean isBlacklisted = user.getRole().getName() == UserRole.BLACKLISTED;
-        if(isBlacklisted){
+        if (isBlacklisted) {
             response.sendRedirect("/blacklisted");
-
             return false;
         }
 
         return true;
     }
 }
+

@@ -1,6 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
-    height: 100vh;
+    height: 87%;
     color: #48494a;
     background-image: url(../images/body-bg.jpg);
 }
@@ -428,12 +428,14 @@ a:focus {
     bottom: 0;
     width: 100%;
     z-index: 1;
+    height: 13%;
     /* Additional styles for the footer */
 }
 
 .footer_section {
     background-color: #082465;
     padding: 20px 0;
+    height: 100%;
     font-family: "Roboto", sans-serif;
 }
 
@@ -460,7 +462,6 @@ a:focus {
 
 .register-container {
     width: 400px;
-    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

@@ -22,10 +22,14 @@ public class NotificationCountInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        String username = LoggedUserUtils.getLoggedInUsername();
 
-        UserEntity user = userService.getLoggedUser();
-        long countOfUnreadNotifications = notificationService.countByUserIdAndIsRead(user.getId());
-        request.setAttribute("unreadNotificationCount", countOfUnreadNotifications);
+        if (!username.equals("anonymousUser")) {
+            UserEntity user = userService.getLoggedUser();
+            long countOfUnreadNotifications = notificationService.countByUserIdAndIsRead(user.getId());
+            request.setAttribute("unreadNotificationCount", countOfUnreadNotifications);
+        }
+
         return true;
     }
 }
