@@ -211,6 +211,7 @@ public class UserServiceImpl implements UserService {
             admin.setLevel(Level.EXPERT);
             admin.setCity("Sofia");
             admin.setRole(roleAdmin);
+            admin.setPoint(1L);
 
             userRepository.save(admin);
 
