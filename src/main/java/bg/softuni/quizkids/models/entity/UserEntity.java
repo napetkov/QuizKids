@@ -32,7 +32,7 @@ public class UserEntity extends BaseEntity {
     private String email;
     @Column(name = "city")
     private String city;
-    @NotNull
+    @Column(name = "points",nullable = false)
     private Long point;
     @ManyToOne
     private Role role;
