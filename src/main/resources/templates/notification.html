@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<head th:replace="~{fragments/head}">
+    <script src="../static/js/load-all-questions.js"></script>
+</head>
+<body>
+<nav th:replace="~{fragments/nav-bar}"></nav>
+<div class="container mt-4">
+    <!--    <button class="btn btn-success btn-sm mr-2" id="question-manager-btn">LOAD ALL QUESTIONS</button>-->
+    <!--    <a th:href="@{/question/add}"-->
+    <!--       class="btn btn-success btn-sm mr-2">ADD QUESTION</a>-->
+    <table class="table table-bordered mt-3">
+        <thead>
+        <tr>
+            <th>Notification ID</th>
+            <th>Notification Content</th>
+            <th>Notification created on</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="question-container"
+               th:each="notification: ${getAllNotifications}">
+        <tr>
+            <td th:text="*{notification.id}">1</td>
+            <td th:text="*{notification.content}">Now your level is EXPERT</td>
+            <td th:text="*{notification.created}">2023-12-08 22:40</td>
+            <td>
+                <form th:method="POST"
+                      th:action="@{/notification/{id}(id=${notification.id})}"
+                        >
+                    <button th:unless="${notification.isRead}"
+                            class="btn btn-danger btn-sm mr-2" type="submit">Mark as read</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="~{fragments/footer}"></div>
+<script src="/js/load-all-questions.js"></script>
+</body>
+</html>

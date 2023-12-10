@@ -67,7 +67,7 @@
 
                             <a class="nav-link"
                                sec:authorize="isAuthenticated()"
-                               th:href="@{/users/notifications}">
+                               th:href="@{/notification}">
                                 УВЕДОМЛЕНИЯ
                                 <span class="unread-notification"
                                                  th:if="${unreadNotificationCount gt 0}"
