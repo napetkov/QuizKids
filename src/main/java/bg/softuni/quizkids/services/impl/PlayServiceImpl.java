@@ -8,7 +8,6 @@ import bg.softuni.quizkids.models.entity.BaseEntity;
 import bg.softuni.quizkids.models.entity.Question;
 import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.models.enums.CategoryName;
-import bg.softuni.quizkids.repository.AnswerRepository;
 import bg.softuni.quizkids.repository.QuestionRepository;
 import bg.softuni.quizkids.repository.UserRepository;
 import bg.softuni.quizkids.services.PlayService;
@@ -28,7 +27,6 @@ public class PlayServiceImpl implements PlayService {
     private final ModelMapper modelMapper;
 
     public PlayServiceImpl(QuestionRepository questionRepository,
-                           AnswerRepository answerRepository,
                            UserRepository userRepository,
                            UserService userService,
                            ModelMapper modelMapper) {
@@ -55,7 +53,6 @@ public class PlayServiceImpl implements PlayService {
 
     @Override
     public QuestionAndAnswerDTO getRandomQuestionFromAll() {
-
 
         UserEntity user = getLoggedUser();
         Set<Question> answeredQuestions = user.getAnsweredQuestions();

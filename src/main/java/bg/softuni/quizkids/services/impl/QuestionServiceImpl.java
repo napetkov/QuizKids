@@ -46,8 +46,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void addQuestion(AddQuestionBindingModel addQuestionBindingModel) {
-        String loggedInUsername = LoggedUserUtils.getLoggedInUsername();
+    public void addQuestion(AddQuestionBindingModel addQuestionBindingModel,String loggedInUsername) {
         Optional<UserEntity> optionalUser = userRepository.findByUsername(loggedInUsername);
 
         if (optionalUser.isEmpty()) {
@@ -57,7 +56,6 @@ public class QuestionServiceImpl implements QuestionService {
         UserEntity author = optionalUser.get();
         LocalDate createdOn = LocalDate.now();
         Category category = categoryRepository.findByName(CategoryName.valueOf(addQuestionBindingModel.getCategory()));
-
         Question question = createQuestion(addQuestionBindingModel, author, createdOn, category);
 
     }
@@ -78,11 +76,10 @@ public class QuestionServiceImpl implements QuestionService {
         if(optionalQuestion.isEmpty()){
             throw new QuestionNotFoundException("Question with id: " + id + " was not found");
         }
+
         Question question = optionalQuestion.get();
         List<Answer> answers = question.getAnswers();
-
         answerRepository.deleteAll(answers);
-
         questionRepository.deleteById(id);
     }
 
@@ -107,7 +104,6 @@ public class QuestionServiceImpl implements QuestionService {
             answer.setQuestion(question);
             answerService.saveAnswer(answer);
         });
-
         return question;
     }
 
@@ -118,8 +114,6 @@ public class QuestionServiceImpl implements QuestionService {
         questionDTO.setCategoryName(questions.getCategory().getName().name());
         questionDTO.setAuthorUsername(questions.getAuthor().getUsername());
         questionDTO.setCreatedOn(questions.getCreatedOn());
-
         return questionDTO;
     }
-
 }

@@ -9,7 +9,6 @@ import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.models.enums.UserRole;
 import bg.softuni.quizkids.repository.RoleRepository;
 import bg.softuni.quizkids.repository.UserRepository;
-import bg.softuni.quizkids.testUtils.TestData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -24,8 +24,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.linesOf;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -149,7 +147,17 @@ class UserServiceImplTest {
     }
 
     @Test
+    void testUpdateUserRoleUserNotFound(){
+        Long userId = 1L;
+        String newRoleName = "ADMIN";
 
+        when(mockUserRepository.findById(userId)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(UsernameNotFoundException.class,
+                () -> userServiceToTest.updateUserRole(userId, newRoleName));
+
+        verify(mockUserRepository, never()).save(any(UserEntity.class));
+    }
 
 
 

@@ -2,6 +2,7 @@ package bg.softuni.quizkids.controller;
 
 import bg.softuni.quizkids.models.binding.AddQuestionBindingModel;
 import bg.softuni.quizkids.services.QuestionService;
+import bg.softuni.quizkids.util.LoggedUserUtils;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +40,7 @@ public class QuestionController {
     @PostMapping("/add")
     public String add(@Valid AddQuestionBindingModel addQuestionBindingModel,
                       BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
         if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("addQuestionBindingModel", addQuestionBindingModel);
             redirectAttributes
@@ -46,7 +48,8 @@ public class QuestionController {
                     bindingResult);
             return "redirect:/question/add";
         }
-        questionService.addQuestion(addQuestionBindingModel);
+
+        questionService.addQuestion(addQuestionBindingModel, LoggedUserUtils.getLoggedInUsername());
 
         return "redirect:/question/all";
     }

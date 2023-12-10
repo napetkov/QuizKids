@@ -25,6 +25,6 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     @Scheduled(cron = "0 0 0 * * *")
     public void clearOldNotification() {
-        notificationRepository.deleteAllByCreatedBefore(LocalDateTime.now().minusMinutes(30));
+        notificationRepository.deleteAllByCreatedBefore(LocalDateTime.now().minusDays(30));
     }
 }

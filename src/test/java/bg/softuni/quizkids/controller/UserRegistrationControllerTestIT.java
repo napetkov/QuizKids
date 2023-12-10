@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -14,20 +13,34 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class UserLoginControllerTestIt {
+class UserRegistrationControllerTestIT {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    @WithMockUser(username = "username",password = "topsecret",roles = "ADMIN")
-    void testLogin() throws Exception {
+    void testRegistration() throws Exception {
         mockMvc.perform(
-                post("/login")
-                        .param("username","username")
+                post("/users/register")
+                        .param("username", "username")
+                        .param("firstName","Pesho")
+                        .param("lastName","Petrov")
                         .param("password","topsecret")
+                        .param("confirmPassword","topsecret")
+                        .param("age","38")
+                        .param("email","pesho@example.com")
+                        .param("city","Sofia")
                         .with(csrf())
         )
-                .andExpect(status().is3xxRedirection());
-    }
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/users/login"));
 
+        mockMvc.perform(post("/users/register")
+                .param("username","username")
+                .with(csrf())
+        )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/users/register"));
+
+
+    }
 }

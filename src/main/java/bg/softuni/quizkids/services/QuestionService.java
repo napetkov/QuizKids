@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface QuestionService {
-    void addQuestion(AddQuestionBindingModel addQuestionBindingModel);
+    void addQuestion(AddQuestionBindingModel addQuestionBindingModel,String username);
 
     List<QuestionDTO> getAllQuestions();
 
