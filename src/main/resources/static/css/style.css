@@ -89,7 +89,6 @@ nav.navbar.navbar-expand-lg {
 
 .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item.active .nav-link {
     color: darkblue;
-
 }
 
 a,
@@ -111,6 +110,7 @@ a:focus {
 
 .top_container {
     position: relative;
+    height: 87%;
 }
 
 .top_container::before {
@@ -118,10 +118,10 @@ a:focus {
     position: absolute;
     width: 40%;
     height: 100%;
-    background: url(../images/hero-bg.png);
-    background-size: cover;
+    background: url(../images/meaw.jpg);
+    background-size: contain;
     background-position: right bottom;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     z-index: -1;
 }
 
@@ -201,13 +201,14 @@ a:focus {
 }
 
 .hero_detail-box {
-    color: #fefeff;
+    color: blue;
+    font-weight: bold;
 }
 
 .hero_detail-box h1 {
     text-transform: uppercase;
-    font-size: 50px;
-    color: #fec913;
+    font-size: 80px;
+    color: darkblue;
     font-weight: bold;
 }
 
@@ -215,20 +216,64 @@ a:focus {
 .hero_detail-box p {
     margin-top: 20px;
     margin-bottom: 35px;
+    color: blue;
+    font-weight: bold;
+    font-style: italic;
 }
 
 
 /* end hero section */
 
 /* about section */
+.about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 30%;
+    height: 100vh;
+    background: url(../images/birds.jpg);
+    background-size: cover;
+    background-position: right bottom;
+    background-repeat: repeat;
+    z-index: -1;
+}
 .about_img-box {
-    width: 65%;
+    width: 87%;
     margin: 40px auto;
 }
 
 /* about section */
 
+.add-questions::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 30%;
+    height: 100vh;
+    background: url(../images/cats.jpg);
+    background-size: cover;
+    background-position: right bottom;
+    background-repeat: repeat;
+    z-index: -1;
+}
+
+
+.error::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 30%;
+    height: 100vh;
+    background: url(../images/broken-window.png);
+    background-size: cover;
+    background-position: right bottom;
+    background-repeat: repeat;
+    z-index: -1;
+}
 /* teacher container */
+.card-img-top{
+    border-radius: 50%;
+}
 
 .teacher_section .card {
     border: none;
@@ -240,81 +285,6 @@ a:focus {
     color: #48494a;
 }
 
-/* end teacher container */
-
-/* vehicle section */
-.vehicle_img-box {
-    width: 60%;
-    margin: 0 auto;
-}
-
-.vehicle_section .carousel-control-prev,
-.vehicle_section .carousel-control-next {
-    opacity: 1;
-}
-
-.vehicle_section .carousel-control-prev-icon,
-.vehicle_section .carousel-control-next-icon {
-    width: 50px;
-    height: 50px;
-    background-color: #082465;
-    border-radius: 100%;
-    background-size: 10px;
-    background-position: center;
-}
-
-.vehicle_section .carousel-control-prev-icon {
-    background-image: url(../images/prev.png);
-}
-
-.vehicle_section .carousel-control-next-icon {
-    background-image: url(../images/next.png);
-}
-
-
-/* end vehicle section */
-
-/* client section */
-.client_section {
-    background-image: url(../images/shape-1.png);
-    background-repeat: no-repeat;
-
-    background-position: right;
-
-    background-size: 18%;
-}
-
-.client_container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 35px;
-    background-color: #fefeff;
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(163, 158, 163, 1);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(163, 158, 163, 1);
-    box-shadow: 0px 0px 5px 0px rgba(163, 158, 163, 1);
-    border-radius: 20px;
-}
-
-.client_detail-box h4 {
-    color: #082465;
-}
-
-.client_detail-box span {
-    text-transform: uppercase;
-    color: #48494a;
-}
-
-.client_detail .client_img-box {
-    width: 100px;
-    margin-right: 15px;
-}
-
-.client_detail .client_img-box img {
-    width: 100%;
-}
-
-
-/* end client section */
 
 
 /* contact section */
@@ -424,7 +394,7 @@ a:focus {
 /* footer section*/
 
 .footer {
-    position: page;
+    position: -ms-device-fixed;
     bottom: 0;
     width: 100%;
     z-index: 1;
@@ -473,12 +443,13 @@ a:focus {
     top: 0;
     width: 30%;
     height: 100vh;
-    background: url(../images/planet-earth.jpg);
+    background: url(../images/moreCats.jpg);
     background-size: cover;
     background-position: right bottom;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     z-index: -1;
 }
+
 
 .img-card-container {
     object-fit: cover;

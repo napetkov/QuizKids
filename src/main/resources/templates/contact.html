@@ -3,18 +3,12 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
 
-<head th:replace = "~{fragments/head}"></head>
+<head th:replace="~{fragments/head}"></head>
 
 <body>
-<div class="top_container">
-    <!-- header section strats -->
-    <nav th:replace = "~{fragments/nav-bar}"></nav>
-</div>
-<!-- end header section -->
+<nav th:replace="~{fragments/nav-bar}"></nav>
 
-<!-- contact section -->
-
-<section class="login layout_padding">
+<section class="about layout_padding">
     <div class="container">
 
         <h2 class="main-heading">
@@ -30,10 +24,10 @@
                 <div class="row">
                     <div class="col-md-6 mx-auto">
                         <div class="contact-form">
-                            <form   th:method="POST"
-                                    th:action="@{/contact}"
-                                    th:object="${sendMessageBindingModel}"
-                                    >
+                            <form th:method="POST"
+                                  th:action="@{/contact}"
+                                  th:object="${sendMessageBindingModel}"
+                            >
                                 <div>
                                     <input type="text" placeholder="Name"
                                            th:field="*{name}"
@@ -45,14 +39,14 @@
                                 </div>
                                 <div>
                                     <input th:field="*{phoneNumber}"
-                                            type="text" placeholder="Phone Number"
+                                           type="text" placeholder="Phone Number"
                                            class="form-control">
                                 </div>
                                 <div>
-                                    <input  th:field="*{email}"
-                                            th:errorclass="is-invalid"
-                                            type="email" placeholder="Email"
-                                            class="form-control">
+                                    <input th:field="*{email}"
+                                           th:errorclass="is-invalid"
+                                           type="email" placeholder="Email"
+                                           class="form-control">
                                     <p class="invalid-feedback errors alert alert-danger">
                                         Please enter correct email!
                                     </p>
@@ -86,7 +80,7 @@
 <!-- end contact section -->
 
 <!-- footer section -->
-<head th:replace = "~{fragments/footer}"></head>
+<head th:replace="~{fragments/footer}"></head>
 <!-- footer section -->
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>

@@ -2,10 +2,12 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
-<head th:replace="~{fragments/head}">
-<body class="top_container">
+<head th:replace="~{fragments/head}"></head>
+
 <nav th:replace="~{fragments/nav-bar}"></nav>
-<body>
+
+<body class="top_container add-questions">
+
 <div class="container" style="max-width: 65%">
     <h2 class="mt-4 mb-3">Question Form</h2>
     <form
@@ -14,7 +16,7 @@
             th:object="${addQuestionBindingModel}"
             >
         <div class="form-group">
-            <label for="question">QUESTION:</label>
+            <label for="question">ВЪПРОС:</label>
             <input th:field="*{content}"
                    th:errorclass="is-invalid"
                    type="text" class="form-control" id="question" name="question">
@@ -24,8 +26,8 @@
         </div>
         <div class="form-group"
              th:each="answer, itemStat : *{answers}">
-            <label th:if= "${itemStat.index == 0}" for="correctAnswer">CORRECT ANSWER:</label>
-            <label th:unless="${itemStat.index != 0}" for="correctAnswer">INCORRECT ANSWER:</label>
+            <label th:if= "${itemStat.index == 0}" for="correctAnswer">ПРАВИЛЕН ОТГОВОР:</label>
+            <label th:unless="${itemStat.index == 0}" for="correctAnswer">ГРЕШЕН ОТГОВОР:</label>
             <input
                     th:errorclass="is-invalid"
                     th:field="*{answers[__${itemStat.index}__].content}"
@@ -81,7 +83,7 @@
 <!--            </p>-->
 <!--        </div>-->
         <div class="form-group">
-            <label for="category">Category:</label>
+            <label for="category">Категория:</label>
             <select class="form-control"
                     id="category"
                     name="category"
@@ -93,7 +95,7 @@
                 </option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Запиши</button>
     </form>
 </div>
 

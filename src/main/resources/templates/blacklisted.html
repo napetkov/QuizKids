@@ -1,13 +1,41 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<head th:replace="~{fragments/head}"></head>
+
 <body>
-<h1>YOU ARE BLACKLISTED!!! PLEASE CONTACT US!</h1>
+<div class="top_container error">
+    <!-- header section strats -->
+    <nav th:replace="~{fragments/nav-bar}"></nav>
+    <section class="hero_section ">
+        <div class="hero-container container">
+            <div class="hero_detail-box">
+                <h1 class="text-danger">ВИЕ СТЕ ПОСТАВЕН В ЧЕНИЯТ СПИСЪК!!!
+                <br>
+                МОЛЯ СВЪРЖЕТЕ СЕ С НАС ЗА ДА УТОЧНИМ ОБСТОЯТЕЛСТВАТА!</h1>
+
+                <div class="hero_btn-continer">
+                    <a th:href="@{/contact}" class="call_to-btn btn_white-border">
+              <span>
+                Върнете се в началото!
+              </span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero_img-container" >
+                <img src="/images/broken-window2.png" style="object-fit: contain">
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
+
 </html>
