@@ -9,14 +9,14 @@
 <body class="top_container add-questions">
 
 <div class="container" style="max-width: 65%">
-    <h2 class="mt-4 mb-3">Question Form</h2>
+    <h1 class="mt-4 mb-3" STYLE="color: blue;font-weight: 600">Създай Въпрос</h1>
     <form
             th:action="@{/question/add}"
             th:method="POST"
             th:object="${addQuestionBindingModel}"
             >
         <div class="form-group">
-            <label for="question">ВЪПРОС:</label>
+            <label for="question" STYLE="color: white;background: #005cbf">ВЪПРОС:</label>
             <input th:field="*{content}"
                    th:errorclass="is-invalid"
                    type="text" class="form-control" id="question" name="question">
@@ -26,8 +26,8 @@
         </div>
         <div class="form-group"
              th:each="answer, itemStat : *{answers}">
-            <label th:if= "${itemStat.index == 0}" for="correctAnswer">ПРАВИЛЕН ОТГОВОР:</label>
-            <label th:unless="${itemStat.index == 0}" for="correctAnswer">ГРЕШЕН ОТГОВОР:</label>
+            <label th:if= "${itemStat.index == 0}" for="correctAnswer" STYLE="color: white;background: #005cbf">ПРАВИЛЕН ОТГОВОР:</label>
+            <label th:unless="${itemStat.index == 0}" for="correctAnswer" STYLE="color: white;background: #005cbf">ГРЕШЕН ОТГОВОР:</label>
             <input
                     th:errorclass="is-invalid"
                     th:field="*{answers[__${itemStat.index}__].content}"
@@ -83,7 +83,7 @@
 <!--            </p>-->
 <!--        </div>-->
         <div class="form-group">
-            <label for="category">Категория:</label>
+            <label for="category" STYLE="color: white;background: #005cbf">Категория:</label>
             <select class="form-control"
                     id="category"
                     name="category"

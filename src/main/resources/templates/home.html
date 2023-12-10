@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
 <head th:replace="~{fragments/head}">
-<body class="top_container">
+<body class="home">
 <nav th:replace="~{fragments/nav-bar}"></nav>
 <div class="container"
      th:object="${categoriesOfNotAnsweredQuestions}">
@@ -11,10 +11,10 @@
         <div class="col-md-4 mb-4">
             <div th:if="${categoriesOfNotAnsweredQuestions.isEmpty()}"
                  class="card shadow-sm" style="width: 400px">
-                <img src="images/tree-sunset.jpg" class="img-card-container card-img-top img-fluid"
+                <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                      alt="Image 2">
                 <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                    <h5 class="card-title" style="font-weight: 800; color: black"> ПОЗДРАВЛЕНИЯ!!!
+                    <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf"> ПОЗДРАВЛЕНИЯ!!!
                         <br>
                         ТИ ОТГОВОРИ ПРАВИЛНО НА ВСИЧКИ ВЪПРОСИ!!!
                         <br>
@@ -26,12 +26,12 @@
                th:unless="${categoriesOfNotAnsweredQuestions.isEmpty()}"
                class="text-decoration-none ">
                 <div class="card shadow-sm bg-transparent" style="width: 400px; backface-visibility:visible">
-                    <img src="images/planet-earth.jpg" class="img-card-container card-img-top img-fluid"
+                    <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                          alt="Image 2">
                     <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                        <h5 class="card-title" style="font-weight: 800; color: black">ВЪПРОСИ ОТ ВСИЧКИ
+                        <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">ВЪПРОСИ ОТ ВСИЧКИ
                             КАТЕГОРИИ</h5>
-                        <p class="card-text" style="font-weight: 600; color: black">Можеш да отговориш на случайни въпроси от всички категории.</p>
+                        <p class="card-text" style="font-weight: 600; color: white;background: #005cbf">Можеш да отговориш на случайни въпроси от всички категории.</p>
                     </div>
                 </div>
             </a>
@@ -39,21 +39,21 @@
         <div class="col-md-4 mb-4">
             <div th:unless="${categoriesOfNotAnsweredQuestions.contains('BIOLOGY')}"
                  class="card shadow-sm bg-transparent" style="width: 400px">
-                <img src="images/tree-sunset.jpg" class="img-card-container card-img-top img-fluid"
+                <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                      alt="Image 2">
                 <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                    <h5 class="card-title" style="font-weight: 800; color: black">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ БИОЛОГИЯ!</h5>
+                    <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ БИОЛОГИЯ!</h5>
                 </div>
             </div>
             <a th:href="@{/play/BIOLOGY}"
                th:if="${categoriesOfNotAnsweredQuestions.contains('BIOLOGY')}"
                class="text-decoration-none">
                 <div class="card shadow-sm bg-transparent" style="width: 400px">
-                    <img src="images/tree-sunset.jpg" class="img-card-container card-img-top img-fluid"
+                    <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                          alt="Image 2">
                     <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                        <h5 class="card-title" style="font-weight: 800; color: black">БИОЛОГИЯ</h5>
-                        <p class="card-text" style="font-weight: 600; color: black">Познаваш ли добре животните и разстенията?</p>
+                        <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">БИОЛОГИЯ</h5>
+                        <p class="card-text" style="font-weight: 600; color: white;background: #005cbf">Познаваш ли добре животните и разстенията?</p>
                     </div>
                 </div>
             </a>
@@ -61,21 +61,21 @@
         <div class="col-md-4 mb-4">
             <div th:unless="${categoriesOfNotAnsweredQuestions.contains('GEOGRAPHY')}"
                  class="card shadow-sm bg-transparent" style="width: 400px">
-                <img src="images/planet-earth.jpg" class="img-card-container card-img-top img-fluid"
+                <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                      alt="Image 2">
                 <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                    <h5 class="card-title" style="font-weight: 800; color: black">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ ГЕОГРАФИЯ!</h5>
+                    <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ ГЕОГРАФИЯ!</h5>
                 </div>
             </div>
             <a th:href="@{/play/GEOGRAPHY}"
                th:if="${categoriesOfNotAnsweredQuestions.contains('GEOGRAPHY')}"
                class="text-decoration-none">
                 <div class="card shadow-sm bg-transparent" style="width: 400px">
-                    <img src="images/planet-earth.jpg" class="img-card-container card-img-top img-fluid"
+                    <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                          alt="Image 2">
                     <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                        <h5 class="card-title" style="font-weight: 800; color: black">ГЕОГРАФИЯ</h5>
-                        <p class="card-text" style="font-weight: 600; color: black">Покажи знания на пътешественик.</p>
+                        <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">ГЕОГРАФИЯ</h5>
+                        <p class="card-text" style="font-weight: 600; color: white;background: #005cbf">Покажи знания на пътешественик.</p>
                     </div>
                 </div>
             </a>
@@ -83,21 +83,21 @@
         <div class="col-md-4 mb-4">
             <div th:unless="${categoriesOfNotAnsweredQuestions.contains('MATH')}"
                  class="card shadow-sm bg-transparent" style="width: 400px">
-                <img src="images/tree-sunset.jpg" class="img-card-container card-img-top img-fluid"
+                <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                      alt="Image 2">
                 <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                    <h5 class="card-title" style="font-weight: 800; color: black">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ МАТЕМАТИКА!</h5>
+                    <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ МАТЕМАТИКА!</h5>
                 </div>
             </div>
             <a th:href="@{/play/MATH}"
                th:if="${categoriesOfNotAnsweredQuestions.contains('MATH')}"
                class="text-decoration-none">
                 <div class="card shadow-sm bg-transparent" style="width: 400px">
-                    <img src="images/tree-sunset.jpg" class="img-card-container card-img-top img-fluid"
+                    <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                          alt="Image 2">
                     <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                        <h5 class="card-title" style="font-weight: 800; color: black">МАТЕМАТИКА</h5>
-                        <p class="card-text" style="font-weight: 600; color: black">Прости математически и логически задачи.</p>
+                        <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">МАТЕМАТИКА</h5>
+                        <p class="card-text" style="font-weight: 600; color: white;background: #005cbf">Прости математически и логически задачи.</p>
                     </div>
                 </div>
             </a>
@@ -105,43 +105,43 @@
         <div class="col-md-4 mb-4">
             <div th:unless="${categoriesOfNotAnsweredQuestions.contains('ASTRONOMY_AND_SPACE')}"
                  class="card shadow-sm bg-transparent" style="width: 400px">
-                <img src="images/planet-earth.jpg" class="img-card-container card-img-top img-fluid"
+                <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                      alt="Image 2">
                 <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                    <h5 class="card-title" style="font-weight: 800; color: black">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ АСТРОНОМИЯ И КОСМИС!</h5>
+                    <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ АСТРОНОМИЯ И КОСМИС!</h5>
                 </div>
             </div>
             <a th:href="@{/play/ASTRONOMY_AND_SPACE}"
                th:if="${categoriesOfNotAnsweredQuestions.contains('ASTRONOMY_AND_SPACE')}"
                class="text-decoration-none">
                 <div class="card shadow-sm bg-transparent" style="width: 400px">
-                    <img src="images/planet-earth.jpg" class="img-card-container card-img-top img-fluid"
+                    <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                          alt="Image 2">
                     <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                        <h5 class="card-title" style="font-weight: 800; color: black">АСТРОНОМИЯ И КОСМИС</h5>
-                        <p class="card-text" style="font-weight: 600; color: black">Вселената е всичко и Всичко е Вселената.</p>
+                        <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">АСТРОНОМИЯ И КОСМИС</h5>
+                        <p class="card-text" style="font-weight: 600; color: white;background: #005cbf">Вселената е всичко и Всичко е Вселената.</p>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-md-4 mb-4">
             <div th:unless="${categoriesOfNotAnsweredQuestions.contains('HUMAN_BODY')}"
-                 class="card shadow-sm bg-transparent" style="width: 400px">
-                <img src="images/planet-earth.jpg" class="img-card-container card-img-top img-fluid"
+                 class="card shadow-sm" style="width: 400px">
+                <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                      alt="Image 2">
                 <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                    <h5 class="card-title" style="font-weight: 800; color: black">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ ЧОВЕШКОТО ТЯЛО!</h5>
+                    <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ ЧОВЕШКОТО ТЯЛО!</h5>
                 </div>
             </div>
             <a th:href="@{/play/HUMAN_BODY}"
                th:if="${categoriesOfNotAnsweredQuestions.contains('HUMAN_BODY')}"
                class="text-decoration-none">
                 <div class="card shadow-sm bg-transparent" style="width: 400px">
-                    <img src="images/planet-earth.jpg" class="img-card-container card-img-top img-fluid"
+                    <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                          alt="Image 2">
                     <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                        <h5 class="card-title" style="font-weight: 800; color: black">ЧОВЕШКОТО ТЯЛО</h5>
-                        <p class="card-text" style="font-weight: 600; color: black">Опознай човешкото тяло.Как работят различните органи и системи.</p>
+                        <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">ЧОВЕШКОТО ТЯЛО</h5>
+                        <p class="card-text" style="font-weight: 600; color: white;background: #005cbf">Опознай човешкото тяло.Как работят различните органи и системи.</p>
                     </div>
                 </div>
             </a>
@@ -149,21 +149,21 @@
         <div class="col-md-4 mb-4">
             <div th:unless="${categoriesOfNotAnsweredQuestions.contains('SAVE_THE_EARTH')}"
                  class="card shadow-sm bg-transparent" style="width: 400px">
-                <img src="images/planet-earth.jpg" class="img-card-container card-img-top img-fluid"
+                <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                      alt="Image 2">
                 <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                    <h5 class="card-title" style="font-weight: 800; color: black">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ ДА СПАСИМ ЗЕМЯТА!</h5>
+                    <h5 class="card-title" style="font-weight: 800; color: white;background: #005cbf">ТИ ОТГОВОРИ НА ВСИЧКИ ВЪПРОСИ ОТ РАЗДЕЛ ДА СПАСИМ ЗЕМЯТА!</h5>
                 </div>
             </div>
             <a th:href="@{/play/SAVE_THE_EARTH}"
                th:if="${categoriesOfNotAnsweredQuestions.contains('SAVE_THE_EARTH')}"
                class="text-decoration-none">
                 <div class="card shadow-sm bg-transparent" style="width: 400px; backface-visibility:visible">
-                    <img src="images/planet-earth.jpg" class="img-card-container card-img-top img-fluid"
+                    <img src="/images/questionmark.jpg" class="img-card-container card-img-top img-fluid"
                          alt="Image 2">
                     <div class="card-body text-light text-center position-absolute top-50 start-50 translate-middle">
-                        <h4 class="card-title" style="font-weight: 800; color: black">ДА СПАСИМ ЗЕМЯТА</h4>
-                        <p class="card-text" style="font-weight: 600; color: black">Въпроси по теми свързани с опазването на околната среда.</p>
+                        <h4 class="card-title" style="font-weight: 800; color: white;background: #005cbf">ДА СПАСИМ ЗЕМЯТА</h4>
+                        <p class="card-text" style="font-weight: 600; color: white;background: #005cbf">Въпроси по теми свързани с опазването на околната среда.</p>
                     </div>
                 </div>
             </a>
