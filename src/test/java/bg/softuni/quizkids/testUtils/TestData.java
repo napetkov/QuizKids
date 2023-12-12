@@ -4,6 +4,8 @@ import bg.softuni.quizkids.models.entity.Role;
 import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.models.enums.Level;
 import bg.softuni.quizkids.models.enums.UserRole;
+import bg.softuni.quizkids.repository.AnswerRepository;
+import bg.softuni.quizkids.repository.QuestionRepository;
 import bg.softuni.quizkids.repository.RoleRepository;
 import bg.softuni.quizkids.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,10 @@ public class TestData {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private QuestionRepository questionRepository;
+    @Autowired
+    private AnswerRepository answerRepository;
 
     public void createUserWithRoleUser(
             String username,
@@ -129,6 +135,8 @@ public class TestData {
     }
 
     public void clearAllTestData(){
+        answerRepository.deleteAll();
+        questionRepository.deleteAll();
         userRepository.deleteAll();
         roleRepository.deleteAll();
     }

@@ -9,9 +9,7 @@ import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.models.enums.UserRole;
 import bg.softuni.quizkids.repository.RoleRepository;
 import bg.softuni.quizkids.repository.UserRepository;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -39,7 +37,7 @@ class UserServiceImplTest {
     @Mock
     private final ModelMapper modelMapper = new ModelMapper();
 
-    private final TestDataInit testDataInit = new TestDataInit();
+    private TestDataInit testDataInit = new TestDataInit();
 
 
     @BeforeEach
@@ -50,6 +48,7 @@ class UserServiceImplTest {
                 passwordEncoder,
                 modelMapper);
     }
+
 
     @Test
     void testEnteredPasswordDoNotConfirm() {

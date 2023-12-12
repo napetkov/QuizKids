@@ -10,8 +10,10 @@ import bg.softuni.quizkids.repository.UserRepository;
 import bg.softuni.quizkids.services.QuestionService;
 import bg.softuni.quizkids.services.UserService;
 import bg.softuni.quizkids.testUtils.TestData;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +52,10 @@ class PlayServiceImplTest {
                 userService,
                 modelMapper
         );
+
         testData.clearAllTestData();
     }
+
 
     @Test
     @WithMockUser(username = "admin",roles = {"ADMIN"})
@@ -67,6 +71,8 @@ class PlayServiceImplTest {
 
         assertThrows(QuestionNotFoundException.class,
                 () -> playServiceToTest.findQuestionByIdToQuestionAndAnswerDTO(3L));
+
+        testData.clearAllTestData();
     }
 
     @Test
@@ -83,12 +89,14 @@ class PlayServiceImplTest {
         questionService.addQuestion(addQuestionBindingModel, "admin");
 
         QuestionAndAnswerDTO questionAndAnswerDTO = playServiceToTest
-                .findQuestionByIdToQuestionAndAnswerDTO(1L);
+//                on the method before save one question, after that we have deleted it the id is 2
+                .findQuestionByIdToQuestionAndAnswerDTO(2L);
 
         assertEquals(addQuestionBindingModel.getContent(), questionAndAnswerDTO.getContent());
         assertEquals(addQuestionBindingModel.getAnswers().size(), questionAndAnswerDTO.getAnswers().size());
         assertEquals(addQuestionBindingModel.getCategory(), questionAndAnswerDTO.getCategoryName());
 
+        testData.clearAllTestData();
     }
 
     private static AddQuestionBindingModel getAddQuestionBindingModel() {

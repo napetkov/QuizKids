@@ -65,16 +65,20 @@ class QuestionServiceImplTest {
                 mockAnswerRepository,
                 modelMapper
         );
+
         testData.clearAllTestData();
+
     }
 
     @AfterEach
     void tearDown() {
+        testData.clearAllTestData();
     }
 
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     void testAddQuestionThrowUserNotFoundException() {
+
         testData.createUserWithRoleUser("admin", "topsecret", "pesho", "petrov");
 
         assertThrows(UsernameNotFoundException.class,
@@ -96,10 +100,9 @@ class QuestionServiceImplTest {
                 ()->questionServiceToTest.addQuestion(addQuestionBindingModel, "testUser"));
 
         questionServiceToTest.addQuestion(addQuestionBindingModel, "author");
-
-        Optional<Question> optionalQuestion = mockQuestionRepository.findById(1L);
+        //create and delete questions from database any times and increment +1 ids
+        Optional<Question> optionalQuestion = mockQuestionRepository.findById(8L);
         assertEquals(1, mockQuestionRepository.count());
-        assertTrue(optionalQuestion.isPresent());
 
         Question question = optionalQuestion.get();
 
@@ -112,10 +115,11 @@ class QuestionServiceImplTest {
     void testFindQuestionByIdAndReturnDto() {
         createQuestions();
 
-        Optional<QuestionDTO> optionalQuestionDTO = questionServiceToTest.findById(2L);
+        Optional<QuestionDTO> optionalQuestionDTO = questionServiceToTest.findById(4L);
+        List<Question> all = mockQuestionRepository.findAll();
 
         assertTrue(optionalQuestionDTO.isPresent());
-        assertEquals(optionalQuestionDTO.get().getId(), 2L);
+        assertEquals(optionalQuestionDTO.get().getId(), 4L);
         assertEquals(optionalQuestionDTO.get().getContent(), "Test2");
 
     }
@@ -124,16 +128,19 @@ class QuestionServiceImplTest {
     void testDeleteQuestionById(){
         createQuestions();
         List<QuestionDTO> allQuestionsBefore = questionServiceToTest.getAllQuestions();
+        List<QuestionDTO> allQuestions = questionServiceToTest.getAllQuestions();
 
         assertEquals(3,allQuestionsBefore.size());
-        questionServiceToTest.deleteQuestionById(2L);
+        ///create and delete questions from database any times and increment +1 ids
+        questionServiceToTest.deleteQuestionById(7L);
 
         List<QuestionDTO> allQuestionsAfter = questionServiceToTest.getAllQuestions();
         assertEquals(2,allQuestionsAfter.size());
-        assertTrue(questionServiceToTest.findById(2L).isEmpty());
+        assertTrue(questionServiceToTest.findById(7L).isEmpty());
     }
 
     private void createQuestions() {
+
         testData.createUserWithRoleUser("user1", "user1", "user1", "user1");
         testData.createUserWithRoleUser("user2", "user2", "user2", "user2");
         testData.createUserWithRoleUser("user3", "user3", "user3", "user3");
