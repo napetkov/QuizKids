@@ -37,7 +37,9 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/register}"> РЕГИСТРАЦИЯ </a>
+                            <a class="nav-link"
+                               sec:authorize="!isAuthenticated()"
+                               th:href="@{/users/register}"> РЕГИСТРАЦИЯ </a>
                         </li>
 
                         <li class="nav-item">

@@ -80,6 +80,8 @@ class UserServiceImplTest {
 
         when(mockUserRepository.findByUsername("username"))
                 .thenReturn(Optional.empty());
+        when(modelMapper.map(userRegisterBindingModel, UserEntity.class))
+                .thenReturn(new UserEntity());
 
         userServiceToTest.registerUser(userRegisterBindingModel);
 
