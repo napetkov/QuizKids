@@ -2,6 +2,7 @@ package bg.softuni.quizkids.models.binding;
 
 import bg.softuni.quizkids.models.entity.Role;
 import bg.softuni.quizkids.models.enums.Level;
+import bg.softuni.quizkids.validation.anotations.ConfirmPasswordMatches;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -17,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-
+@ConfirmPasswordMatches(message = "Confirm password do not match!")
 public class UserRegisterBindingModel {
     @NotBlank
     @Size(min = 3, message = "Username length must be more than 3 characters!")
@@ -25,8 +26,8 @@ public class UserRegisterBindingModel {
     @NotBlank
     @Size(min = 3, message = "Password length must be more than 3 characters")
     private String password;
-    @NotBlank
     @Size(min = 3, message = "Password length must be more than 3 characters")
+//    @ConfirmPasswordMatches
     private String confirmPassword;
     @NotBlank
     @Size(min = 3, message = "First name length must be more than 3 characters")
