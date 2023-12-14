@@ -21,10 +21,11 @@ public class MessageEntity extends BaseEntity {
     private String phoneNumber;
     @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "text", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "text", nullable = false, columnDefinition = "VARCHAR(5000)")
     private String text;
     @Column(name = "created_on")
     private LocalDateTime createdOn;
+    @Column(name = "is_read")
     private boolean isRead;
 
 }

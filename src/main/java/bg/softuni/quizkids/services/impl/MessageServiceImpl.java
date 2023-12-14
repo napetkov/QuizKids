@@ -58,7 +58,11 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public long countByUserIdAndIsRead() {
-        return messageRepository.countByIsReadFalse();
+        Optional<Long> optionalCount = messageRepository.countByIsReadFalse();
+            if (optionalCount.isEmpty()){
+                return 0;
+            }
+        return optionalCount.get();
     }
 
     public MessageEntityDTO mapMessageEntityToDTO(MessageEntity message){

@@ -36,6 +36,7 @@ class UserRegistrationControllerTestIT {
 
         mockMvc.perform(post("/users/register")
                 .param("username","username")
+                        .param("password","3355")
                 .with(csrf())
         )
                 .andExpect(status().is3xxRedirection())
