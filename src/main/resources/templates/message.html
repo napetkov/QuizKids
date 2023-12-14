@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<head th:replace="~{fragments/head}">
+    <script src="../static/js/load-all-questions.js"></script>
+</head>
+<body>
+<nav th:replace="~{fragments/nav-bar}"></nav>
+<div class="container mt-4">
+    <table class="table table-bordered mt-3">
+        <thead>
+        <tr>
+            <th>Message ID</th>
+            <th>Message Creator name</th>
+            <th>Message Creator email</th>
+            <th>Message Creator phone number</th>
+            <th>Message text</th>
+            <th>Notification created on</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="question-container"
+               th:each="message: ${getAllMessages}">
+        <tr>
+            <td th:text="*{message.id}">1</td>
+            <td th:text="*{message.name}">Ivan Ivanov</td>
+            <td th:text="*{message.email}">ivan.ivanov@example.com</td>
+            <td th:text="*{message.phoneNumber}">+359 887 123 456</td>
+            <td th:text="*{message.text}">Text Content...</td>
+            <td th:text="*{message.createdOn}">14-12-2023 00:00:00</td>
+            <td>
+                <form th:method="POST"
+                      th:action="@{/message/{id}(id=${message.id})}"
+                        >
+                    <button th:unless="${message.isRead()}"
+                            class="btn btn-danger btn-sm mr-2" type="submit">Mark as read</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="~{fragments/footer}"></div>
+<script src="/js/load-all-questions.js"></script>
+</body>
+</html>

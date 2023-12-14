@@ -25,5 +25,6 @@ public class MessageEntity extends BaseEntity{
     private String text;
     @Column(name = "created_on")
     private LocalDateTime createdOn;
+    private boolean isRead;
 
 }

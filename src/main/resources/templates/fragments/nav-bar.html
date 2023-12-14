@@ -75,6 +75,11 @@
                                                  th:if="${unreadNotificationCount gt 0}"
                                                  th:text="${unreadNotificationCount}"></span>
                             </a>
+                            <a class="nav-link"
+                               sec:authorize="isAuthenticated()"
+                               th:href="@{/message}">
+                                СЪОБЩЕНИЯ
+                            </a>
                         </li>
 
                         <li class="nav-item">
