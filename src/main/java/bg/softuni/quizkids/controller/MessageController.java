@@ -35,7 +35,7 @@ public class MessageController {
 
         messageService.readMessage(id);
 
-        return "redirect:/notification";
+        return "redirect:/message";
 
     }
 }

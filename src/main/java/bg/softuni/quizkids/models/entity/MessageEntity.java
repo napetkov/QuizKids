@@ -10,18 +10,18 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="messages")
+@Table(name = "messages")
 @Getter
 @Setter
 @NoArgsConstructor
-public class MessageEntity extends BaseEntity{
-    @Column(name = "name",nullable = false)
+public class MessageEntity extends BaseEntity {
+    @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "phone_number")
     private String phoneNumber;
-    @Column(name = "email",nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "text",nullable = false)
+    @Column(name = "text", nullable = false, columnDefinition = "TEXT")
     private String text;
     @Column(name = "created_on")
     private LocalDateTime createdOn;
