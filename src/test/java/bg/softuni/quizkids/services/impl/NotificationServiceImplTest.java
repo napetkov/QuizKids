@@ -9,7 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -17,12 +16,13 @@ class NotificationServiceImplTest {
 
     @Mock
     private NotificationRepository mockNotificationRepository;
-
+    @Mock
+    private UserServiceImpl mockUserService;
     private NotificationServiceImpl notificationServiceToTest;
 
     @BeforeEach
     void setUp() {
-        notificationServiceToTest = new NotificationServiceImpl(mockNotificationRepository);
+        notificationServiceToTest = new NotificationServiceImpl(mockNotificationRepository, mockUserService);
     }
 
     @Test

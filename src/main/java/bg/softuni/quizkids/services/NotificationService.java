@@ -11,4 +11,5 @@ public interface NotificationService {
     List<NotificationDTO> getAllNotifications();
 
     void readNotification(Long id);
+
 }

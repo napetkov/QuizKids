@@ -2,8 +2,10 @@ package bg.softuni.quizkids.services.impl;
 
 import bg.softuni.quizkids.models.dto.NotificationDTO;
 import bg.softuni.quizkids.models.entity.Notification;
+import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.repository.NotificationRepository;
 import bg.softuni.quizkids.services.NotificationService;
+import bg.softuni.quizkids.services.UserService;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,11 @@ import java.util.Optional;
 @Service
 public class NotificationServiceImpl implements NotificationService {
     private final NotificationRepository notificationRepository;
+    private final UserService userService;
 
-    public NotificationServiceImpl(NotificationRepository notificationRepository) {
+    public NotificationServiceImpl(NotificationRepository notificationRepository, UserService userService) {
         this.notificationRepository = notificationRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -34,7 +38,10 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public List<NotificationDTO> getAllNotifications() {
-        List<Notification> notifications = notificationRepository.findAll();
+        UserEntity user = userService.getLoggedUser();
+        Long userId = user.getId();
+
+        List<Notification> notifications = notificationRepository.findAllByUserId(userId);
 
         return notifications
                 .stream()

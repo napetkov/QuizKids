@@ -35,7 +35,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/users/login", "/users/register", "/users/login-error",
                                 "/contact","/about").permitAll()
                         .requestMatchers("/api/admin").hasRole(UserRole.ADMIN.name())
-                        .requestMatchers("/questions/add","/api/questions")
+                        .requestMatchers("/questions/add","/api/questions","/message")
                         .hasAnyRole(UserRole.MODERATOR.name(), UserRole.ADMIN.name())
                         .requestMatchers("/play/**","/home")
                         .hasAnyRole(UserRole.USER.name(),UserRole.MODERATOR.name(),UserRole.ADMIN.name())

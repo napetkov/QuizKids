@@ -138,6 +138,7 @@ public class UserServiceImpl implements UserService {
         return optionalUser.get();
     }
 
+
     private static void userLevelCheck(Long userPoint, UserEntity user) {
         Level currentLevel = user.getLevel();
 

@@ -1,6 +1,7 @@
 package bg.softuni.quizkids.controller;
 
 import bg.softuni.quizkids.services.NotificationService;
+import bg.softuni.quizkids.util.LoggedUserUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
