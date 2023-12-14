@@ -1,7 +1,7 @@
 package bg.softuni.quizkids.controller.interseptor;
 
 import bg.softuni.quizkids.models.entity.UserEntity;
-import bg.softuni.quizkids.models.enums.UserRole;
+import bg.softuni.quizkids.services.MessageService;
 import bg.softuni.quizkids.services.NotificationService;
 import bg.softuni.quizkids.services.UserService;
 import bg.softuni.quizkids.util.LoggedUserUtils;
@@ -11,13 +11,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
-public class NotificationCountInterceptor implements HandlerInterceptor {
+public class NavBarNotificationInterceptor implements HandlerInterceptor {
     private final UserService userService;
     private final NotificationService notificationService;
+    private final MessageService messageService;
 
-    public NotificationCountInterceptor(UserService userService, NotificationService notificationService) {
+    public NavBarNotificationInterceptor(UserService userService, NotificationService notificationService, MessageService messageService) {
         this.userService = userService;
         this.notificationService = notificationService;
+        this.messageService = messageService;
     }
 
     @Override
@@ -27,7 +29,9 @@ public class NotificationCountInterceptor implements HandlerInterceptor {
         if (!username.equals("anonymousUser")) {
             UserEntity user = userService.getLoggedUser();
             long countOfUnreadNotifications = notificationService.countByUserIdAndIsRead(user.getId());
+            long countOfUnreadMessages = messageService.countByUserIdAndIsRead();
             request.setAttribute("unreadNotificationCount", countOfUnreadNotifications);
+            request.setAttribute("unreadMessagesCount", countOfUnreadMessages);
         }
 
         return true;

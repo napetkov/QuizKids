@@ -56,6 +56,11 @@ public class MessageServiceImpl implements MessageService {
         messageRepository.save(message);
     }
 
+    @Override
+    public long countByUserIdAndIsRead() {
+        return messageRepository.countByIsReadFalse();
+    }
+
     public MessageEntityDTO mapMessageEntityToDTO(MessageEntity message){
 
         return modelMapper.map(message, MessageEntityDTO.class);

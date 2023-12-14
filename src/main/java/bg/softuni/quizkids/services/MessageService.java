@@ -11,4 +11,6 @@ public interface MessageService {
     List<MessageEntityDTO> getAllMessages();
 
     void readMessage(Long id);
+
+    long countByUserIdAndIsRead();
 }

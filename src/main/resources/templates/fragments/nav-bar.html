@@ -78,9 +78,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"
-                               sec:authorize="isAuthenticated()"
+                               sec:authorize="hasAnyRole('MODERATOR','ADMIN')"
                                th:href="@{/message}">
                                 СЪОБЩЕНИЯ
+                                <span class="unread-notification"
+                                      th:if="${unreadMessagesCount gt 0}"
+                                      th:text="${unreadMessagesCount}"></span>
                             </a>
                         </li>
                         <li class="nav-item">
