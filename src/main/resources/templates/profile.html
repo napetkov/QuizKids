@@ -1,0 +1,55 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head}">
+<body>
+<nav th:replace="~{fragments/nav-bar}"></nav>
+<div class="top_container">
+    <main class="p-5 align-content-center bg-blur my-register-div">
+        <div class="container mt-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-7">
+                    <div class="profile-card p-3 py-4">
+                        <div class="text-center">
+                            <h2>USERNAME</h2>
+                        </div>
+                        <div class="text-center mt-3">
+                        <span text="${userProfileViewModel.level}"
+                              class="bg-secondary p-1 px-4 rounded text-white">Pro</span>
+                            <h5 class="mt-4 mb-0">Full name</h5>
+                            <span text="${userProfileViewModel.fullName}">UI/UX Designer</span>
+                            <h5 class="mt-2 mb-0">Username</h5>
+                            <span text="${userProfileViewModel.username}">UI/UX Designer</span>
+                            <h5 text="${userProfileViewModel.age}" class="mt-2 mb-0">Age</h5>
+                            <span>33</span>
+                            <div class="px-4 mt-5">
+                                <p class="fonts">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim et
+                                    nostrum
+                                    optio perferendis quam quod ratione rem sit soluta ut! A dolor laborum, maiores
+                                    neque
+                                    nesciunt quis rerum sunt suscipit. </p>
+                            </div>
+                            <div class="buttons">
+                                <!--                            <button class="btn btn-outline-primary px-4">Back</button>-->
+                                <a th:href="@{/}"
+                                   th:text="Edit"
+                                   class="btn btn-outline-primary px-4"></a>
+                                <!--                            <button class="btn btn-primary px-4 ms-3">Contact</button>-->
+                            </div>
+                            <div class="buttons">
+                                <!--                            <button class="btn btn-outline-primary px-4">Back</button>-->
+                                <a th:href="@{/}"
+                                   th:text="Back"
+                                   class="btn btn-outline-primary px-4"></a>
+                                <!--                            <button class="btn btn-primary px-4 ms-3">Contact</button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+<div th:replace="~{fragments/footer}"></div>
+</html>

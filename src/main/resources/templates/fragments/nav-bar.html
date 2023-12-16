@@ -4,7 +4,7 @@
       xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
 
 <body>
-<nav class="header_section" th:fragment="nav-bar" style="background: aliceblue">
+<nav class="header_section" th:fragment="nav-bar" style="background: #E0E8FB">
     <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" th:href="@{/}">
@@ -47,7 +47,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">
+                            <a class="nav-link" th:href="@{/users/profile}">
                                 <th:block sec:authorize="isAuthenticated()">
                                     Профил:
                                     <th:block sec:authentication="name"></th:block>
