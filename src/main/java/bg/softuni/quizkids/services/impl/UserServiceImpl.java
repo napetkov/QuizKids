@@ -3,6 +3,7 @@ package bg.softuni.quizkids.services.impl;
 import bg.softuni.quizkids.exceptions.UserNotUniqueException;
 import bg.softuni.quizkids.models.binding.UserRegisterBindingModel;
 import bg.softuni.quizkids.models.dto.UserEntityDTO;
+import bg.softuni.quizkids.models.dto.UserProfileInfoDTO;
 import bg.softuni.quizkids.models.entity.Notification;
 import bg.softuni.quizkids.models.entity.Question;
 import bg.softuni.quizkids.models.entity.Role;
@@ -108,6 +109,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserProfileInfoDTO loggedUserProfileInfo() {
+        UserEntity loggedUser = getLoggedUser();
+
+        mapUserEntityToUserProfileInfoDTO(loggedUser);
+
+
+        return null;
+    }
+
+    private void mapUserEntityToUserProfileInfoDTO(UserEntity loggedUser) {
+        UserProfileInfoDTO loggedUserDto = modelMapper.map(loggedUser, UserProfileInfoDTO.class);
+
+        loggedUserDto.setPoint(loggedUserDto.getPoint());
+
+        //TODO: get user position, count of answered and unanswered questions and count of all users
+
+
+    }
+
+
+    @Override
     public Set<String> getCategoriesOfNotAnsweredQuestions() {
         UserEntity user = getLoggedUser();
 
@@ -118,7 +140,7 @@ public class UserServiceImpl implements UserService {
         Set<CategoryName> categoriesOfNotAnsweredQuestions = new HashSet<>();
 
         for (CategoryName categoryName : CategoryName.values()) {
-            if(!categoriesOfAnsweredQuestions.contains(categoryName)){
+            if (!categoriesOfAnsweredQuestions.contains(categoryName)) {
                 categoriesOfNotAnsweredQuestions.add(categoryName);
             }
         }
@@ -150,7 +172,7 @@ public class UserServiceImpl implements UserService {
             user.setLevel(Level.EXPERT);
         }
 
-        if(!currentLevel.equals(user.getLevel())){
+        if (!currentLevel.equals(user.getLevel())) {
             StringBuilder notificationContent = new StringBuilder();
             notificationContent
                     .append(user.getUsername())

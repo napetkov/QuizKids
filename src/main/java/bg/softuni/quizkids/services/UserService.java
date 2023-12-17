@@ -2,9 +2,9 @@ package bg.softuni.quizkids.services;
 
 import bg.softuni.quizkids.models.binding.UserRegisterBindingModel;
 import bg.softuni.quizkids.models.dto.UserEntityDTO;
+import bg.softuni.quizkids.models.dto.UserProfileInfoDTO;
 import bg.softuni.quizkids.models.entity.Question;
 import bg.softuni.quizkids.models.entity.UserEntity;
-import bg.softuni.quizkids.models.enums.CategoryName;
 import bg.softuni.quizkids.models.enums.UserRole;
 
 import java.util.List;
@@ -26,6 +26,8 @@ public interface UserService {
     Set<String> getCategoriesOfNotAnsweredQuestions();
 
     UserEntity getLoggedUser();
+
+     UserProfileInfoDTO loggedUserProfileInfo();
 
 //    void initBlacklisted();
 
