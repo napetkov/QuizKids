@@ -19,15 +19,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @ConfirmPasswordMatches(message = "Confirm password do not match!")
-public class UserRegisterBindingModel {
+public class UserRegisterBindingModel extends ConfirmPasswordBindingModel{
     @NotBlank
     @Size(min = 3, message = "Username length must be more than 3 characters!")
     private String username;
-    @NotBlank
-    @Size(min = 3, message = "Password length must be more than 3 characters")
-    private String password;
-    @Size(min = 3, message = "Password length must be more than 3 characters")
-    private String confirmPassword;
+//    @NotBlank
+//    @Size(min = 3, message = "Password length must be more than 3 characters")
+//    private String password;
+//    @Size(min = 3, message = "Password length must be more than 3 characters")
+//    private String confirmPassword;
     @NotBlank
     @Size(min = 3, message = "First name length must be more than 3 characters")
     private String firstName;
