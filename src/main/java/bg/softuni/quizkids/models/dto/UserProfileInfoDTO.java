@@ -21,7 +21,7 @@ public class UserProfileInfoDTO {
     private String city;
     private Long point;
     private Level level;
-    private Long countAnsweredQuestions;
+    private int countAnsweredQuestions;
     private long position;
     private long countOfAllUsers;
 

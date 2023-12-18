@@ -11,10 +11,12 @@ import bg.softuni.quizkids.models.entity.UserEntity;
 import bg.softuni.quizkids.models.enums.CategoryName;
 import bg.softuni.quizkids.models.enums.Level;
 import bg.softuni.quizkids.models.enums.UserRole;
+import bg.softuni.quizkids.repository.QuestionRepository;
 import bg.softuni.quizkids.repository.RoleRepository;
 import bg.softuni.quizkids.repository.UserRepository;
 import bg.softuni.quizkids.services.UserService;
 import bg.softuni.quizkids.util.LoggedUserUtils;
+import jakarta.validation.constraints.Null;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -112,20 +114,26 @@ public class UserServiceImpl implements UserService {
     public UserProfileInfoDTO loggedUserProfileInfo() {
         UserEntity loggedUser = getLoggedUser();
 
-        mapUserEntityToUserProfileInfoDTO(loggedUser);
-
-
-        return null;
+        return mapUserEntityToUserProfileInfoDTO(loggedUser);
     }
 
-    private void mapUserEntityToUserProfileInfoDTO(UserEntity loggedUser) {
-        UserProfileInfoDTO loggedUserDto = modelMapper.map(loggedUser, UserProfileInfoDTO.class);
+    private UserProfileInfoDTO mapUserEntityToUserProfileInfoDTO(UserEntity loggedUser) {
 
-        loggedUserDto.setPoint(loggedUserDto.getPoint());
-
-        //TODO: get user position, count of answered and unanswered questions and count of all users
+        UserProfileInfoDTO loggedUserProfileInfoDto = modelMapper.map(loggedUser, UserProfileInfoDTO.class);
+        Long usersPoint = loggedUserProfileInfoDto.getPoint();
 
 
+        loggedUserProfileInfoDto.setPoint(loggedUser.getPoint());
+        loggedUserProfileInfoDto.setCountOfAllUsers(userRepository.count());
+        loggedUserProfileInfoDto.setCountAnsweredQuestions(loggedUser.getAnsweredQuestions().size());
+        Long countOfUsersGreater = userRepository.countByPointIsGreaterThan(usersPoint);
+
+        if (countOfUsersGreater == null) {
+            countOfUsersGreater = 0L;
+        }
+        loggedUserProfileInfoDto.setPosition(countOfUsersGreater + 1);
+
+        return loggedUserProfileInfoDto;
     }
 
 
