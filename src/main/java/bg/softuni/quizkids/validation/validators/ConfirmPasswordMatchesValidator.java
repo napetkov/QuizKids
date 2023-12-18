@@ -1,5 +1,6 @@
 package bg.softuni.quizkids.validation.validators;
 
+import bg.softuni.quizkids.models.binding.UserChangePasswordBindingModel;
 import bg.softuni.quizkids.models.binding.UserRegisterBindingModel;
 import bg.softuni.quizkids.validation.anotations.ConfirmPasswordMatches;
 import jakarta.validation.ConstraintValidator;
