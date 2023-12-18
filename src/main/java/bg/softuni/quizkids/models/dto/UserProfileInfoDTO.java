@@ -12,13 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserProfileInfoDTO {
-    private String username;
-    private String firstName;
-    private String lastName;
-    private int age;
-    private String email;
-    private String city;
+public class UserProfileInfoDTO extends UserEditInfoDTO{
     private Long point;
     private Level level;
     private int countAnsweredQuestions;

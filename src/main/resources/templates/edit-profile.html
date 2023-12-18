@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+<head th:replace="~{fragments/head}">
+<body class="top_container login">
+<nav th:replace="~{fragments/nav-bar}"></nav>
+
+<div class="d-flex justify-content-end w-75">
+    <div class="register-container  pt-xl-5">
+        <form class="contact-form"
+              th:action="@{/users/profile/edit}"
+              th:method="POST"
+              th:object="${userEditProfileBindingModel}"
+        >
+            <p class="text-xl-center font-weight-bold">ПРОМЯНА НА ДАННИ В ПРОФИЛ С ПОТРЕБИТЕЛСКО ИМЕ:
+            <th:block th:text="${userEditInfo.username}">Username</th:block>
+            </p>
+            <!-- firstName input -->
+            <div class="form-outline mb-1">
+                <label class="form-label" for="firstName">
+                    Име: <th:block th:text="${userEditInfo.firstName}">First name</th:block>
+                </label>
+                <input type="text"
+                       id="firstName"
+                       name="firstName"
+                       th:field="*{firstName}"
+                       th:errorclass="is-invalid"
+                       placeholder="Въведи ново име"
+                       class="form-control"/>
+                <p class="invalid-feedback errors alert alert-danger">
+                    First name length must be more than 3 characters!
+                </p>
+            </div>
+            <!-- lastName input -->
+            <div class="form-outline mb-1">
+                <label class="form-label" for="lastName">
+                    Фамилия: <th:block th:text="${userEditInfo.lastName}">Last name</th:block>
+                </label>
+                <input type="text"
+                       id="lastName"
+                       name="LastName"
+                       th:field="*{lastName}"
+                       placeholder="Въведи нова фамилия:"
+                       class="form-control"/>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-1">
+                <label class="form-label" for="email">
+                    Email: <th:block th:text="${userEditInfo.email}">email</th:block>
+                </label>
+                <input type="email"
+                       id="email"
+                       name="email"
+                       th:field="*{email}"
+                       th:errorclass="is-invalid"
+                       placeholder="Въведи нов email"
+                       class="form-control"/>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Email is required.
+                </p>
+            </div>
+
+            <!-- Age input -->
+            <div class="form-outline mb-1">
+                <label class="form-label" for="age">
+                    Age: <th:block th:text="${userEditInfo.age}">Age</th:block>
+                </label>
+                <input type="number"
+                       id="age"
+                       name="age"
+                       th:field="*{age}"
+                       placeholder="Въведи нови години"
+                       class="form-control"/>
+            </div>
+
+            <!-- City input -->
+            <div class="form-outline mb-1">
+                <label class="form-label" for="city">
+                    Град: <th:block th:text="${userEditInfo.city}">City</th:block>
+                </label>
+                <input type="text"
+                       id="city"
+                       name="city"
+                       th:field="*{city}"
+                       placeholder="Въведи нов града в който живееш"
+                       class="form-control"/>
+            </div>
+
+            <div class="form-outline mb-1 d-flex justify-content-center">      <!-- Submit button -->
+            <button type="submit" class="call_to-btn btn_white-border">Запази промени!</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="~{fragments/footer}">
+</div>
+</body>
+</html>

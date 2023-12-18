@@ -1,6 +1,9 @@
 package bg.softuni.quizkids.services;
 
+import bg.softuni.quizkids.models.binding.UserChangePasswordBindingModel;
+import bg.softuni.quizkids.models.binding.UserEditProfileBindingModel;
 import bg.softuni.quizkids.models.binding.UserRegisterBindingModel;
+import bg.softuni.quizkids.models.dto.UserEditInfoDTO;
 import bg.softuni.quizkids.models.dto.UserEntityDTO;
 import bg.softuni.quizkids.models.dto.UserProfileInfoDTO;
 import bg.softuni.quizkids.models.entity.Question;
@@ -28,6 +31,12 @@ public interface UserService {
     UserEntity getLoggedUser();
 
      UserProfileInfoDTO loggedUserProfileInfo();
+
+    UserEditInfoDTO getLoggedUserEditInfo();
+
+    void editProfile(UserEditProfileBindingModel userEditProfileBindingModel);
+
+    void changePassword(UserChangePasswordBindingModel userChangePasswordBindingModel);
 
 //    void initBlacklisted();
 

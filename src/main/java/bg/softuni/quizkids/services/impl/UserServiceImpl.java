@@ -1,7 +1,10 @@
 package bg.softuni.quizkids.services.impl;
 
 import bg.softuni.quizkids.exceptions.UserNotUniqueException;
+import bg.softuni.quizkids.models.binding.UserChangePasswordBindingModel;
+import bg.softuni.quizkids.models.binding.UserEditProfileBindingModel;
 import bg.softuni.quizkids.models.binding.UserRegisterBindingModel;
+import bg.softuni.quizkids.models.dto.UserEditInfoDTO;
 import bg.softuni.quizkids.models.dto.UserEntityDTO;
 import bg.softuni.quizkids.models.dto.UserProfileInfoDTO;
 import bg.softuni.quizkids.models.entity.Notification;
@@ -115,6 +118,40 @@ public class UserServiceImpl implements UserService {
         UserEntity loggedUser = getLoggedUser();
 
         return mapUserEntityToUserProfileInfoDTO(loggedUser);
+    }
+
+    @Override
+    public UserEditInfoDTO getLoggedUserEditInfo() {
+        UserEntity loggedUser = getLoggedUser();
+
+        return modelMapper.map(loggedUser,UserEditInfoDTO.class);
+    }
+
+    @Override
+    public void editProfile(UserEditProfileBindingModel userEditProfileBindingModel) {
+        UserEntity loggedUser = getLoggedUser();
+
+        loggedUser.setFirstName(userEditProfileBindingModel.getFirstName());
+        loggedUser.setLastName(userEditProfileBindingModel.getLastName());
+        loggedUser.setAge(userEditProfileBindingModel.getAge());
+        loggedUser.setEmail(userEditProfileBindingModel.getEmail());
+        loggedUser.setCity(userEditProfileBindingModel.getCity());
+
+        userRepository.save(loggedUser);
+
+    }
+
+    @Override
+    public void changePassword(UserChangePasswordBindingModel userChangePasswordBindingModel) {
+        UserEntity loggedUser = getLoggedUser();
+
+        if(!passwordEncoder.matches(userChangePasswordBindingModel.getOldPassword(), loggedUser.getPassword())){
+            throw new UsernameNotFoundException("ACCESS DENIED!!! PASSWORD DO NOT MATCH! GO BACK AND TRAY AGAIN!");
+        }
+
+        loggedUser.setPassword(passwordEncoder.encode(userChangePasswordBindingModel.getPassword()));
+
+        userRepository.save(loggedUser);
     }
 
     private UserProfileInfoDTO mapUserEntityToUserProfileInfoDTO(UserEntity loggedUser) {
