@@ -4,50 +4,61 @@
 <head th:replace="~{fragments/head}">
 <body>
 <nav th:replace="~{fragments/nav-bar}"></nav>
-<div class="top_container">
-    <main class="p-5 align-content-center bg-blur my-register-div">
+<div>
+    <!--    add some class for background of this container-->
+    <main class="p-5 align-content-center bg-blur my-register-div"
+          th:object="${loggedUserProfileInfo}">
         <div class="container mt-5">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-7">
                     <div class="profile-card p-3 py-4">
                         <div class="text-center">
-                            <h2>USERNAME</h2>
+                            <h2 th:text="*{username}">USERNAME</h2>
                         </div>
                         <div class="text-center mt-3">
-                        <span text="${userProfileViewModel.level}"
+                        <span th:text="*{level}"
                               class="bg-secondary p-1 px-4 rounded text-white">Pro</span>
-                            <h5 class="mt-4 mb-0">Full name</h5>
-                            <span text="${userProfileViewModel.fullName}">UI/UX Designer</span>
-                            <h5 class="mt-2 mb-0">Username</h5>
-                            <span text="${userProfileViewModel.username}">UI/UX Designer</span>
-                            <h5 text="${userProfileViewModel.age}" class="mt-2 mb-0">Age</h5>
-                            <span>33</span>
-                            <div class="px-4 mt-5">
-                                <p class="fonts">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim et
-                                    nostrum
-                                    optio perferendis quam quod ratione rem sit soluta ut! A dolor laborum, maiores
-                                    neque
-                                    nesciunt quis rerum sunt suscipit. </p>
+                            <h5 class="mt-4 mb-0">
+                                <span th:text="*{firstName}">First Name</span>
+                                <span> </span>
+                                <span th:text="*{lastName}">Last Name</span>
+                            </h5>
+                            <span th:text="*{email}">email</span>
+                            <br>
+                            <span>From: </span>
+                            <span th:text="*{city}">city</span>
+                            <br>
+                            <span>Age: </span>
+                            <span th:text="*{age}">33</span>
+
+                            <h5 class="mt-4 mb-0">Your position is
+                                <span class="mt-4 mb-0 font-weight-bold" th:text="*{position}">position</span>
+                                from
+                                <span class="mt-4 mb-0 font-weight-bold"
+                                      th:text="*{countOfAllUsers}">count of all users</span>
+                                players! </h5>
+                            <h5 class="mt-4 mb-0 font-weight-normal"
+                                th:text="'You have already answered of ' +  *{countAnsweredQuestions} + ' questions!'"></h5>
+                            <br>
+                            <div class="d-flex justify-content-center">
+                                <div class="hero_btn-container m-2">
+                                    <!--                            <button class="btn btn-outline-primary px-4">Back</button>-->
+                                    <a th:href="@{/}"
+                                       class="call_to-btn btn_white-border">Edit Profile</a>
+                                    <!--                            <button class="btn btn-primary px-4 ms-3">Contact</button>-->
+                                </div>
+                                <div class="hero_btn-container m-2">
+                                    <!--                            <button class="btn btn-outline-primary px-4">Back</button>-->
+                                    <a th:href="@{/}"
+                                       class="call_to-btn btn_white-border">Black</a>
+                                    <!--                            <button class="btn btn-primary px-4 ms-3">Contact</button>-->
+                                </div>
                             </div>
-                            <div class="buttons">
-                                <!--                            <button class="btn btn-outline-primary px-4">Back</button>-->
-                                <a th:href="@{/}"
-                                   th:text="Edit"
-                                   class="btn btn-outline-primary px-4"></a>
-                                <!--                            <button class="btn btn-primary px-4 ms-3">Contact</button>-->
-                            </div>
-                            <div class="buttons">
-                                <!--                            <button class="btn btn-outline-primary px-4">Back</button>-->
-                                <a th:href="@{/}"
-                                   th:text="Back"
-                                   class="btn btn-outline-primary px-4"></a>
-                                <!--                            <button class="btn btn-primary px-4 ms-3">Contact</button>-->
-                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 </div>
 </body>
