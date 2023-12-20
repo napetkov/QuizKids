@@ -1,5 +1,6 @@
 package bg.softuni.quizkids.services.impl;
 
+import bg.softuni.quizkids.exceptions.UserNotFoundException;
 import bg.softuni.quizkids.exceptions.UserNotUniqueException;
 import bg.softuni.quizkids.models.binding.UserChangePasswordBindingModel;
 import bg.softuni.quizkids.models.binding.UserEditProfileBindingModel;
@@ -146,7 +147,7 @@ public class UserServiceImpl implements UserService {
         UserEntity loggedUser = getLoggedUser();
 
         if(!passwordEncoder.matches(userChangePasswordBindingModel.getOldPassword(), loggedUser.getPassword())){
-            throw new UsernameNotFoundException("ACCESS DENIED!!! PASSWORD DO NOT MATCH! GO BACK AND TRAY AGAIN!");
+            throw new UserNotFoundException("ACCESS DENIED!!! PASSWORD DO NOT MATCH! GO BACK AND TRAY AGAIN!",loggedUser.getUsername());
         }
 
         loggedUser.setPassword(passwordEncoder.encode(userChangePasswordBindingModel.getPassword()));
