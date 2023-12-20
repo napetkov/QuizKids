@@ -87,6 +87,26 @@ class UserProfileControllerTestIT {
 
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    public void testEditUserProfileNoValidInput() throws Exception {
+
+        testData.createUserWithRoleAdmin(
+                "admin",
+                "topsecret",
+                "Pesho",
+                "Petrov"
+        );
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/profile/edit")
+                        .param("firstName", " ")
+                        .param("lastName", " ")
+                        .param("email", "pesho-example.com")
+                        .param("city", "Ruse"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/users/profile/edit"));
+    }
+
+    @Test
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     public void testChangePasswordGet() throws Exception {
 
         testData.createUserWithRoleAdmin(
@@ -101,7 +121,27 @@ class UserProfileControllerTestIT {
                 .andExpect(view().name("change-password"));
     }
 
-    //PasswordEncoder do not match passwords properly
+    @Test
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    public void testChangePasswordPostNoValidInput() throws Exception {
+
+        testData.createUserWithRoleAdmin(
+                "admin",
+                "topsecret",
+                "Pesho",
+                "Petrov"
+        );
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/profile/edit/changePassword")
+                        .param("oldPassword", " ")
+                        .param("password", " ")
+                        .param("confirmPassword", " ")
+                )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/users/profile/edit/changePassword"));
+    }
+
+//    PasswordEncoder do not match passwords properly
 //    @Test
 //    @WithMockUser(username = "admin",roles = {"ADMIN"})
 //    public void testChangePasswordPost() throws Exception {
@@ -121,4 +161,5 @@ class UserProfileControllerTestIT {
 //                .andExpect(status().is3xxRedirection())
 //                .andExpect(redirectedUrl("/users/logout"));
 //    }
+
 }
