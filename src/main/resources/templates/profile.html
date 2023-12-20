@@ -24,42 +24,42 @@
                                 <span th:text="*{lastName}">Last Name</span>
                             </h5>
                             <h5 class="mt-2 mb-1">
-                                <span th:text="'Points: ' + *{point}">First Name</span>
+                                <span th:text="'Общо точки: ' + *{point}">First Name</span>
                             </h5>
                             <span th:text="*{email}">email</span>
                             <br>
-                            <span>From: </span>
+                            <span>От град: </span>
                             <span th:text="*{city}">city</span>
                             <br>
-                            <span>Age: </span>
+                            <span>Години: </span>
                             <span th:text="*{age}">33</span>
 
-                            <h5 class="mt-4 mb-0">Your position is
+                            <h5 class="mt-4 mb-0">Твоята позиция в класирането е
                                 <span class="mt-4 mb-0 font-weight-bold" th:text="*{position}">position</span>
-                                from
+                                от общо
                                 <span class="mt-4 mb-0 font-weight-bold"
                                       th:text="*{countOfAllUsers}">count of all users</span>
-                                players! </h5>
+                                участника! </h5>
                             <h5 class="mt-4 mb-0 font-weight-normal"
-                                th:text="'You have already answered of ' +  *{countAnsweredQuestions} + ' questions!'"></h5>
+                                th:text="'Ти си отговирил на  ' +  *{countAnsweredQuestions} + ' въпроса!'"></h5>
                             <br>
                             <div class="d-flex justify-content-center">
                                 <div class="hero_btn-container m-2">
                                     <!--                            <button class="btn btn-outline-primary px-4">Back</button>-->
                                     <a th:href="@{/users/profile/edit}"
-                                       class="call_to-btn btn_white-border">Edit Profile</a>
+                                       class="call_to-btn btn_white-border">Промени профила си</a>
                                     <!--                            <button class="btn btn-primary px-4 ms-3">Contact</button>-->
                                 </div>
                                 <div class="hero_btn-container m-2">
                                     <!--                            <button class="btn btn-outline-primary px-4">Back</button>-->
                                     <a th:href="@{/users/profile/edit/changePassword}"
-                                       class="call_to-btn btn_white-border">Change password</a>
+                                       class="call_to-btn btn_white-border">Смяна на парола</a>
                                     <!--                            <button class="btn btn-primary px-4 ms-3">Contact</button>-->
                                 </div>
                                 <div class="hero_btn-container m-2">
                                     <!--                            <button class="btn btn-outline-primary px-4">Back</button>-->
                                     <a th:href="@{/}"
-                                       class="call_to-btn btn_white-border">Black</a>
+                                       class="call_to-btn btn_white-border">Назад</a>
                                     <!--                            <button class="btn btn-primary px-4 ms-3">Contact</button>-->
                                 </div>
                             </div>
