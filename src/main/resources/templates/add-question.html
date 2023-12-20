@@ -9,14 +9,14 @@
 <body class="top_container add-questions">
 
 <div class="container" style="max-width: 65%">
-    <h1 class="mt-4 mb-3" STYLE="color: blue;font-weight: 600">Създай Въпрос</h1>
+    <h1 class="mt-4 mb-3" STYLE="color: blue; font-weight: 600">Създай Въпрос</h1>
     <form
             th:action="@{/question/add}"
             th:method="POST"
             th:object="${addQuestionBindingModel}"
             >
         <div class="form-group">
-            <label for="question" STYLE="color: white;background: #005cbf">ВЪПРОС:</label>
+            <label for="question" STYLE="color: blue;font-weight: 800">ВЪПРОС:</label>
             <input th:field="*{content}"
                    th:errorclass="is-invalid"
                    type="text" class="form-control" id="question" name="question">
@@ -26,8 +26,8 @@
         </div>
         <div class="form-group"
              th:each="answer, itemStat : *{answers}">
-            <label th:if= "${itemStat.index == 0}" for="correctAnswer" STYLE="color: white;background: #005cbf">ПРАВИЛЕН ОТГОВОР:</label>
-            <label th:unless="${itemStat.index == 0}" for="correctAnswer" STYLE="color: white;background: #005cbf">ГРЕШЕН ОТГОВОР:</label>
+            <label th:if= "${itemStat.index == 0}" for="correctAnswer" STYLE="color: blue;font-weight: 800">ПРАВИЛЕН ОТГОВОР:</label>
+            <label th:unless="${itemStat.index == 0}" for="correctAnswer" STYLE="color: blue;font-weight: 800">ГРЕШЕН ОТГОВОР:</label>
             <input
                     th:errorclass="is-invalid"
                     th:field="*{answers[__${itemStat.index}__].content}"
@@ -83,7 +83,7 @@
 <!--            </p>-->
 <!--        </div>-->
         <div class="form-group">
-            <label for="category" STYLE="color: white;background: #005cbf">Категория:</label>
+            <label for="category" STYLE="color: blue;font-weight: 800">КАТЕГОРИЯ:</label>
             <select class="form-control"
                     id="category"
                     name="category"
@@ -95,7 +95,7 @@
                 </option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Запиши</button>
+        <button type="submit" class="call_to-btn btn_white-border">Запиши</button>
     </form>
 </div>
 
