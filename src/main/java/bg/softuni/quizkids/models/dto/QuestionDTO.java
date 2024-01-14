@@ -15,5 +15,4 @@ public class QuestionDTO {
     private LocalDate createdOn;
     private String categoryName;
     private String authorUsername;
-//    private List<Answer> answers;
 }

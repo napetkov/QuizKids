@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification,Long> {
-//    @Query(value = "SELECT count(n.id) from Notification as n where n.user.id = :userId and n.isRead is true")
     long countByUser_IdAndAndIsReadIsFalse(long userId);
 
     void deleteAllByCreatedBefore(LocalDateTime localDateTime);

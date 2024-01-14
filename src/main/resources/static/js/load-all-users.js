@@ -4,26 +4,29 @@ let usersUserRoleBtn = document.getElementById('user-userRole-btn');
 let usersModeratorRoleBtn = document.getElementById('user-moderatorRole-btn');
 let usersAminRoleBtn = document.getElementById('user-adminRole-btn');
 
-// usersManagementBtn.dataset.role = "";
-usersManagementBtn.addEventListener('click', function (){reLoadAllUsers("")});
+usersManagementBtn.addEventListener('click', function () {
+    reLoadAllUsers("")
+});
 
-// usersBlacklistedBtn.dataset.role = "blacklisted";
-usersBlacklistedBtn.addEventListener('click', function (){reLoadAllUsers("blacklisted")});
+usersBlacklistedBtn.addEventListener('click', function () {
+    reLoadAllUsers("blacklisted")
+});
 
-usersUserRoleBtn.addEventListener('click', function (){reLoadAllUsers("users")});
-// usersUserRoleBtn.dataset.role = "users";
+usersUserRoleBtn.addEventListener('click', function () {
+    reLoadAllUsers("users")
+});
 
+usersModeratorRoleBtn.addEventListener('click', function () {
+    reLoadAllUsers("moderators")
+});
 
-// usersModeratorRoleBtn.dataset.role = "moderators";
-usersModeratorRoleBtn.addEventListener('click', function (){reLoadAllUsers("moderators")});
-
-// usersAminRoleBtn.dataset.role = "admins";
-usersAminRoleBtn.addEventListener('click', function (){reLoadAllUsers("admins")});
+usersAminRoleBtn.addEventListener('click', function () {
+    reLoadAllUsers("admins")
+});
 
 function reLoadAllUsers(role) {
     let usersContainer = document.getElementById('users-container');
     usersContainer.innerHTML = '';
-    // let eventRole = event.target.dataset.role;
 
 
     fetch(`http://localhost:8080/api/users/${role}`)
@@ -112,20 +115,3 @@ function changeMyRole(event) {
         .catch(error => console.log(error))
 }
 
-// function editButtonClicked(event){
-//     let trContent = event.target.parentNode.parentNode.childNodes[1];
-//     let inputField = document.createElement('input');
-//
-//     console.log(trContent);
-//
-//
-//     trContent.textContent = event.target.dataset.textContent;
-//     let questionId = event.target.dataset.id;
-//     let requestOption = {
-//         method: 'PUT'
-//     }
-//     fetch(`http://localhost:8080/api/questions/${questionId}`,requestOption)
-//         .then(response => response.json())
-//         .then(json => console.log(json))
-//         .catch(err => console.log(err))
-// }

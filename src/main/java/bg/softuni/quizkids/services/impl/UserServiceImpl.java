@@ -237,16 +237,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
-//    @Override
-//    public void initBlacklisted() {
-//        if (roleRepository.count() == 3) {
-//            Role roleBlackListed = new Role();
-//            roleBlackListed.setName(UserRole.BLACKLISTED);
-//            roleRepository.save(roleBlackListed);
-//        }
-//    }
-
     @Override
     public void init() {
         if (userRepository.count() == 0 && roleRepository.count() == 0) {

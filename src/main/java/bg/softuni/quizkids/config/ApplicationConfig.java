@@ -27,7 +27,6 @@ public class ApplicationConfig {
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
 
-        //UserRegisterBindingModel -> User
         Provider<UserEntity> newUserProvider = req -> {
             UserEntity user = new UserEntity();
             user.setRole(roleService.getRoleByName("USER"));

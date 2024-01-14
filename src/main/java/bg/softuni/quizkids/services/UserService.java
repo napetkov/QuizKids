@@ -38,6 +38,5 @@ public interface UserService {
 
     void changePassword(UserChangePasswordBindingModel userChangePasswordBindingModel);
 
-//    void initBlacklisted();
 
 }

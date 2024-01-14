@@ -77,8 +77,6 @@ public class PlayServiceImpl implements PlayService {
     }
 
     private Question findQuestionByIdNotInAnsweredQuestions(long questionId) {
-        //TODO: return something when already answer of all questions from given category or else
-        //size of answered question will == to size of all question
         Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         UserEntity user = getLoggedUser();
         Set<Long> answeredQuestions = user.getAnsweredQuestions()
