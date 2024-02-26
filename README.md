@@ -65,14 +65,14 @@ QuizKids is a delightful and interactive quiz game designed to engage children b
     - Enjoy the interactive quiz experience designed for children aged 7 to 10
 -----
 #### Contribution:
-Contributions to the project are welcome. If you'd like to propose features, report issues, or submit pull requests, please follow the standard GitHub workflow.
------
+**Contributions to the project are welcome. If you'd like to propose features, report issues, or submit pull requests, please follow the standard GitHub workflow.
+**-----
 #### License:
 This project is licensed under the [MIT License](LICENSE).
------
+**-----
 #### Contact:
-- For any inquiries, feedback, or collaboration opportunities, please feel free to contact me:
-  - Email: [n.a.petkov@gmail.com](mailto:n.a.petkov@gmail.com)
-  - LinkedIn: [Nikolay Petkov](https://www.linkedin.com/in/nikolay-petkov-0a330953/)
+For any inquiries, feedback, or collaboration opportunities, please feel free to contact me:
+ - Email: [n.a.petkov@gmail.com](mailto:n.a.petkov@gmail.com)
+ - LinkedIn: [Nikolay Petkov](https://www.linkedin.com/in/nikolay-petkov-0a330953/)
 
 
