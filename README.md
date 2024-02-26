@@ -13,24 +13,55 @@ QuizKids is a delightful and interactive quiz game designed to engage children b
 - Responsive design ensures compatibility across a wide range of devices.
 
 #### Tech Stack:
-- <img src="java_logo.png" alt="Java" width="20"/> Java
-- <img src="spring_logo.png" alt="Spring MVC" width="20"/> Spring MVC
-- <img src="javascript_logo.png" alt="JavaScript" width="20"/> JavaScript
-- <img src="bootstrap_logo.png" alt="Bootstrap" width="20"/> Bootstrap
-- <img src="thymeleaf_logo.png" alt="Thymeleaf" width="20"/> Thymeleaf
-- <img src="html_logo.png" alt="HTML" width="20"/> HTML
-- <img src="css_logo.png" alt="CSS" width="20"/> CSS
+- **Java**: ☕️
+- **Spring MVC**: 🌱
+- **Spring Security**: 🔒
+- **JavaScript**: 🌐
+- **Bootstrap**: 🅱️
+- **Thymeleaf**: 🍃
+- **HTML**: 🖥️
+- **CSS**: 🎨
 
 #### Installation:
-1. Clone the repository to your local machine: `git clone https://github.com/your-username/quizkids.git`
-2. Navigate to the project directory: `cd quizkids`
-3. Build and run the application using Maven: `mvn spring-boot:run`
-4. Access the application through your web browser at [http://localhost:8080](http://localhost:8080).
+1. **Clone the Repository**:
+   - Clone the repository to your local machine using the following command:
+     ```
+     git clone https://github.com/your-username/quizkids.git
+     ```
 
-#### Usage:
-- Upon accessing the application, users can start the quiz by clicking on the appropriate buttons.
-- Users will be presented with a series of questions and options to select the correct answers.
-- After completing the quiz, users will receive feedback and their scores.
+2. **Configure MySQL Database**:
+   - Update the `application.properties` or `application.yml` file to configure your MySQL database settings.
+
+3. **Configure Environment Variables**:
+   - Update the `application.properties` or `application.yml` file to configure any necessary environment variables.
+
+4. **Build and Run the Project**:
+   - Navigate to the project directory and build the project using Maven:
+     ```
+     cd quizkids
+     mvn clean install
+     ```
+   - Run the project using the following command:
+     ```
+     mvn spring-boot:run
+     ```
+
+5. **Access the Web Application**:
+   - Once the project is running, access the web application by visiting [http://localhost:8080](http://localhost:8080) in your web browser.
+
+6. Usage:
+  - To begin and log in as an administrator, please use the following credentials:
+    - Username: admin
+    - Password: 12345
+
+  - Once logged in as an administrator:
+    - Create user accounts and assign roles such as administrator or moderator.
+    - Generate different questions to enrich the quiz experience.
+    - Start the fun-filled quiz for children!
+
+  - For other users:
+    - Log in using their respective credentials.
+    - Enjoy the interactive quiz experience designed for children aged 7 to 10
 
 #### Contribution:
 Contributions to the project are welcome. If you'd like to propose features, report issues, or submit pull requests, please follow the standard GitHub workflow.
@@ -39,6 +70,8 @@ Contributions to the project are welcome. If you'd like to propose features, rep
 This project is licensed under the [MIT License](LICENSE).
 
 #### Contact:
-For any inquiries or feedback regarding the project, feel free to contact me at [your-email@example.com](mailto:your-email@example.com).
+- For any inquiries, feedback, or collaboration opportunities, please feel free to contact me:
+  - Email: [n.a.petkov@gmail.com](mailto:n.a.petkov@gmail.com)
+  - LinkedIn: [Nikolay Petkov](https://www.linkedin.com/in/nikolay-petkov-0a330953/)
 
 
