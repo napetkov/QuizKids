@@ -26,10 +26,14 @@ spring:
     mode: HTML
     encoding: UTF-8
     prefix: file:src/main/resources/templates/
+    check-template-location: off
   resources:
     static-locations: file:src/main/resources/static/
     cache:
       period: 0
+  devtools:
+    restart:
+      additional-paths: src/main/resources/templates
   #Cloudinary Properties
   #cloudinary:
   #api-key:

@@ -18,9 +18,11 @@ services:
   app:
     build: .  # Assuming your Dockerfile is in the current directory
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/quiz-kids?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC  # Connection URL
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydatabase?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC  # Connection URL
       SPRING_DATASOURCE_USERNAME: myuser                         # Replace with your MySQL user
       SPRING_DATASOURCE_PASSWORD: mypassword                     # Replace with your MySQL password
+      ADMIN_PASSWORD: 12345 # Reads from .env
+      REMEMBER_ME_KEY: remeberMeKey
     ports:
       - "8080:8080"  # Expose the Spring Boot app on port 8080
     depends_on:
