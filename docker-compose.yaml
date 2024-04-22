@@ -10,7 +10,7 @@ services:
       MYSQL_USER: myuser                 # Optional, a user for non-root operations
       MYSQL_PASSWORD: mypassword         # Optional, password for the above user
     ports:
-      - "3306:3306"  # Expose MySQL on port 3306
+      - "3307:3306"  # Expose MySQL on port 3307
     volumes:
       - mysql_data:/var/lib/mysql  # Persist data
 
@@ -18,7 +18,7 @@ services:
   app:
     build: .  # Assuming your Dockerfile is in the current directory
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydatabase  # Connection URL
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/quiz-kids?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC  # Connection URL
       SPRING_DATASOURCE_USERNAME: myuser                         # Replace with your MySQL user
       SPRING_DATASOURCE_PASSWORD: mypassword                     # Replace with your MySQL password
     ports:
@@ -26,4 +26,9 @@ services:
     depends_on:
       - mysql  # Ensure MySQL starts before the app
     volumes:
-      - app_logs:/app/logs  # Example volume for application logs
+      - app_logs:/app/logs  # This volume persists application logs
+
+volumes:
+  # Declare named volumes here
+  mysql_data:  # This volume persists MySQL data
+  app_logs:  # This volume persists application logs

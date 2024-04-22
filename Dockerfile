@@ -24,4 +24,4 @@ COPY --from=builder /app/target/*.jar /app/app.jar
 EXPOSE 8080
 
 # Command to run the Spring Boot application when the container starts
-CMD ["java", "-jar", "your-spring-boot-app.jar"]
+CMD ["java", "-jar", "/app/app.jar"]
