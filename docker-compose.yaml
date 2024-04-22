@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # MySQL service
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password  # Replace with your root password
+      MYSQL_DATABASE: mydatabase         # Replace with your desired database name
+      MYSQL_USER: myuser                 # Optional, a user for non-root operations
+      MYSQL_PASSWORD: mypassword         # Optional, password for the above user
+    ports:
+      - "3306:3306"  # Expose MySQL on port 3306
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persist data
+
+  # Spring Boot application service
+  app:
+    build: .  # Assuming your Dockerfile is in the current directory
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydatabase  # Connection URL
+      SPRING_DATASOURCE_USERNAME: myuser                         # Replace with your MySQL user
+      SPRING_DATASOURCE_PASSWORD: mypassword                     # Replace with your MySQL password
+    ports:
+      - "8080:8080"  # Expose the Spring Boot app on port 8080
+    depends_on:
+      - mysql  # Ensure MySQL starts before the app
+    volumes:
+      - app_logs:/app/logs  # Example volume for application logs
