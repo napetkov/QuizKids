@@ -12,7 +12,7 @@ COPY src ./src
 RUN mvn clean package
 
 # Stage 2: Create the final Docker image with the JAR file
-FROM apache/beam_java17_sdk
+FROM openjdk:17-jdk-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -24,4 +24,5 @@ COPY --from=builder /app/target/*.jar /app/app.jar
 EXPOSE 8080
 
 # Command to run the Spring Boot application when the container starts
-CMD ["java", "-jar", "/app/app.jar"]
+
+CMD ["java", "-jar", "app.jar"]
