@@ -9,20 +9,20 @@ COPY pom.xml .
 COPY src ./src
 
 # Build the JAR file
-RUN mvn clean package
+RUN mvn clean install
 
-# Stage 2: Create the final Docker image with the JAR file
-FROM openjdk:17-jdk-slim
-
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the built JAR file from the previous stage
-COPY --from=builder /app/target/*.jar app.jar
-
-# Expose the port that your Spring Boot application runs on
+## Stage 2: Create the final Docker image with the JAR file
+#FROM openjdk:17-jdk-slim
+#
+## Set the working directory in the container
+#WORKDIR /app
+#
+## Copy the built JAR file from the previous stage
+#COPY --from=builder /app/target/*.jar app.jar
+#
+## Expose the port that your Spring Boot application runs on
 EXPOSE 8080
 
 # Command to run the Spring Boot application when the container starts
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["mvn", "spring-boot:run"]
