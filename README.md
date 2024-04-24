@@ -46,7 +46,11 @@ QuizKids is a delightful and interactive quiz game designed to engage children b
      ```
      mvn spring-boot:run
      ```
-
+#### Run application via Docker:
+   - Navigate to the project directory and run the Docker command:
+      ```
+      docker-compose up -d
+      ```
 5. **Access the Web Application**:
    - Once the project is running, access the web application by visiting [http://localhost:8080](http://localhost:8080) in your web browser.
 
