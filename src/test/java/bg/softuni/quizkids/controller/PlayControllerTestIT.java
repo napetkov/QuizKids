@@ -5,8 +5,6 @@ import bg.softuni.quizkids.models.binding.AddQuestionBindingModel;
 import bg.softuni.quizkids.repository.QuestionRepository;
 import bg.softuni.quizkids.services.QuestionService;
 import bg.softuni.quizkids.testUtils.TestData;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -32,24 +30,9 @@ class PlayControllerTestIT {
     @Autowired
     private QuestionService questionService;
 
-//    @BeforeEach
-//    void setUp() {
-//        testData.clearAllTestData();
-//    }
-//
-//    @AfterEach
-//    void tearDown() {
-//        testData.clearAllTestData();
-//    }
     @Test
     @WithMockUser(username = "admin",roles = {"ADMIN"})
     public void testPlayQuestionById() throws Exception {
-//        testData.createUserWithRoleAdmin(
-//                "admin",
-//                "topsecret",
-//                "Pesho",
-//                "Petrov"
-//        );
 
         AddQuestionBindingModel addQuestionBindingModel = createQuestionFromBindingModel();
 

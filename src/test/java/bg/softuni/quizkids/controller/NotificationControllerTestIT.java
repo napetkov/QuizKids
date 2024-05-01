@@ -28,15 +28,6 @@ class NotificationControllerTestIT {
     @Autowired
     private TestData testData;
 
-//    @BeforeEach
-//    void setUp() {
-//        testData.clearAllTestData();
-//    }
-//
-//    @AfterEach
-//    void tearDown() {
-//        testData.clearAllTestData();
-//    }
 
     @Test
     @WithMockUser(username = "admin",roles = {"ADMIN"})

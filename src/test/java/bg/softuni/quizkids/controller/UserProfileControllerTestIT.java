@@ -141,25 +141,4 @@ class UserProfileControllerTestIT {
                 .andExpect(redirectedUrl("/users/profile/edit/changePassword"));
     }
 
-//    PasswordEncoder do not match passwords properly
-//    @Test
-//    @WithMockUser(username = "admin",roles = {"ADMIN"})
-//    public void testChangePasswordPost() throws Exception {
-//
-//        testData.createUserWithRoleAdmin(
-//                "admin",
-//                "topsecret",
-//                "Pesho",
-//                "Petrov"
-//        );
-//
-//        mockMvc.perform(MockMvcRequestBuilders.post("/users/profile/edit/changePassword")
-//                        .param("oldPassword","topsecret")
-//                        .param("password","newPassword")
-//                        .param("confirmPassword","newPassword")
-//                )
-//                .andExpect(status().is3xxRedirection())
-//                .andExpect(redirectedUrl("/users/logout"));
-//    }
-
 }

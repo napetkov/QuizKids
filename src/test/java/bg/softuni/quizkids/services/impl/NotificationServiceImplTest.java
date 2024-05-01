@@ -37,13 +37,4 @@ class NotificationServiceImplTest {
                 .countByUser_IdAndAndIsReadIsFalse(userId);
     }
 
-//    @Test
-//    public void testClearOldNotification() {
-//        LocalDateTime localDateTime = LocalDateTime.now().minusDays(30);
-//
-//        notificationServiceToTest.clearOldNotification();
-//
-//        verify(mockNotificationRepository, times(1))
-//                .deleteAllByCreatedBefore(localDateTime);
-//    }
 }
